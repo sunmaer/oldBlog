@@ -70,6 +70,80 @@
   </entry>
   
   <entry>
+    <title>你不知道的line-height</title>
+    <link href="http://sunmaer.github.io/2017/04/01/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84line-height/"/>
+    <id>http://sunmaer.github.io/2017/04/01/你不知道的line-height/</id>
+    <published>2017-04-01T12:14:23.000Z</published>
+    <updated>2017-08-01T12:17:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="什么是行间距？"><a href="#什么是行间距？" class="headerlink" title="什么是行间距？"></a>什么是行间距？</h3><p>行间距，即传说中控制两行文字之间垂直距离的东西。在CSS中，line-height被用来控制行与行之间的垂直间距。</p>
+<a id="more"></a>
+<h3 id="如何使用line-height？"><a href="#如何使用line-height？" class="headerlink" title="如何使用line-height？"></a>如何使用line-height？</h3><p>默认状态，浏览器使用1.0-1.2line-height，这是一个初始值。你可以定义CSS里的line-height属性来覆盖默认值。</p>
+<p>5种方式定义line-height:</p>
+<ul>
+<li>1.line-height可以被定义为normal</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">body &#123;</div><div class="line">  line-height: normal; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所有继承下来的元素不会忽略本身的font-size，而使用基于font-size算出来的line-height；浏览器在解释normal的时候会有细微的差别</p>
+<ul>
+<li>2.line-height可以被定义为继承</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">  line-height: inherit;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>3.line-height可以使用一个百分比值</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">  line-height: 120%;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>line-height的百分比和当前元素的字体大小被用来计算值，这个计算出来的值会被层叠下去的元素所继承；所有继承下来的元素会忽略本身的font-size，而使用相同的，计算出来的line-height</p>
+<ul>
+<li>4.line-height可以被定义为一个长度的值（单位px em等）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">  line-height: 20px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>长度值会被后代元素继承；所有继承下来的元素会忽略本身的font-size，而使用相同的，继承的line-height</p>
+<ul>
+<li>5.line-height也可以被定义为纯数字（甚至没有单位）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p &#123;</div><div class="line">  line-height: 1.2;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所有继承下来的元素使用基于font-size算出来的line-height</p>
+<p>line-height值也可以在font属性里缩写<br>例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">font: 100%/normal arial;</div></pre></td></tr></table></figure>
+<p>为了深入了解line-height，我们需要先来了解CSS boxes的各种类型:</p>
+<ul>
+<li>Box类型1：containing boxes</li>
+</ul>
+<p>段落就是一种containing boxes,它包含了其他的boxes</p>
+<ul>
+<li>Box类型2：inline boxes</li>
+</ul>
+<p>inline boxes不会让内容显示成块形式，而是排成一行</p>
+<ul>
+<li>Box类型3：line boxes</li>
+</ul>
+<p>inline boxes一个接一个组成了line boxes</p>
+<ul>
+<li>Box类型4：content area</li>
+</ul>
+<p>content area是围绕着文字的看不见的一种box，它的高取决于font-size</p>
+<p>inline boxes与line-height</p>
+<blockquote>
+<p>行高应用在inline-boxes上<br>line box高度取决于它外部最高的inline box（或被替换元素）<br>line box在containing box宽度内靠着彼此的顶部堆积</p>
+<p>参考网站：<a href="https://www.slideshare.net/daemao/line-height-2470819" target="_blank" rel="external">https://www.slideshare.net/daemao/line-height-2470819</a></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是行间距？&quot;&gt;&lt;a href=&quot;#什么是行间距？&quot; class=&quot;headerlink&quot; title=&quot;什么是行间距？&quot;&gt;&lt;/a&gt;什么是行间距？&lt;/h3&gt;&lt;p&gt;行间距，即传说中控制两行文字之间垂直距离的东西。在CSS中，line-height被用来控制行与行之间的垂直间距。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="css" scheme="http://sunmaer.github.io/categories/css/"/>
+    
+    
+      <category term="line-height" scheme="http://sunmaer.github.io/tags/line-height/"/>
+    
+  </entry>
+  
+  <entry>
     <title>起航</title>
     <link href="http://sunmaer.github.io/2017/03/30/%E8%B5%B7%E8%88%AA/"/>
     <id>http://sunmaer.github.io/2017/03/30/起航/</id>
