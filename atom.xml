@@ -42,9 +42,9 @@
       <category term="node.js" scheme="http://sunmaer.github.io/categories/node-js/"/>
     
     
-      <category term="node.js" scheme="http://sunmaer.github.io/tags/node-js/"/>
-    
       <category term="javascript" scheme="http://sunmaer.github.io/tags/javascript/"/>
+    
+      <category term="node.js" scheme="http://sunmaer.github.io/tags/node-js/"/>
     
       <category term="爬虫" scheme="http://sunmaer.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
@@ -101,6 +101,24 @@
       <category term="css" scheme="http://sunmaer.github.io/tags/css/"/>
     
       <category term="IE hack" scheme="http://sunmaer.github.io/tags/IE-hack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>toString和valueOf</title>
+    <link href="http://sunmaer.github.io/2017/04/06/toString%E5%92%8CvalueOf/"/>
+    <id>http://sunmaer.github.io/2017/04/06/toString和valueOf/</id>
+    <published>2017-04-06T08:52:24.000Z</published>
+    <updated>2017-08-06T08:53:00.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://sunmaer.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://sunmaer.github.io/tags/javascript/"/>
     
   </entry>
   
