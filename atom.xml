@@ -109,9 +109,61 @@
     <link href="http://sunmaer.github.io/2017/04/06/toString%E5%92%8CvalueOf/"/>
     <id>http://sunmaer.github.io/2017/04/06/toString和valueOf/</id>
     <published>2017-04-06T08:52:24.000Z</published>
-    <updated>2017-08-06T08:53:00.000Z</updated>
+    <updated>2017-08-06T10:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h1><p>JavaScript中所有的对象继承了两个转换方法。第一个是toString()，它的作用是返回一个反映这个对象的字符串。<br><a id="more"></a><br>很多类定义了更多特定版本的toString()方法。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">行为描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Array</td>
+<td style="text-align:center">将Array的每个元素转换为字符串，并将它们依次连接起来，两个元素之间用逗号作为分隔符进行拼接</td>
+</tr>
+<tr>
+<td style="text-align:center">Boolean</td>
+<td style="text-align:center">如果布尔值是true，则返回”true”，否则返回”false”</td>
+</tr>
+<tr>
+<td style="text-align:center">Date</td>
+<td style="text-align:center">返回日期的文本表示</td>
+</tr>
+<tr>
+<td style="text-align:center">Error</td>
+<td style="text-align:center">返回一个包含相关错误信息的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">Function</td>
+<td style="text-align:center">返回这个函数的实现定义的表示方法</td>
+</tr>
+<tr>
+<td style="text-align:center">Number</td>
+<td style="text-align:center">返回数值的字符串表示</td>
+</tr>
+<tr>
+<td style="text-align:center">String</td>
+<td style="text-align:center">返回String对象的值</td>
+</tr>
+<tr>
+<td style="text-align:center">Object(默认)</td>
+<td style="text-align:center">返回”[object ObjectName]”</td>
+</tr>
+</tbody>
+</table>
+<h1 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h1><p>另一个转换方法是valueOf()。如果存在任意原始值，它就默认将对象转换为表示它的原始值。对象是复合值，而且大多数对象无法真正表示为一个原始值，因此默认的valueOf()方法简单地返回对象本身，而不是返回一个原始值。</p>
+<blockquote>
+<p>对于所有非日期对象来说，对象到原始值的转换基本上是对象到数字的转换（首先调用valueOf(),但日期对象则使用对象到字符串的转换模式，但这种转换只执行一次就立即使用，不会像上面所说的那般先转字符串再转成相应的数字类型。</p>
+</blockquote>
+<p>如果只重写了toString()方法，对象转换时会无视valueOf的存在来进行转换；如果只重写了valueOf方法，在要转换为字符串的时候会优先考虑valueOf方法。在不能调用toString的情况下，只能使用valueOf()方法。</p>
+]]></content>
     
     <summary type="html">
+    
+      &lt;h1 id=&quot;toString-NaN&quot;&gt;&lt;a href=&quot;#toString-NaN&quot; class=&quot;headerlink&quot; title=&quot;toString()&quot;&gt;&lt;/a&gt;toString()&lt;/h1&gt;&lt;p&gt;JavaScript中所有的对象继承了两个转换方法。第一个是toString()，它的作用是返回一个反映这个对象的字符串。&lt;br&gt;
     
     </summary>
     
