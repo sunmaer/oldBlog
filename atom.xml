@@ -109,7 +109,7 @@
     <link href="http://sunmaer.github.io/2017/04/06/toString%E5%92%8CvalueOf/"/>
     <id>http://sunmaer.github.io/2017/04/06/toString和valueOf/</id>
     <published>2017-04-06T08:52:24.000Z</published>
-    <updated>2017-08-06T10:00:00.000Z</updated>
+    <updated>2017-08-06T11:39:21.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h1><p>JavaScript中所有的对象继承了两个转换方法。第一个是toString()，它的作用是返回一个反映这个对象的字符串。<br><a id="more"></a><br>很多类定义了更多特定版本的toString()方法。</p>
 <table>
@@ -159,6 +159,11 @@
 <p>对于所有非日期对象来说，对象到原始值的转换基本上是对象到数字的转换（首先调用valueOf(),但日期对象则使用对象到字符串的转换模式，但这种转换只执行一次就立即使用，不会像上面所说的那般先转字符串再转成相应的数字类型。</p>
 </blockquote>
 <p>如果只重写了toString()方法，对象转换时会无视valueOf的存在来进行转换；如果只重写了valueOf方法，在要转换为字符串的时候会优先考虑valueOf方法。在不能调用toString的情况下，只能使用valueOf()方法。</p>
+<p>总结：</p>
+<ol>
+<li>在进行强转字符串类型时将优先调用toString方法，强转为数字时优先调用valueOf。</li>
+<li>在有运算操作符的情况下，valueOf的优先级高于toString。</li>
+</ol>
 ]]></content>
     
     <summary type="html">
