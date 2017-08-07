@@ -401,98 +401,17 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>全局变量的问题</p>
 </blockquote>
 <p>全局变量的问题在于，你的JavaScript应用程序和web页面上的所有代码都共享了这些全局变量，他们住在同一个全局命名空间，所以当程序的亮哥不同部分定义同名但不同作用的全局变量的时候，命名冲突在所难免。</p>
-<blockquote>
-<p>隐式全局变量和明确定义的全局变量差异</p>
-</blockquote>
-<ul>
-<li>通过var创建的全局变量是不能被删除的</li>
-<li>无var创建的隐式全局变量是能被删除的</li>
-</ul>
-<p>隐式全局变量并不是真正的全局变量，但它们是全局对象的属性。属性是可以通过delete操作符删除的，而变量是不能的。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 定义三个全局变量</div><div class="line">var global1 = <span class="string">"Hello World"</span>;</div><div class="line">global2 = <span class="string">"Hello World"</span>;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123;</div><div class="line">  global3 = <span class="string">"Hello World"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 删除全局变量</div><div class="line">console.log(delete global1); // <span class="literal">false</span></div><div class="line">console.log(delete global2); // <span class="literal">true</span></div><div class="line">console.log(delete global3); // <span class="literal">true</span></div></pre></td></tr></table></figure>
-<p>ES5严格模式下，未声明的变量工作时会抛出一个错误</p>
-<blockquote>
-<p>单var形式</p>
-</blockquote>
-<p>在函数顶部使用单var语句是比较有用的一种形式，其好处在于：</p>
-<ul>
-<li>提供了一个单一的地方去寻找功能所需要的所有局部变量</li>
-<li>防止变量在定义之前使用的逻辑错误</li>
-<li>帮助你记住声明的全局变量</li>
-<li>少代码</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">func</span></span>() &#123;</div><div class="line">  var a = 1,</div><div class="line">      b = 2,</div><div class="line">      sum = a + b,</div><div class="line">      myObject = &#123;&#125;,</div><div class="line">      i,</div><div class="line">      j;      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>for循环缓存数组的长度</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var i = 0,</div><div class="line">    length,</div><div class="line">    myArr = [];</div><div class="line"><span class="keyword">for</span>(i = 0, length = myArr.length; i &lt; length; i++) &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>提升性能的形式：</p>
-<ul>
-<li>少了一个变量（无max）</li>
-<li>向下数到0,通常更快，因为和0作比较要比和数组长度或是其他不适0的东西作比较更有效率</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var i, myArr = [];</div><div class="line"><span class="keyword">for</span>(i = myArr.length; i--) &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>for-in循环</p>
-</blockquote>
-<p>for-in循环应该用在非数组对象的遍历上，使用for-in循环也被称为“枚举”。另外，在for-in中，属性列表的顺序是不能保证的。所以最好数组使用正常的for循环，对象使用for-in循环。</p>
-<blockquote>
-<p>避免隐式类型转换</p>
-<p>避免eval()</p>
-<p>parseInt()下的数值转换</p>
-</blockquote>
-<p>不应该省略基数参数</p>
-<blockquote>
-<p>按强类型风格编写代码</p>
-</blockquote>
-<ul>
-<li>定义变量的时候要指明类型</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var num = 0,</div><div class="line">    str = <span class="string">''</span>,</div><div class="line">    obj = null;</div></pre></td></tr></table></figure>
-<ul>
-<li>不要随意的改变变量类型</li>
-<li>函数的返回类型应该是要确定的</li>
-</ul>
-<blockquote>
-<p>减少作用域查找</p>
-</blockquote>
-<ul>
-<li>不要让代码暴露在全局作用域下，使用立即执行匿名函数</li>
-<li>不要滥用闭包</li>
-</ul>
-<blockquote>
-<p>避免 == 的使用</p>
-</blockquote>
-<ul>
-<li>如果变量类型确定，就没必要使用 == </li>
-<li>如果变量类型不确定，手动类型转换</li>
-<li>使用 == 在JSLint检查的时候是不通过的</li>
-<li>== 可能会出现一些奇怪的现象</li>
-</ul>
-<blockquote>
-<p>合并表达式</p>
-</blockquote>
-<ul>
-<li>用三目运算符取代简单的if-else</li>
-<li>连等</li>
-<li>自增</li>
-</ul>
-<blockquote>
-<p>使用ES6语法简化代码</p>
-</blockquote>
-<ul>
-<li>使用箭头函数取代小函数</li>
-<li>使用ES6的class</li>
-<li>字符串拼接</li>
-<li>块级作用域变量</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/07/编写高质量的JavaScript代码/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
