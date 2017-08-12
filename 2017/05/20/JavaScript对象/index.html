@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="單棲情緒">
 <meta property="og:description" content="对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-12T13:27:57.000Z">
+<meta property="og:updated_time" content="2017-08-12T13:46:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript对象">
 <meta name="twitter:description" content="对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。">
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  689
+                  859
                 </span>
               
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -433,6 +433,12 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(o.propertyIsEnumerable(<span class="string">'x'</span>)) // <span class="literal">true</span></div><div class="line">console.log(o.propertyIsEnumerable(<span class="string">'y'</span>)) // <span class="literal">false</span></div><div class="line">console.log(Object.prototype.propertyIsEnumerable(<span class="string">'toString'</span>)) // <span class="literal">false</span> 不可枚举</div></pre></td></tr></table></figure>
 <h3 id="‘-‘判断一个属性是否是-undefinded"><a href="#‘-‘判断一个属性是否是-undefinded" class="headerlink" title="‘ !== ‘判断一个属性是否是 undefinded"></a>‘ !== ‘判断一个属性是否是 undefinded</h3><p>in 可以区分不存在的属性和存在但值为 undefined 的属性</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(o.x !== undefined) // <span class="literal">true</span></div><div class="line">console.log(o.y !== undefined) // <span class="literal">false</span></div><div class="line">console.log(o.toString !== undefined) // <span class="literal">true</span></div></pre></td></tr></table></figure>
+<h2 id="枚举属性"><a href="#枚举属性" class="headerlink" title="枚举属性"></a>枚举属性</h2><h3 id="for-in-循环"><a href="#for-in-循环" class="headerlink" title="for/in 循环"></a>for/in 循环</h3><p>for/in 循环可以在循环体中遍历对象中所有可枚举的属性（包括自有属性和继承属性），对象继承的内置方法不可枚举</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  z: 3</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span>(var p <span class="keyword">in</span> o) &#123;</div><div class="line">  console.log(p) // x y z</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a>Object.keys()</h3><p>Object.keys() 返回一个数组，这个数组由对象中可枚举的自有属性的名称组成</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  z: 3</div><div class="line">&#125;</div><div class="line">console.log(Object.keys(o)) // [<span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>]</div></pre></td></tr></table></figure>
+<h3 id="Object-getOwnPropertyName"><a href="#Object-getOwnPropertyName" class="headerlink" title="Object.getOwnPropertyName()"></a>Object.getOwnPropertyName()</h3><p>Object.getOwnPropertyName() 返回对象的所有自有属性的名称，而不仅仅是可枚举的属性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  z: 3</div><div class="line">&#125;</div><div class="line">console.log(Object.getOwnPropertyNames(o)) // [<span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>]</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -727,7 +733,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建对象"><span class="nav-number">1.</span> <span class="nav-text">创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象直接量"><span class="nav-number">1.1.</span> <span class="nav-text">对象直接量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过-new-创建对象"><span class="nav-number">1.2.</span> <span class="nav-text">通过 new 创建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-create"><span class="nav-number">1.3.</span> <span class="nav-text">Object.create()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性的查询和设置"><span class="nav-number">2.</span> <span class="nav-text">属性的查询和设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性访问错误"><span class="nav-number">2.1.</span> <span class="nav-text">属性访问错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除属性"><span class="nav-number">2.2.</span> <span class="nav-text">删除属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测属性"><span class="nav-number">2.3.</span> <span class="nav-text">检测属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#in-运算符"><span class="nav-number">2.3.1.</span> <span class="nav-text">in 运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasOwnProperty-和propertyIsEnumerable"><span class="nav-number">2.3.2.</span> <span class="nav-text">hasOwnProperty()和propertyIsEnumerable()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#‘-‘判断一个属性是否是-undefinded"><span class="nav-number">2.3.3.</span> <span class="nav-text">‘ !== ‘判断一个属性是否是 undefinded</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建对象"><span class="nav-number">1.</span> <span class="nav-text">创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象直接量"><span class="nav-number">1.1.</span> <span class="nav-text">对象直接量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过-new-创建对象"><span class="nav-number">1.2.</span> <span class="nav-text">通过 new 创建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-create"><span class="nav-number">1.3.</span> <span class="nav-text">Object.create()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性的查询和设置"><span class="nav-number">2.</span> <span class="nav-text">属性的查询和设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性访问错误"><span class="nav-number">2.1.</span> <span class="nav-text">属性访问错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除属性"><span class="nav-number">2.2.</span> <span class="nav-text">删除属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测属性"><span class="nav-number">2.3.</span> <span class="nav-text">检测属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#in-运算符"><span class="nav-number">2.3.1.</span> <span class="nav-text">in 运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasOwnProperty-和propertyIsEnumerable"><span class="nav-number">2.3.2.</span> <span class="nav-text">hasOwnProperty()和propertyIsEnumerable()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#‘-‘判断一个属性是否是-undefinded"><span class="nav-number">2.3.3.</span> <span class="nav-text">‘ !== ‘判断一个属性是否是 undefinded</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举属性"><span class="nav-number">2.4.</span> <span class="nav-text">枚举属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in-循环"><span class="nav-number">2.4.1.</span> <span class="nav-text">for/in 循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-keys"><span class="nav-number">2.4.2.</span> <span class="nav-text">Object.keys()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-getOwnPropertyName"><span class="nav-number">2.4.3.</span> <span class="nav-text">Object.getOwnPropertyName()</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -766,7 +772,7 @@
 </div>
 
 <div class="theme-info">
-  <span class="post-count">博客全站共4.0k字</span>
+  <span class="post-count">博客全站共4.1k字</span>
 </div>
 
 
