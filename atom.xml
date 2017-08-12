@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://sunmaer.github.io/"/>
-  <updated>2017-08-07T14:12:30.000Z</updated>
+  <updated>2017-08-12T13:27:57.000Z</updated>
   <id>http://sunmaer.github.io/</id>
   
   <author>
@@ -14,6 +14,64 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaScript对象</title>
+    <link href="http://sunmaer.github.io/2017/05/20/JavaScript%E5%AF%B9%E8%B1%A1/"/>
+    <id>http://sunmaer.github.io/2017/05/20/JavaScript对象/</id>
+    <published>2017-05-20T06:42:06.000Z</published>
+    <updated>2017-08-12T13:27:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h1><h2 id="对象直接量"><a href="#对象直接量" class="headerlink" title="对象直接量"></a>对象直接量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 对象直接量</div><div class="line">var person = &#123;</div><div class="line">  name: <span class="string">'sunmaer'</span>,</div><div class="line">  age: 21 // ECMAScript5中，最后一个属性后的逗号将忽略</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="通过-new-创建对象"><a href="#通过-new-创建对象" class="headerlink" title="通过 new 创建对象"></a>通过 new 创建对象</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var person2 = new Object();</div><div class="line">person2.name = <span class="string">'sunmaer'</span>;</div><div class="line">person2.age = 21;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>原型：所有通过对象直接量创建的对象都具有同一个原型对象，并可以通过 JavaScript 代码 Object.prototype 获得对原型对象的引用。通过关键字 new 和构造函数调用创建的对象的原型就是构造函数的 prototype 属性的值。</p>
+</blockquote>
+<h2 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create()"></a>Object.create()</h2><blockquote>
+<p>第一个参数指定对象的原型，第二个参数用以对对象的属性进行进一步描述</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var person3 = Object.create(&#123;</div><div class="line">  name: <span class="string">'sunmaer'</span>,</div><div class="line">  age: 21</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>传入参数 null 将创建一个没有原型的新对象</li>
+<li>传入 Object.prototype 创建一个普通的空对象（类似通过 {} 或 new Object() 创建的对象)</li>
+</ul>
+<h1 id="属性的查询和设置"><a href="#属性的查询和设置" class="headerlink" title="属性的查询和设置"></a>属性的查询和设置</h1><h2 id="属性访问错误"><a href="#属性访问错误" class="headerlink" title="属性访问错误"></a>属性访问错误</h2><ul>
+<li>o 中的属性 p 是只读的：不能给只读属性重新弄赋值</li>
+<li>o 中的属性 p 是继承属性，且它是只读的： 不能通过同名自有属性覆盖只读的继承属性</li>
+<li>o 中不存在自有属性 p: o 没有使用 setter 方法机场属性 p，并且 o 的可扩展性是 false。</li>
+</ul>
+<h2 id="删除属性"><a href="#删除属性" class="headerlink" title="删除属性"></a>删除属性</h2><ul>
+<li>delete 只是断开属性和宿主对象的联系，而不会去操作属性中的属性</li>
+<li>delete 只能删除自有属性，不能删除继承属性</li>
+<li>严格模式中，delete 必须显示指定对象及其属性</li>
+</ul>
+<h2 id="检测属性"><a href="#检测属性" class="headerlink" title="检测属性"></a>检测属性</h2><h3 id="in-运算符"><a href="#in-运算符" class="headerlink" title="in 运算符"></a>in 运算符</h3><p>如果对象的自有属性或继承属性中包含这个属性则返回 true</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(<span class="string">'x'</span> <span class="keyword">in</span> o) // <span class="literal">true</span></div><div class="line">console.log(<span class="string">'y'</span> <span class="keyword">in</span> o) // <span class="literal">false</span></div><div class="line">console.log(<span class="string">'toString'</span> <span class="keyword">in</span> o) // <span class="literal">true</span> o 继承toString属性</div></pre></td></tr></table></figure>
+<h3 id="hasOwnProperty-和propertyIsEnumerable"><a href="#hasOwnProperty-和propertyIsEnumerable" class="headerlink" title="hasOwnProperty()和propertyIsEnumerable()"></a>hasOwnProperty()和propertyIsEnumerable()</h3><p>对象的 hasOwnProperty() 方法用来检测给定的名字是否是对象的自有属性，对于继承属性返回false</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(o.hasOwnProperty(<span class="string">'x'</span>)) // <span class="literal">true</span></div><div class="line">console.log(o.hasOwnProperty(<span class="string">'y'</span>)) // <span class="literal">false</span></div><div class="line">console.log(o.hasOwnProperty(<span class="string">'toString'</span>)) // <span class="literal">false</span></div></pre></td></tr></table></figure>
+<p>propertyIsEnumerable() 只有检测到时自身属性且这个属性的可枚举性为 true 时才返回true</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(o.propertyIsEnumerable(<span class="string">'x'</span>)) // <span class="literal">true</span></div><div class="line">console.log(o.propertyIsEnumerable(<span class="string">'y'</span>)) // <span class="literal">false</span></div><div class="line">console.log(Object.prototype.propertyIsEnumerable(<span class="string">'toString'</span>)) // <span class="literal">false</span> 不可枚举</div></pre></td></tr></table></figure>
+<h3 id="‘-‘判断一个属性是否是-undefinded"><a href="#‘-‘判断一个属性是否是-undefinded" class="headerlink" title="‘ !== ‘判断一个属性是否是 undefinded"></a>‘ !== ‘判断一个属性是否是 undefinded</h3><p>in 可以区分不存在的属性和存在但值为 undefined 的属性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(o.x !== undefined) // <span class="literal">true</span></div><div class="line">console.log(o.y !== undefined) // <span class="literal">false</span></div><div class="line">console.log(o.toString !== undefined) // <span class="literal">true</span></div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://sunmaer.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://sunmaer.github.io/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>编写高质量的JavaScript代码</title>

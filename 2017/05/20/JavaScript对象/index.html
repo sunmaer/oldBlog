@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="toString()JavaScript中所有的对象继承了两个转换方法。第一个是toString()，它的作用是返回一个反映这个对象的字符串。">
+<meta name="description" content="对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="toString和valueOf">
-<meta property="og:url" content="http://sunmaer.github.io/2017/04/06/toString和valueOf/index.html">
+<meta property="og:title" content="JavaScript对象">
+<meta property="og:url" content="http://sunmaer.github.io/2017/05/20/JavaScript对象/index.html">
 <meta property="og:site_name" content="單棲情緒">
-<meta property="og:description" content="toString()JavaScript中所有的对象继承了两个转换方法。第一个是toString()，它的作用是返回一个反映这个对象的字符串。">
+<meta property="og:description" content="对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-06T11:39:21.000Z">
+<meta property="og:updated_time" content="2017-08-12T13:27:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="toString和valueOf">
-<meta name="twitter:description" content="toString()JavaScript中所有的对象继承了两个转换方法。第一个是toString()，它的作用是返回一个反映这个对象的字符串。">
+<meta name="twitter:title" content="JavaScript对象">
+<meta name="twitter:description" content="对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://sunmaer.github.io/2017/04/06/toString和valueOf/"/>
+  <link rel="canonical" href="http://sunmaer.github.io/2017/05/20/JavaScript对象/"/>
 
 
 
 
 
-  <title>toString和valueOf | 單棲情緒</title>
+  <title>JavaScript对象 | 單棲情緒</title>
   
 
 
@@ -281,7 +281,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://sunmaer.github.io/2017/04/06/toString和valueOf/">
+    <link itemprop="mainEntityOfPage" href="http://sunmaer.github.io/2017/05/20/JavaScript对象/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sunmaer">
@@ -298,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">toString和valueOf</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript对象</h1>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-06T16:52:24+08:00">
-                2017-04-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-20T14:42:06+08:00">
+                2017-05-20
               </time>
             
 
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  491
+                  689
                 </span>
               
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -398,60 +398,41 @@
       
 
       
-        <h1 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h1><p>JavaScript中所有的对象继承了两个转换方法。第一个是toString()，它的作用是返回一个反映这个对象的字符串。<br><a id="more"></a><br>很多类定义了更多特定版本的toString()方法。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">类型</th>
-<th style="text-align:center">行为描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Array</td>
-<td style="text-align:center">将Array的每个元素转换为字符串，并将它们依次连接起来，两个元素之间用逗号作为分隔符进行拼接</td>
-</tr>
-<tr>
-<td style="text-align:center">Boolean</td>
-<td style="text-align:center">如果布尔值是true，则返回”true”，否则返回”false”</td>
-</tr>
-<tr>
-<td style="text-align:center">Date</td>
-<td style="text-align:center">返回日期的文本表示</td>
-</tr>
-<tr>
-<td style="text-align:center">Error</td>
-<td style="text-align:center">返回一个包含相关错误信息的字符串</td>
-</tr>
-<tr>
-<td style="text-align:center">Function</td>
-<td style="text-align:center">返回这个函数的实现定义的表示方法</td>
-</tr>
-<tr>
-<td style="text-align:center">Number</td>
-<td style="text-align:center">返回数值的字符串表示</td>
-</tr>
-<tr>
-<td style="text-align:center">String</td>
-<td style="text-align:center">返回String对象的值</td>
-</tr>
-<tr>
-<td style="text-align:center">Object(默认)</td>
-<td style="text-align:center">返回”[object ObjectName]”</td>
-</tr>
-</tbody>
-</table>
-<h1 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h1><p>另一个转换方法是valueOf()。如果存在任意原始值，它就默认将对象转换为表示它的原始值。对象是复合值，而且大多数对象无法真正表示为一个原始值，因此默认的valueOf()方法简单地返回对象本身，而不是返回一个原始值。</p>
-<blockquote>
-<p>对于所有非日期对象来说，对象到原始值的转换基本上是对象到数字的转换（首先调用valueOf(),但日期对象则使用对象到字符串的转换模式，但这种转换只执行一次就立即使用，不会像上面所说的那般先转字符串再转成相应的数字类型。</p>
+        <blockquote>
+<p>对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。</p>
 </blockquote>
-<p>如果只重写了toString()方法，对象转换时会无视valueOf的存在来进行转换；如果只重写了valueOf方法，在要转换为字符串的时候会优先考虑valueOf方法。在不能调用toString的情况下，只能使用valueOf()方法。</p>
-<p>总结：</p>
-<ol>
-<li>在进行强转字符串类型时将优先调用toString方法，强转为数字时优先调用valueOf。</li>
-<li>在有运算操作符的情况下，valueOf的优先级高于toString。</li>
-</ol>
-
+<a id="more"></a>
+<h1 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h1><h2 id="对象直接量"><a href="#对象直接量" class="headerlink" title="对象直接量"></a>对象直接量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 对象直接量</div><div class="line">var person = &#123;</div><div class="line">  name: <span class="string">'sunmaer'</span>,</div><div class="line">  age: 21 // ECMAScript5中，最后一个属性后的逗号将忽略</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="通过-new-创建对象"><a href="#通过-new-创建对象" class="headerlink" title="通过 new 创建对象"></a>通过 new 创建对象</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var person2 = new Object();</div><div class="line">person2.name = <span class="string">'sunmaer'</span>;</div><div class="line">person2.age = 21;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>原型：所有通过对象直接量创建的对象都具有同一个原型对象，并可以通过 JavaScript 代码 Object.prototype 获得对原型对象的引用。通过关键字 new 和构造函数调用创建的对象的原型就是构造函数的 prototype 属性的值。</p>
+</blockquote>
+<h2 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create()"></a>Object.create()</h2><blockquote>
+<p>第一个参数指定对象的原型，第二个参数用以对对象的属性进行进一步描述</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var person3 = Object.create(&#123;</div><div class="line">  name: <span class="string">'sunmaer'</span>,</div><div class="line">  age: 21</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>传入参数 null 将创建一个没有原型的新对象</li>
+<li>传入 Object.prototype 创建一个普通的空对象（类似通过 {} 或 new Object() 创建的对象)</li>
+</ul>
+<h1 id="属性的查询和设置"><a href="#属性的查询和设置" class="headerlink" title="属性的查询和设置"></a>属性的查询和设置</h1><h2 id="属性访问错误"><a href="#属性访问错误" class="headerlink" title="属性访问错误"></a>属性访问错误</h2><ul>
+<li>o 中的属性 p 是只读的：不能给只读属性重新弄赋值</li>
+<li>o 中的属性 p 是继承属性，且它是只读的： 不能通过同名自有属性覆盖只读的继承属性</li>
+<li>o 中不存在自有属性 p: o 没有使用 setter 方法机场属性 p，并且 o 的可扩展性是 false。</li>
+</ul>
+<h2 id="删除属性"><a href="#删除属性" class="headerlink" title="删除属性"></a>删除属性</h2><ul>
+<li>delete 只是断开属性和宿主对象的联系，而不会去操作属性中的属性</li>
+<li>delete 只能删除自有属性，不能删除继承属性</li>
+<li>严格模式中，delete 必须显示指定对象及其属性</li>
+</ul>
+<h2 id="检测属性"><a href="#检测属性" class="headerlink" title="检测属性"></a>检测属性</h2><h3 id="in-运算符"><a href="#in-运算符" class="headerlink" title="in 运算符"></a>in 运算符</h3><p>如果对象的自有属性或继承属性中包含这个属性则返回 true</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(<span class="string">'x'</span> <span class="keyword">in</span> o) // <span class="literal">true</span></div><div class="line">console.log(<span class="string">'y'</span> <span class="keyword">in</span> o) // <span class="literal">false</span></div><div class="line">console.log(<span class="string">'toString'</span> <span class="keyword">in</span> o) // <span class="literal">true</span> o 继承toString属性</div></pre></td></tr></table></figure>
+<h3 id="hasOwnProperty-和propertyIsEnumerable"><a href="#hasOwnProperty-和propertyIsEnumerable" class="headerlink" title="hasOwnProperty()和propertyIsEnumerable()"></a>hasOwnProperty()和propertyIsEnumerable()</h3><p>对象的 hasOwnProperty() 方法用来检测给定的名字是否是对象的自有属性，对于继承属性返回false</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(o.hasOwnProperty(<span class="string">'x'</span>)) // <span class="literal">true</span></div><div class="line">console.log(o.hasOwnProperty(<span class="string">'y'</span>)) // <span class="literal">false</span></div><div class="line">console.log(o.hasOwnProperty(<span class="string">'toString'</span>)) // <span class="literal">false</span></div></pre></td></tr></table></figure>
+<p>propertyIsEnumerable() 只有检测到时自身属性且这个属性的可枚举性为 true 时才返回true</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(o.propertyIsEnumerable(<span class="string">'x'</span>)) // <span class="literal">true</span></div><div class="line">console.log(o.propertyIsEnumerable(<span class="string">'y'</span>)) // <span class="literal">false</span></div><div class="line">console.log(Object.prototype.propertyIsEnumerable(<span class="string">'toString'</span>)) // <span class="literal">false</span> 不可枚举</div></pre></td></tr></table></figure>
+<h3 id="‘-‘判断一个属性是否是-undefinded"><a href="#‘-‘判断一个属性是否是-undefinded" class="headerlink" title="‘ !== ‘判断一个属性是否是 undefinded"></a>‘ !== ‘判断一个属性是否是 undefinded</h3><p>in 可以区分不存在的属性和存在但值为 undefined 的属性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(o.x !== undefined) // <span class="literal">true</span></div><div class="line">console.log(o.y !== undefined) // <span class="literal">false</span></div><div class="line">console.log(o.toString !== undefined) // <span class="literal">true</span></div></pre></td></tr></table></figure>
       
     </div>
 
@@ -465,12 +446,12 @@
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2017/04/06/toString和valueOf/">toString和valueOf</a></p>
+  <p><span>本文标题:</span><a href="/2017/05/20/JavaScript对象/">JavaScript对象</a></p>
   <p><span>本文作者:</span><a href="/" title="访问 sunmaer 的个人博客">sunmaer</a></p>
-  <p><span>发布时间:</span>2017年04月06日 - 16:04</p>
-  <!-- <p><span>最后更新:</span>2017年08月06日 - 19:08</p> -->
-  <p><span>本文链接:</span><a href="/2017/04/06/toString和valueOf/" title="toString和valueOf">http://sunmaer.github.io/2017/04/06/toString和valueOf/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/04/06/toString和valueOf/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2017年05月20日 - 14:05</p>
+  <!-- <p><span>最后更新:</span>2017年08月12日 - 21:08</p> -->
+  <p><span>本文链接:</span><a href="/2017/05/20/JavaScript对象/" title="JavaScript对象">http://sunmaer.github.io/2017/05/20/JavaScript对象/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/05/20/JavaScript对象/"  aria-label="复制成功！"></i></span>
   </p>
   <!-- <p><span>版权声明:</span>转载请保留原文链接及作者。</p>  -->
 </div>
@@ -530,8 +511,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/01/你不知道的line-height/" rel="next" title="你不知道的line-height">
-                <i class="fa fa-chevron-left"></i> 你不知道的line-height
+              <a href="/2017/05/07/编写高质量的JavaScript代码/" rel="next" title="编写高质量的JavaScript代码">
+                <i class="fa fa-chevron-left"></i> 编写高质量的JavaScript代码
               </a>
             
           </div>
@@ -539,10 +520,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/21/IE-hack/" rel="prev" title="IE hack">
-                IE hack <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -750,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#toString-NaN"><span class="nav-number">1.</span> <span class="nav-text">toString()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#valueOf-NaN"><span class="nav-number">2.</span> <span class="nav-text">valueOf()</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建对象"><span class="nav-number">1.</span> <span class="nav-text">创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象直接量"><span class="nav-number">1.1.</span> <span class="nav-text">对象直接量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过-new-创建对象"><span class="nav-number">1.2.</span> <span class="nav-text">通过 new 创建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-create"><span class="nav-number">1.3.</span> <span class="nav-text">Object.create()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性的查询和设置"><span class="nav-number">2.</span> <span class="nav-text">属性的查询和设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性访问错误"><span class="nav-number">2.1.</span> <span class="nav-text">属性访问错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除属性"><span class="nav-number">2.2.</span> <span class="nav-text">删除属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测属性"><span class="nav-number">2.3.</span> <span class="nav-text">检测属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#in-运算符"><span class="nav-number">2.3.1.</span> <span class="nav-text">in 运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasOwnProperty-和propertyIsEnumerable"><span class="nav-number">2.3.2.</span> <span class="nav-text">hasOwnProperty()和propertyIsEnumerable()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#‘-‘判断一个属性是否是-undefinded"><span class="nav-number">2.3.3.</span> <span class="nav-text">‘ !== ‘判断一个属性是否是 undefinded</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
