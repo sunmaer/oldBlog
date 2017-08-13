@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://sunmaer.github.io/"/>
-  <updated>2017-08-13T06:30:58.000Z</updated>
+  <updated>2017-08-13T07:13:36.000Z</updated>
   <id>http://sunmaer.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://sunmaer.github.io/2017/05/20/JavaScript%E5%AF%B9%E8%B1%A1/"/>
     <id>http://sunmaer.github.io/2017/05/20/JavaScript对象/</id>
     <published>2017-05-20T06:42:06.000Z</published>
-    <updated>2017-08-13T06:30:58.000Z</updated>
+    <updated>2017-08-13T07:13:36.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。</p>
@@ -64,7 +64,7 @@
 <h3 id="Object-getOwnPropertyName"><a href="#Object-getOwnPropertyName" class="headerlink" title="Object.getOwnPropertyName()"></a>Object.getOwnPropertyName()</h3><p>Object.getOwnPropertyName() 返回对象的所有自有属性的名称，而不仅仅是可枚举的属性</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  z: 3</div><div class="line">&#125;</div><div class="line">console.log(Object.getOwnPropertyNames(o)) // [<span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>]</div></pre></td></tr></table></figure>
 <h2 id="属性-getter-和-setter"><a href="#属性-getter-和-setter" class="headerlink" title="属性 getter 和 setter"></a>属性 getter 和 setter</h2><blockquote>
-<p>一个 getter 是一个获取某个特定属性的值的方法；一个 setter 是一个设置某个属性的值得方法。当程序查询存取器属性的值时，JavaScript 调用 getter 方法（无参数)。当程序设置一个存取器属性的值时，JavaScript 调用 setter 方法，将赋值表达式右侧的值当做参数传入 setter。</p>
+<p>一个 getter 是一个获取某个特定属性的值的方法；一个 setter 是一个设置某个属性的值得方法。由 getter 和 setter 定义的属性称做”存取器属性“，它不同于”数据属性“，数据属性只有一个简单的值。当程序查询存取器属性的值时，JavaScript 调用 getter 方法（无参数)。当程序设置一个存取器属性的值时，JavaScript 调用 setter 方法，将赋值表达式右侧的值当做参数传入 setter。</p>
 </blockquote>
 <ul>
 <li>在对象初始化的时候定义</li>
@@ -74,6 +74,25 @@
 <li>在对象定义后的时候定义<br>定义一个已经声明的函数作为的getter和setter方法，使用Object.defineProperty(或者 Object.prototype.<strong>defineGetter</strong> 旧语法回退)</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2</div><div class="line">&#125;</div><div class="line">Object.defineProperty(o, <span class="string">'p'</span>, &#123;</div><div class="line">  get: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">    <span class="built_in">return</span> this.x + this.y</div><div class="line">  &#125;,</div><div class="line">  <span class="built_in">set</span>: <span class="keyword">function</span>(newValue) &#123;</div><div class="line">    this.x += newValue</div><div class="line">    this.y += newValue</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">console.log(o.p) // 3</div><div class="line">o.p = 1</div><div class="line">console.log(o.x + <span class="string">'-'</span> + o.y) // 2-3</div></pre></td></tr></table></figure>
+<h2 id="属性的特性"><a href="#属性的特性" class="headerlink" title="属性的特性"></a>属性的特性</h2><p>所有通过 ES3 的程序创建的属性都是可写的，可枚举的，可配置的，且无法对这些特性做修改。ES5 中可以查询和设置这些属性特性。</p>
+<p>一个属性包含一个名字和4个特性。数据属性的4个特性分别是值（value）、可写性（writable）、可枚举性（enumerable)、可配置性（configurable)。存取器属性不具有值特性和可写性，它们的可写性是有setter 方法 存在与否决定的。因此存取器属性的4个特性是读取（get)、写入（set)、可枚举和可配置性。为了实现属性特性的查询和设置操作，ES5 定义了一个名为”属性描述符“的对象。</p>
+<ul>
+<li>Object.getOwnPropertyDescriptor() 可以获得某个对象特定属性的属性描述符，只能得到自有属性</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// Object &#123;value: 1, writable: <span class="literal">true</span>, enumerable: <span class="literal">true</span>, configurable: <span class="literal">true</span>&#125;</div><div class="line">console.log(Object.getOwnPropertyDescriptor(&#123; x: 1 &#125;, <span class="string">'x'</span>)) </div><div class="line">    </div><div class="line">console.log(Object.getOwnPropertyDescriptor(&#123; x: 1 &#125;, <span class="string">'toString'</span>)) // undefined</div></pre></td></tr></table></figure>
+<ul>
+<li>Object.defineProperty() 设置属性的特性或者想让新建属性具有某种特性，多个的话使用 Object.definePropertyies()</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2</div><div class="line">&#125;</div><div class="line">Object.defineProperty(o, <span class="string">'p'</span>, &#123;</div><div class="line">  get: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">    <span class="built_in">return</span> this.x + this.y</div><div class="line">  &#125;,</div><div class="line">  <span class="built_in">set</span>: <span class="keyword">function</span>(newValue) &#123;</div><div class="line">    this.x += newValue</div><div class="line">    this.y += newValue</div><div class="line">  &#125;,</div><div class="line">  enumerable: <span class="literal">false</span>,</div><div class="line">  configurable: <span class="literal">false</span></div><div class="line">&#125;)</div><div class="line">// Object &#123;enumerable: <span class="literal">false</span>, configurable: <span class="literal">false</span>, get: <span class="keyword">function</span>, <span class="built_in">set</span>: <span class="keyword">function</span>&#125;</div><div class="line">console.log(Object.getOwnPropertyDescriptor(o, <span class="string">'p'</span>))</div></pre></td></tr></table></figure>
+<p>任何对 Object.defineProperty() 违反规则的使用都会抛出类型错误异常，完整规则如下：</p>
+<ul>
+<li>如果对象是不可扩展的，则可以编辑已有的自有属性，但不能给它添加新属性</li>
+<li>如果属性是不可配置的，则不能修改它的可枚举性和可配置性</li>
+<li>如果存取器属性是不可配置的，则不能修改其 getter 和 setter 方法，也不能将它转换为数据属性</li>
+<li>如果数据属性是不可配置的，则不能将它转换为存取器属性</li>
+<li>如果数据属性是不可配置的，则不能将它的可写性从 false 修改为 true，但可以从 true 修改为 false</li>
+<li>如果数据属性是不可配置且不可写的，则不能修改它的值。然而可配置但不可写属性的值是可以修改的。</li>
+</ul>
 ]]></content>
     
     <summary type="html">
