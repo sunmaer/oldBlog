@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="單棲情緒">
 <meta property="og:description" content="对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-12T13:46:32.000Z">
+<meta property="og:updated_time" content="2017-08-13T06:30:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript对象">
 <meta name="twitter:description" content="对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。">
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  859
+                  1,092
                 </span>
               
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4
+                  5
                 </span>
               
             </div>
@@ -439,6 +439,18 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  z: 3</div><div class="line">&#125;</div><div class="line">console.log(Object.keys(o)) // [<span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>]</div></pre></td></tr></table></figure>
 <h3 id="Object-getOwnPropertyName"><a href="#Object-getOwnPropertyName" class="headerlink" title="Object.getOwnPropertyName()"></a>Object.getOwnPropertyName()</h3><p>Object.getOwnPropertyName() 返回对象的所有自有属性的名称，而不仅仅是可枚举的属性</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  z: 3</div><div class="line">&#125;</div><div class="line">console.log(Object.getOwnPropertyNames(o)) // [<span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>]</div></pre></td></tr></table></figure>
+<h2 id="属性-getter-和-setter"><a href="#属性-getter-和-setter" class="headerlink" title="属性 getter 和 setter"></a>属性 getter 和 setter</h2><blockquote>
+<p>一个 getter 是一个获取某个特定属性的值的方法；一个 setter 是一个设置某个属性的值得方法。当程序查询存取器属性的值时，JavaScript 调用 getter 方法（无参数)。当程序设置一个存取器属性的值时，JavaScript 调用 setter 方法，将赋值表达式右侧的值当做参数传入 setter。</p>
+</blockquote>
+<ul>
+<li>在对象初始化的时候定义</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  get <span class="function"><span class="title">p</span></span>() &#123;</div><div class="line">    <span class="built_in">return</span> this.x + this.y</div><div class="line">  &#125;,</div><div class="line">  <span class="built_in">set</span> p(newValue) &#123;</div><div class="line">    this.x += newValue</div><div class="line">    this.y += newValue</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">console.log(o.p) // 3</div><div class="line">o.p = 1</div><div class="line">console.log(o.x + <span class="string">'-'</span> + o.y) // 2-3</div></pre></td></tr></table></figure>
+<ul>
+<li>在对象定义后的时候定义<br>定义一个已经声明的函数作为的getter和setter方法，使用Object.defineProperty(或者 Object.prototype.<strong>defineGetter</strong> 旧语法回退)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2</div><div class="line">&#125;</div><div class="line">Object.defineProperty(o, <span class="string">'p'</span>, &#123;</div><div class="line">  get: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">    <span class="built_in">return</span> this.x + this.y</div><div class="line">  &#125;,</div><div class="line">  <span class="built_in">set</span>: <span class="keyword">function</span>(newValue) &#123;</div><div class="line">    this.x += newValue</div><div class="line">    this.y += newValue</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">console.log(o.p) // 3</div><div class="line">o.p = 1</div><div class="line">console.log(o.x + <span class="string">'-'</span> + o.y) // 2-3</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -455,7 +467,7 @@
   <p><span>本文标题:</span><a href="/2017/05/20/JavaScript对象/">JavaScript对象</a></p>
   <p><span>本文作者:</span><a href="/" title="访问 sunmaer 的个人博客">sunmaer</a></p>
   <p><span>发布时间:</span>2017年05月20日 - 14:05</p>
-  <!-- <p><span>最后更新:</span>2017年08月12日 - 21:08</p> -->
+  <!-- <p><span>最后更新:</span>2017年08月13日 - 14:08</p> -->
   <p><span>本文链接:</span><a href="/2017/05/20/JavaScript对象/" title="JavaScript对象">http://sunmaer.github.io/2017/05/20/JavaScript对象/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/05/20/JavaScript对象/"  aria-label="复制成功！"></i></span>
   </p>
@@ -733,7 +745,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建对象"><span class="nav-number">1.</span> <span class="nav-text">创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象直接量"><span class="nav-number">1.1.</span> <span class="nav-text">对象直接量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过-new-创建对象"><span class="nav-number">1.2.</span> <span class="nav-text">通过 new 创建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-create"><span class="nav-number">1.3.</span> <span class="nav-text">Object.create()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性的查询和设置"><span class="nav-number">2.</span> <span class="nav-text">属性的查询和设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性访问错误"><span class="nav-number">2.1.</span> <span class="nav-text">属性访问错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除属性"><span class="nav-number">2.2.</span> <span class="nav-text">删除属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测属性"><span class="nav-number">2.3.</span> <span class="nav-text">检测属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#in-运算符"><span class="nav-number">2.3.1.</span> <span class="nav-text">in 运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasOwnProperty-和propertyIsEnumerable"><span class="nav-number">2.3.2.</span> <span class="nav-text">hasOwnProperty()和propertyIsEnumerable()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#‘-‘判断一个属性是否是-undefinded"><span class="nav-number">2.3.3.</span> <span class="nav-text">‘ !== ‘判断一个属性是否是 undefinded</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举属性"><span class="nav-number">2.4.</span> <span class="nav-text">枚举属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in-循环"><span class="nav-number">2.4.1.</span> <span class="nav-text">for/in 循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-keys"><span class="nav-number">2.4.2.</span> <span class="nav-text">Object.keys()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-getOwnPropertyName"><span class="nav-number">2.4.3.</span> <span class="nav-text">Object.getOwnPropertyName()</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建对象"><span class="nav-number">1.</span> <span class="nav-text">创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象直接量"><span class="nav-number">1.1.</span> <span class="nav-text">对象直接量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过-new-创建对象"><span class="nav-number">1.2.</span> <span class="nav-text">通过 new 创建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-create"><span class="nav-number">1.3.</span> <span class="nav-text">Object.create()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#属性的查询和设置"><span class="nav-number">2.</span> <span class="nav-text">属性的查询和设置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#属性访问错误"><span class="nav-number">2.1.</span> <span class="nav-text">属性访问错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除属性"><span class="nav-number">2.2.</span> <span class="nav-text">删除属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检测属性"><span class="nav-number">2.3.</span> <span class="nav-text">检测属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#in-运算符"><span class="nav-number">2.3.1.</span> <span class="nav-text">in 运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hasOwnProperty-和propertyIsEnumerable"><span class="nav-number">2.3.2.</span> <span class="nav-text">hasOwnProperty()和propertyIsEnumerable()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#‘-‘判断一个属性是否是-undefinded"><span class="nav-number">2.3.3.</span> <span class="nav-text">‘ !== ‘判断一个属性是否是 undefinded</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#枚举属性"><span class="nav-number">2.4.</span> <span class="nav-text">枚举属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#for-in-循环"><span class="nav-number">2.4.1.</span> <span class="nav-text">for/in 循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-keys"><span class="nav-number">2.4.2.</span> <span class="nav-text">Object.keys()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-getOwnPropertyName"><span class="nav-number">2.4.3.</span> <span class="nav-text">Object.getOwnPropertyName()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性-getter-和-setter"><span class="nav-number">2.5.</span> <span class="nav-text">属性 getter 和 setter</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -772,7 +784,7 @@
 </div>
 
 <div class="theme-info">
-  <span class="post-count">博客全站共4.1k字</span>
+  <span class="post-count">博客全站共4.4k字</span>
 </div>
 
 
