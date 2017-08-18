@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://sunmaer.github.io/"/>
-  <updated>2017-08-13T07:13:36.000Z</updated>
+  <updated>2017-08-18T14:53:20.000Z</updated>
   <id>http://sunmaer.github.io/</id>
   
   <author>
@@ -14,6 +14,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue2.0中数据可视化库实现关系图</title>
+    <link href="http://sunmaer.github.io/2017/08/18/Vue%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BA%93%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB%E5%9B%BE/"/>
+    <id>http://sunmaer.github.io/2017/08/18/Vue中使用数据可视化库实现关系图/</id>
+    <published>2017-08-18T14:49:15.000Z</published>
+    <updated>2017-08-18T14:53:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>项目地址：<a href="https://github.com/sunmaer/vue-charts" target="_blank" rel="external">https://github.com/sunmaer/vue-charts</a></p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Echarts"><a href="#Echarts" class="headerlink" title="Echarts"></a><a href="http://echarts.baidu.com/index.html" target="_blank" rel="external">Echarts</a></h2><blockquote>
+<p>版本：3.6.2</p>
+</blockquote>
+<ul>
+<li>树状图<br>Echarts3中删除了tree图，但是我们通过自定义节点坐标还是可以实现一个简单的树图。给定节点层级，然后通过层级平均分布节点，不过这种方法存在的问题还是不少，建议使用D3.js实现树图，见后面。</li>
+</ul>
+<p><img src="http://otxtxlg3e.bkt.clouddn.com/tree.png" alt="树状图"></p>
+<ul>
+<li>人物关系图</li>
+</ul>
+<p><img src="http://otxtxlg3e.bkt.clouddn.com/net.png" alt="人物关系图"></p>
+<h2 id="D3-js-组织结构图示例"><a href="#D3-js-组织结构图示例" class="headerlink" title="D3.js 组织结构图示例"></a><a href="https://d3js.org/" target="_blank" rel="external">D3.js</a> 组织结构图示例</h2><blockquote>
+<p>版本：4.10.0</p>
+</blockquote>
+<p><img src="http://otxtxlg3e.bkt.clouddn.com/organise.png" alt="组织结构图"></p>
+<h2 id="jsPlumb-流程图示例"><a href="#jsPlumb-流程图示例" class="headerlink" title="jsPlumb 流程图示例"></a><a href="https://www.jsplumbtoolkit.com/community/doc/home.html" target="_blank" rel="external">jsPlumb</a> 流程图示例</h2><blockquote>
+<p>版本：2.4.3</p>
+</blockquote>
+<p><img src="http://otxtxlg3e.bkt.clouddn.com/flow.png" alt="流程图"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;项目地址：&lt;a href=&quot;https://github.com/sunmaer/vue-charts&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/sunmaer/vue-charts&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="vue" scheme="http://sunmaer.github.io/categories/vue/"/>
+    
+    
+      <category term="数据可视化" scheme="http://sunmaer.github.io/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
+    
+      <category term="Echarts" scheme="http://sunmaer.github.io/tags/Echarts/"/>
+    
+      <category term="jsPlumb" scheme="http://sunmaer.github.io/tags/jsPlumb/"/>
+    
+      <category term="D3.js" scheme="http://sunmaer.github.io/tags/D3-js/"/>
+    
+      <category term="组织结构图" scheme="http://sunmaer.github.io/tags/%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E5%9B%BE/"/>
+    
+      <category term="树状图" scheme="http://sunmaer.github.io/tags/%E6%A0%91%E7%8A%B6%E5%9B%BE/"/>
+    
+      <category term="关系图" scheme="http://sunmaer.github.io/tags/%E5%85%B3%E7%B3%BB%E5%9B%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript对象</title>
