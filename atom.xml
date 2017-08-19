@@ -174,7 +174,7 @@
     <link href="http://sunmaer.github.io/2017/05/19/Js%E4%B8%AD%E8%8E%B7%E5%8F%96%E5%90%84%E7%A7%8D%E5%AE%BD%E5%BA%A6%E5%92%8C%E9%AB%98%E5%BA%A6/"/>
     <id>http://sunmaer.github.io/2017/05/19/Js中获取各种宽度和高度/</id>
     <published>2017-05-19T03:53:39.000Z</published>
-    <updated>2017-08-19T15:06:42.000Z</updated>
+    <updated>2017-08-19T15:24:57.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>总结 JavaScript 中各种宽度和高度。</p>
@@ -206,7 +206,17 @@
 <ul>
 <li>clientHeight 在页面上返回内容的可视高度（不包括边框，边距或滚动条）</li>
 <li>clientWidth     在页面上返回内容的可视宽度（不包括边框，边距或滚动条）</li>
+<li>offsetHeight 返回，任何一个元素的高度包括边框和填充，但不是边距</li>
+<li>offsetWidth     返回元素的宽度，包括边框和填充，但不是边距</li>
+<li>offsetLeft    返回当前元素的相对水平偏移位置的偏移容器</li>
+<li>offsetParent 返回元素的偏移容器</li>
+<li>offsetTop 返回当前元素的相对垂直偏移位置的偏移容器</li>
+<li>scrollHeight 返回整个元素的高度（包括带滚动条的隐蔽的地方）</li>
+<li>scrollLeft 返回当前视图中的实际元素的左边缘和左边缘之间的距离</li>
+<li>scrollTop 返回当前视图中的实际元素的顶部边缘和顶部边缘之间的距离</li>
+<li>scrollWidth     返回元素的整个宽度（包括带滚动条的隐蔽的地方）</li>
 </ul>
+<p>```bash</p>
 ]]></content>
     
     <summary type="html">
