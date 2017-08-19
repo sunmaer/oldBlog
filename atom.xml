@@ -170,6 +170,43 @@
   </entry>
   
   <entry>
+    <title>css各类width属性</title>
+    <link href="http://sunmaer.github.io/2017/05/19/Js%E4%B8%AD%E8%8E%B7%E5%8F%96%E5%90%84%E7%A7%8D%E5%AE%BD%E5%BA%A6%E5%92%8C%E9%AB%98%E5%BA%A6/"/>
+    <id>http://sunmaer.github.io/2017/05/19/Js中获取各种宽度和高度/</id>
+    <published>2017-05-19T03:53:39.000Z</published>
+    <updated>2017-08-19T14:53:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>总结 JavaScript 中各种宽度和高度。</p>
+<p>笔记本屏幕分辨率：1440 x 900</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Window-对象"><a href="#Window-对象" class="headerlink" title="Window 对象"></a>Window 对象</h2><ul>
+<li>innerHeight 返回窗口的文档显示区的高度（不包括浏览器的状态栏）</li>
+<li>innerWidth 返回窗口的文档显示区的宽度</li>
+<li>outerHeight 返回窗口的外部高度（包括浏览器的状态栏，IE 不支持此属性）</li>
+<li>outerWidth 返回窗口的外部宽度 （IE 不支持此属性）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 浏览器为全屏状态，屏幕分辨率：1440 x 900</div><div class="line">console.log(window.innerHeight) // 803</div><div class="line">console.log(window.innerWidth) // 1440</div><div class="line">console.log(window.outerHeight) // 900</div><div class="line">console.log(window.outerWidth) // 1440</div></pre></td></tr></table></figure>
+<h2 id="Screen-对象"><a href="#Screen-对象" class="headerlink" title="Screen 对象"></a>Screen 对象</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;总结 JavaScript 中各种宽度和高度。&lt;/p&gt;
+&lt;p&gt;笔记本屏幕分辨率：1440 x 900&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://sunmaer.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://sunmaer.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>编写高质量的JavaScript代码</title>
     <link href="http://sunmaer.github.io/2017/05/07/%E7%BC%96%E5%86%99%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9A%84JavaScript%E4%BB%A3%E7%A0%81/"/>
     <id>http://sunmaer.github.io/2017/05/07/编写高质量的JavaScript代码/</id>
