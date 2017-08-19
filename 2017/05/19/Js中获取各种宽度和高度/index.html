@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="总结 JavaScript 中各种宽度和高度。 笔记本屏幕分辨率：1440 x 900">
+<meta name="description" content="总结 JavaScript 中各种宽度和高度。">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="css各类width属性">
 <meta property="og:url" content="http://sunmaer.github.io/2017/05/19/Js中获取各种宽度和高度/index.html">
 <meta property="og:site_name" content="單棲情緒">
-<meta property="og:description" content="总结 JavaScript 中各种宽度和高度。 笔记本屏幕分辨率：1440 x 900">
+<meta property="og:description" content="总结 JavaScript 中各种宽度和高度。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-19T14:53:56.000Z">
+<meta property="og:updated_time" content="2017-08-19T15:06:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css各类width属性">
-<meta name="twitter:description" content="总结 JavaScript 中各种宽度和高度。 笔记本屏幕分辨率：1440 x 900">
+<meta name="twitter:description" content="总结 JavaScript 中各种宽度和高度。">
 
 
 
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  142
+                  414
                 </span>
               
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -400,17 +400,36 @@
       
         <blockquote>
 <p>总结 JavaScript 中各种宽度和高度。</p>
-<p>笔记本屏幕分辨率：1440 x 900</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="Window-对象"><a href="#Window-对象" class="headerlink" title="Window 对象"></a>Window 对象</h2><ul>
+<h2 id="Window-对象"><a href="#Window-对象" class="headerlink" title="Window 对象"></a>Window 对象</h2><blockquote>
+<p>Window 对象表示浏览器中打开的窗口。如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。</p>
+</blockquote>
+<ul>
 <li>innerHeight 返回窗口的文档显示区的高度（不包括浏览器的状态栏）</li>
 <li>innerWidth 返回窗口的文档显示区的宽度</li>
 <li>outerHeight 返回窗口的外部高度（包括浏览器的状态栏，IE 不支持此属性）</li>
 <li>outerWidth 返回窗口的外部宽度 （IE 不支持此属性）</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 浏览器为全屏状态，屏幕分辨率：1440 x 900</div><div class="line">console.log(window.innerHeight) // 803</div><div class="line">console.log(window.innerWidth) // 1440</div><div class="line">console.log(window.outerHeight) // 900</div><div class="line">console.log(window.outerWidth) // 1440</div></pre></td></tr></table></figure>
-<h2 id="Screen-对象"><a href="#Screen-对象" class="headerlink" title="Screen 对象"></a>Screen 对象</h2>
+<h2 id="Screen-对象"><a href="#Screen-对象" class="headerlink" title="Screen 对象"></a>Screen 对象</h2><blockquote>
+<p>Screen 对象包含有关客户端显示屏幕的信息。</p>
+</blockquote>
+<ul>
+<li>availHeight 返回显示屏幕的高度，（通常与屏幕的宽度、高度一致）</li>
+<li>availWidth 返回显示屏幕的宽度，（通常与屏幕的宽度、高度一致）</li>
+<li>height 屏幕的高度（指的是屏幕的分辨率，单位为像素）</li>
+<li>width 屏幕的宽度（指的是屏幕的分辨率，单位为像素）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 屏幕分辨率：1440 x 900</div><div class="line">console.log(screen.availHeight) // 900</div><div class="line">console.log(screen.availWidth) // 1440</div><div class="line">console.log(screen.height) // 900</div><div class="line">console.log(screen.width) // 1440</div></pre></td></tr></table></figure>
+<h2 id="Element-对象"><a href="#Element-对象" class="headerlink" title="Element 对象"></a>Element 对象</h2><blockquote>
+<p>Element 对象表示 XML 文档中的元素。元素可包含属性、其他元素或文本。如果元素含有文本，则在文本节点中表示该文本。</p>
+</blockquote>
+<ul>
+<li>clientHeight 在页面上返回内容的可视高度（不包括边框，边距或滚动条）</li>
+<li>clientWidth     在页面上返回内容的可视宽度（不包括边框，边距或滚动条）</li>
+</ul>
+
       
     </div>
 
@@ -427,7 +446,7 @@
   <p><span>本文标题:</span><a href="/2017/05/19/Js中获取各种宽度和高度/">css各类width属性</a></p>
   <p><span>本文作者:</span><a href="/" title="访问 sunmaer 的个人博客">sunmaer</a></p>
   <p><span>发布时间:</span>2017年05月19日 - 11:05</p>
-  <!-- <p><span>最后更新:</span>2017年08月19日 - 22:08</p> -->
+  <!-- <p><span>最后更新:</span>2017年08月19日 - 23:08</p> -->
   <p><span>本文链接:</span><a href="/2017/05/19/Js中获取各种宽度和高度/" title="css各类width属性">http://sunmaer.github.io/2017/05/19/Js中获取各种宽度和高度/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/05/19/Js中获取各种宽度和高度/"  aria-label="复制成功！"></i></span>
   </p>
@@ -709,7 +728,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Window-对象"><span class="nav-number">1.</span> <span class="nav-text">Window 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Screen-对象"><span class="nav-number">2.</span> <span class="nav-text">Screen 对象</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Window-对象"><span class="nav-number">1.</span> <span class="nav-text">Window 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Screen-对象"><span class="nav-number">2.</span> <span class="nav-text">Screen 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Element-对象"><span class="nav-number">3.</span> <span class="nav-text">Element 对象</span></a></li></ol></div>
             
 
           </div>
@@ -748,7 +767,7 @@
 </div>
 
 <div class="theme-info">
-  <span class="post-count">博客全站共5.2k字</span>
+  <span class="post-count">博客全站共5.5k字</span>
 </div>
 
 
