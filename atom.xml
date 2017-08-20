@@ -170,11 +170,11 @@
   </entry>
   
   <entry>
-    <title>css各类width属性</title>
+    <title>JavaScript 中各种宽度和高度</title>
     <link href="http://sunmaer.github.io/2017/05/19/JavaScript%E8%8E%B7%E5%8F%96%E5%90%84%E7%A7%8D%E5%AE%BD%E5%BA%A6%E5%92%8C%E9%AB%98%E5%BA%A6/"/>
     <id>http://sunmaer.github.io/2017/05/19/JavaScript获取各种宽度和高度/</id>
     <published>2017-05-19T03:53:39.000Z</published>
-    <updated>2017-08-20T03:35:45.000Z</updated>
+    <updated>2017-08-20T03:39:09.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>总结 JavaScript 中各种宽度和高度。</p>
