@@ -79,7 +79,7 @@
     <link href="http://sunmaer.github.io/2017/05/20/JavaScript%E5%AF%B9%E8%B1%A1/"/>
     <id>http://sunmaer.github.io/2017/05/20/JavaScript对象/</id>
     <published>2017-05-20T06:42:06.000Z</published>
-    <updated>2017-08-13T07:13:36.000Z</updated>
+    <updated>2017-08-22T14:09:46.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。</p>
@@ -120,7 +120,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  z: 3</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span>(var p <span class="keyword">in</span> o) &#123;</div><div class="line">  console.log(p) // x y z</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a>Object.keys()</h3><p>Object.keys() 返回一个数组，这个数组由对象中可枚举的自有属性的名称组成</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  z: 3</div><div class="line">&#125;</div><div class="line">console.log(Object.keys(o)) // [<span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>]</div></pre></td></tr></table></figure>
-<h3 id="Object-getOwnPropertyName"><a href="#Object-getOwnPropertyName" class="headerlink" title="Object.getOwnPropertyName()"></a>Object.getOwnPropertyName()</h3><p>Object.getOwnPropertyName() 返回对象的所有自有属性的名称，而不仅仅是可枚举的属性</p>
+<h3 id="Object-getOwnPropertyNames"><a href="#Object-getOwnPropertyNames" class="headerlink" title="Object.getOwnPropertyNames()"></a>Object.getOwnPropertyNames()</h3><p>Object.getOwnPropertyNames() 返回对象的所有自有属性的名称，而不仅仅是可枚举的属性</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  z: 3</div><div class="line">&#125;</div><div class="line">console.log(Object.getOwnPropertyNames(o)) // [<span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>]</div></pre></td></tr></table></figure>
 <h2 id="属性-getter-和-setter"><a href="#属性-getter-和-setter" class="headerlink" title="属性 getter 和 setter"></a>属性 getter 和 setter</h2><blockquote>
 <p>一个 getter 是一个获取某个特定属性的值的方法；一个 setter 是一个设置某个属性的值得方法。由 getter 和 setter 定义的属性称做”存取器属性“，它不同于”数据属性“，数据属性只有一个简单的值。当程序查询存取器属性的值时，JavaScript 调用 getter 方法（无参数)。当程序设置一个存取器属性的值时，JavaScript 调用 setter 方法，将赋值表达式右侧的值当做参数传入 setter。</p>
