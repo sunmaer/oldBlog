@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="DOM," />
 
 
 
@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="总结 JavaScript 中各种宽度和高度。">
-<meta name="keywords" content="javascript">
+<meta name="description" content="我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：">
+<meta name="keywords" content="DOM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript 中各种宽度和高度">
-<meta property="og:url" content="http://sunmaer.github.io/2017/05/19/JavaScript获取各种宽度和高度/index.html">
+<meta property="og:title" content="JavaScript插入元素">
+<meta property="og:url" content="http://sunmaer.github.io/2017/07/29/JavaScript插入元素/index.html">
 <meta property="og:site_name" content="單棲情緒">
-<meta property="og:description" content="总结 JavaScript 中各种宽度和高度。">
+<meta property="og:description" content="我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-20T03:39:09.000Z">
+<meta property="og:updated_time" content="2017-08-29T03:45:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript 中各种宽度和高度">
-<meta name="twitter:description" content="总结 JavaScript 中各种宽度和高度。">
+<meta name="twitter:title" content="JavaScript插入元素">
+<meta name="twitter:description" content="我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://sunmaer.github.io/2017/05/19/JavaScript获取各种宽度和高度/"/>
+  <link rel="canonical" href="http://sunmaer.github.io/2017/07/29/JavaScript插入元素/"/>
 
 
 
 
 
-  <title>JavaScript 中各种宽度和高度 | 單棲情緒</title>
+  <title>JavaScript插入元素 | 單棲情緒</title>
   
 
 
@@ -281,7 +281,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://sunmaer.github.io/2017/05/19/JavaScript获取各种宽度和高度/">
+    <link itemprop="mainEntityOfPage" href="http://sunmaer.github.io/2017/07/29/JavaScript插入元素/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sunmaer">
@@ -298,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript 中各种宽度和高度</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript插入元素</h1>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-19T11:53:39+08:00">
-                2017-05-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T11:21:51+08:00">
+                2017-07-29
               </time>
             
 
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,124
+                  620
                 </span>
               
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  5
+                  3
                 </span>
               
             </div>
@@ -399,67 +399,30 @@
 
       
         <blockquote>
-<p>总结 JavaScript 中各种宽度和高度。</p>
+<p>我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="Window-对象"><a href="#Window-对象" class="headerlink" title="Window 对象"></a>Window 对象</h2><blockquote>
-<p>Window 对象表示浏览器中打开的窗口。如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。</p>
-</blockquote>
-<ul>
-<li>innerHeight 返回窗口的文档显示区的高度（不包括浏览器的状态栏）</li>
-<li>innerWidth 返回窗口的文档显示区的宽度</li>
-<li>outerHeight 返回窗口的外部高度（包括浏览器的状态栏，IE 不支持此属性）</li>
-<li>outerWidth 返回窗口的外部宽度 （IE 不支持此属性）</li>
+<h2 id="insertBefore-在指定的已有的子节点之前插入新节点"><a href="#insertBefore-在指定的已有的子节点之前插入新节点" class="headerlink" title="insertBefore()    在指定的已有的子节点之前插入新节点"></a>insertBefore()    在指定的已有的子节点之前插入新节点</h2><ul>
+<li>调用了10000次ul.insertBefore()，每次都要产生一次页面渲染</li>
+<li>在父元素末尾插入新节点性能和appendChild()差不多，如果在指定子节点前插入新节点，影响文档树中的其他元素，渲染开销较大</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 浏览器为全屏状态，屏幕分辨率：1440 x 900</div><div class="line">console.log(window.innerHeight) // 803</div><div class="line">console.log(window.innerWidth) // 1440</div><div class="line">console.log(window.outerHeight) // 900</div><div class="line">console.log(window.outerWidth) // 1440</div></pre></td></tr></table></figure>
-<h2 id="Screen-对象"><a href="#Screen-对象" class="headerlink" title="Screen 对象"></a>Screen 对象</h2><blockquote>
-<p>Screen 对象包含有关客户端显示屏幕的信息。</p>
-</blockquote>
-<ul>
-<li>availHeight 返回显示屏幕的高度，（通常与屏幕的宽度、高度一致）</li>
-<li>availWidth 返回显示屏幕的宽度，（通常与屏幕的宽度、高度一致）</li>
-<li>height 屏幕的高度（指的是屏幕的分辨率，单位为像素）</li>
-<li>width 屏幕的宽度（指的是屏幕的分辨率，单位为像素）</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1; i&lt;=10000; i++) &#123;</div><div class="line">	<span class="built_in">let</span> li = document.createElement(<span class="string">'li'</span>)</div><div class="line">	<span class="built_in">let</span> a = document.createElement(<span class="string">'a'</span>)</div><div class="line">	<span class="built_in">let</span> text = document.createTextNode(<span class="string">'insertBefore()-'</span> + i)</div><div class="line">	a.appendChild(text)</div><div class="line">	li.appendChild(a)</div><div class="line">	ul.insertBefore(li, null)  // 第二个参数为 null 则在末尾插入新节点</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="appendChild-向元素添加新的子节点，作为最后一个子节点"><a href="#appendChild-向元素添加新的子节点，作为最后一个子节点" class="headerlink" title="appendChild()    向元素添加新的子节点，作为最后一个子节点"></a>appendChild()    向元素添加新的子节点，作为最后一个子节点</h2><ul>
+<li>调用了10000次ul.appendChild()，每次都要产生一次页面渲染</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 屏幕分辨率：1440 x 900</div><div class="line">console.log(screen.availHeight) // 900</div><div class="line">console.log(screen.availWidth) // 1440</div><div class="line">console.log(screen.height) // 900</div><div class="line">console.log(screen.width) // 1440</div></pre></td></tr></table></figure>
-<h2 id="Element-对象"><a href="#Element-对象" class="headerlink" title="Element 对象"></a>Element 对象</h2><blockquote>
-<p>Element 对象表示 XML 文档中的元素。元素可包含属性、其他元素或文本。如果元素含有文本，则在文本节点中表示该文本。</p>
-</blockquote>
-<ul>
-<li>clientHeight 在页面上返回内容的可视高度（不包括边框、滚动条）</li>
-<li>clientWidth     在页面上返回内容的可视宽度（不包括边框、滚动条）<ul>
-<li>有滚动条时：clientWidth = 元素左内边距宽度+元素宽度+元素右内边距宽度-元素垂直滚动条宽度</li>
-<li>无滚动条时：clientWidth = 元素左内边距宽度+元素宽度+元素右内边距宽度</li>
-<li>clientHeight 类似</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1; i&lt;=10000; i++) &#123;</div><div class="line">  <span class="built_in">let</span> li = document.createElement(<span class="string">'li'</span>)</div><div class="line">  <span class="built_in">let</span> a = document.createElement(<span class="string">'a'</span>)</div><div class="line">  <span class="built_in">let</span> text = document.createTextNode(<span class="string">'appendChild()-'</span> + i)</div><div class="line">  a.appendChild(text)</div><div class="line">  li.appendChild(a)</div><div class="line">  ul.appendChild(li)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="innerHTML-设置或返回元素的内容"><a href="#innerHTML-设置或返回元素的内容" class="headerlink" title="innerHTML 设置或返回元素的内容"></a>innerHTML 设置或返回元素的内容</h2><ul>
+<li>只需要一次页面渲染</li>
+<li>innerHTML 插入上万个节点的时候，如果要插入的DIV里是空的，那么用innerHTML 插入是最好的选择，速度也是最快的，但是当第二次插入的时候，你就会发现速度降低。如果div里已经有数据，innerHTML会逐一删除，然后再插入的新的数据，速度大大降低，此时建议使用文档片段方式</li>
 </ul>
-</li>
-<li>offsetHeight 返回，任何一个元素的高度包括边框和填充</li>
-<li>offsetWidth     返回元素的宽度，包括边框和填充</li>
-<li>offsetLeft    返回当前元素的相对水平偏移位置的偏移容器</li>
-<li>offsetParent 返回元素的偏移容器，最近的定位的父元素，没有则为 body</li>
-<li>offsetTop 返回当前元素的相对垂直偏移位置的偏移容器<ul>
-<li>offsetWidth = 元素左边框宽度+元素左内边距宽度+元素宽度+元素右内边距宽度+元素右边框宽度</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> liString = <span class="string">''</span></div><div class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1; i&lt;=10000; i++) &#123;</div><div class="line">  liString += <span class="string">'&lt;li&gt;&lt;a href=""&gt;innerHTML-'</span> + i +<span class="string">'&lt;/a&gt;&lt;/li&gt;'</span></div><div class="line">&#125;</div><div class="line">ul.innerHTML = liString</div></pre></td></tr></table></figure>
+<h2 id="文档片段-推荐）"><a href="#文档片段-推荐）" class="headerlink" title="文档片段(推荐）"></a>文档片段(推荐）</h2><ul>
+<li>只需要一次页面渲染</li>
+<li>虽然不能把文档片段直接添加到文档中，但可以将它作为一个“仓库”来使用，即可以在里面保存将来可能会添加到文档中的节点。可以通过 appendChild() 或者 insertBefore() 将文档片段中内容添加到文档中。在将文档片段作为参数传递给这两个方法时，实际上只会将文档片段的所有子节点添加到相应位置上；文档片段本身永远不会成为文档树的一部分</li>
 </ul>
-</li>
-<li>scrollHeight 返回整个元素的高度（包括带滚动条的隐蔽的地方）</li>
-<li>scrollLeft 返回当前视图中的实际元素的左边缘和左边缘之间的距离</li>
-<li>scrollTop 返回当前视图中的实际元素的顶部边缘和顶部边缘之间的距离</li>
-<li>scrollWidth     返回元素的整个宽度（包括带滚动条的隐蔽的地方）</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">	&lt;title&gt;Js中获取各种宽度和高度&lt;/title&gt;</div><div class="line">	&lt;style&gt;</div><div class="line">		<span class="comment">#block1 &#123;</span></div><div class="line">			width: 500px;</div><div class="line">			height: 500px;</div><div class="line">			overflow: scroll;</div><div class="line">			background-color: red;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">#block2 &#123;</span></div><div class="line">			width: 600px;</div><div class="line">			height: 600px;</div><div class="line">			padding: 20px;</div><div class="line">			border: 10px solid blue;</div><div class="line">			margin: 0 auto;</div><div class="line">		&#125;</div><div class="line">	&lt;/style&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;div id=<span class="string">"block1"</span>&gt;</div><div class="line">		&lt;div id=<span class="string">"block2"</span>&gt;&lt;/div&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line"></div><div class="line">	&lt;script&gt;</div><div class="line">		var block = document.getElementById(<span class="string">'block2'</span>);</div><div class="line">		console.log(block.clientHeight) // 640 = 600 + 20 + 20</div><div class="line">		console.log(block.clientWidth) // 440 = 400 + 20 + 20</div><div class="line">		console.log(block.offsetHeight) // 660 = 600 + 20 + 20 + 10 +10</div><div class="line">		console.log(block.offsetWidth) // 460 = 400 + 20 + 20 +10 + 10</div><div class="line">		console.log(block.offsetLeft) // 28 外边距20加上浏览器默认的8</div><div class="line">		console.log(block.offsetParent) // body 对象，如果 block1 设置定位后则为 block1</div><div class="line">		console.log(block.offsetTop) // 0</div><div class="line">		console.log(block.scrollHeight) // 640</div><div class="line">		console.log(block.scrollLeft) // 0</div><div class="line">		console.log(block.scrollTop) // 0</div><div class="line">		console.log(block.scrollWidth) // 440</div><div class="line">	&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<h2 id="JS-获取样式"><a href="#JS-获取样式" class="headerlink" title="JS 获取样式"></a>JS 获取样式</h2><ul>
-<li>style 属性</li>
-</ul>
-<p>元素的 style 属性代表了元素的内联样式，它覆盖了所有的样式表，它是设置 CSS 属性值来改变元素的视觉表现最好的地方。不能查询外部样式表。</p>
-<ul>
-<li>getComputedStyle() 方法</li>
-</ul>
-<p>浏览器窗口对象的 getComputedStyle() 方法可以获得一个元素的计算样式，只读。这个方法有两个参数，第一个是元素，第二个也是必须的，通常是 null或空字符串，也可以是 CSS 伪对象，如 “:after”。IE8 或更早的版本不支持该方法。</p>
-<ul>
-<li>currentStyle 属性</li>
-</ul>
-<p>在 IE 中，每个 HTML 元素有自己的 currentStyle 属性，组合了内联样式和样式表。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">	&lt;title&gt;Js中获取样式&lt;/title&gt;</div><div class="line">	&lt;style&gt;</div><div class="line">		<span class="comment">#block &#123;</span></div><div class="line">			border: 5px solid blue;</div><div class="line">		&#125;</div><div class="line">	&lt;/style&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;div id=<span class="string">"block"</span> style=<span class="string">"width: 100%; height: 200px; background-color: red;"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">	&lt;script&gt;</div><div class="line">		var block = document.getElementById(<span class="string">'block'</span>);</div><div class="line">		console.log(block.style.width); // 100%</div><div class="line">		console.log(getComputedStyle(block, null).width); // 728px</div><div class="line">		console.log(block.style.height); // 200px</div><div class="line">		console.log(getComputedStyle(block, null).height); // 200px</div><div class="line">	&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var fragment = document.createDocumentFragment()</div><div class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1; i&lt;=10000; i++) &#123;</div><div class="line">  <span class="built_in">let</span> li = document.createElement(<span class="string">'li'</span>)</div><div class="line">  <span class="built_in">let</span> a = document.createElement(<span class="string">'a'</span>)</div><div class="line">  <span class="built_in">let</span> text = document.createTextNode(<span class="string">'DocumentFragment-'</span> + i)</div><div class="line">  a.appendChild(text)</div><div class="line">  li.appendChild(a)</div><div class="line">  fragment.appendChild(li)</div><div class="line">&#125;</div><div class="line">ul.appendChild(fragment)</div></pre></td></tr></table></figure>
+<h2 id="Jquery-插入-DOM-元素-append-方法源码"><a href="#Jquery-插入-DOM-元素-append-方法源码" class="headerlink" title="Jquery 插入 DOM 元素 append() 方法源码"></a>Jquery 插入 DOM 元素 append() 方法源码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">append: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">  <span class="built_in">return</span> domManip( this, arguments, <span class="keyword">function</span>( elem ) &#123;</div><div class="line">    <span class="keyword">if</span> ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) &#123;</div><div class="line">      var target = manipulationTarget( this, elem );</div><div class="line">      target.appendChild( elem );</div><div class="line">    &#125;</div><div class="line">  &#125; );</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -473,12 +436,12 @@
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2017/05/19/JavaScript获取各种宽度和高度/">JavaScript 中各种宽度和高度</a></p>
+  <p><span>本文标题:</span><a href="/2017/07/29/JavaScript插入元素/">JavaScript插入元素</a></p>
   <p><span>本文作者:</span><a href="/" title="访问 sunmaer 的个人博客">sunmaer</a></p>
-  <p><span>发布时间:</span>2017年05月19日 - 11:05</p>
-  <!-- <p><span>最后更新:</span>2017年08月20日 - 11:08</p> -->
-  <p><span>本文链接:</span><a href="/2017/05/19/JavaScript获取各种宽度和高度/" title="JavaScript 中各种宽度和高度">http://sunmaer.github.io/2017/05/19/JavaScript获取各种宽度和高度/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/05/19/JavaScript获取各种宽度和高度/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2017年07月29日 - 11:07</p>
+  <!-- <p><span>最后更新:</span>2017年08月29日 - 11:08</p> -->
+  <p><span>本文链接:</span><a href="/2017/07/29/JavaScript插入元素/" title="JavaScript插入元素">http://sunmaer.github.io/2017/07/29/JavaScript插入元素/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/07/29/JavaScript插入元素/"  aria-label="复制成功！"></i></span>
   </p>
   <!-- <p><span>版权声明:</span>转载请保留原文链接及作者。</p>  -->
 </div>
@@ -525,7 +488,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"><i class="fa fa-tag"></i> javascript</a>
+            <a href="/tags/DOM/" rel="tag"><i class="fa fa-tag"></i> DOM</a>
           
         </div>
       
@@ -538,8 +501,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/07/编写高质量的JavaScript代码/" rel="next" title="编写高质量的JavaScript代码">
-                <i class="fa fa-chevron-left"></i> 编写高质量的JavaScript代码
+              <a href="/2017/05/20/JavaScript对象/" rel="next" title="JavaScript对象">
+                <i class="fa fa-chevron-left"></i> JavaScript对象
               </a>
             
           </div>
@@ -548,8 +511,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/20/JavaScript对象/" rel="prev" title="JavaScript对象">
-                JavaScript对象 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/18/Vue中使用数据可视化库实现关系图/" rel="prev" title="Vue2.0中数据可视化库实现关系图">
+                Vue2.0中数据可视化库实现关系图 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -758,7 +721,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Window-对象"><span class="nav-number">1.</span> <span class="nav-text">Window 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Screen-对象"><span class="nav-number">2.</span> <span class="nav-text">Screen 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Element-对象"><span class="nav-number">3.</span> <span class="nav-text">Element 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-获取样式"><span class="nav-number">4.</span> <span class="nav-text">JS 获取样式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#insertBefore-在指定的已有的子节点之前插入新节点"><span class="nav-number">1.</span> <span class="nav-text">insertBefore()    在指定的已有的子节点之前插入新节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appendChild-向元素添加新的子节点，作为最后一个子节点"><span class="nav-number">2.</span> <span class="nav-text">appendChild()    向元素添加新的子节点，作为最后一个子节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innerHTML-设置或返回元素的内容"><span class="nav-number">3.</span> <span class="nav-text">innerHTML 设置或返回元素的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档片段-推荐）"><span class="nav-number">4.</span> <span class="nav-text">文档片段(推荐）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jquery-插入-DOM-元素-append-方法源码"><span class="nav-number">5.</span> <span class="nav-text">Jquery 插入 DOM 元素 append() 方法源码</span></a></li></ol></div>
             
 
           </div>
