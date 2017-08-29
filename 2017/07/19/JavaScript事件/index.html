@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="單棲情緒">
 <meta property="og:description" content="浏览器所支持的事件有很多，事件有三个来源： 3级 DOM 事件规范，经过长期的停滞之后，在 W3C 的主持下开始焕发生机。 HTML5 规范以及相关衍生规范的大量新 API 定义了新事件。 基于触摸和支持 JavaScript 的移动设备的出现，比如 iphone，它们需要定义新的触摸和手势事件类型。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-29T15:08:09.000Z">
+<meta property="og:updated_time" content="2017-08-29T15:19:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript事件">
 <meta name="twitter:description" content="浏览器所支持的事件有很多，事件有三个来源： 3级 DOM 事件规范，经过长期的停滞之后，在 W3C 的主持下开始焕发生机。 HTML5 规范以及相关衍生规范的大量新 API 定义了新事件。 基于触摸和支持 JavaScript 的移动设备的出现，比如 iphone，它们需要定义新的触摸和手势事件类型。">
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  558
+                  721
                 </span>
               
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -426,7 +426,15 @@
 <p>如果这些代码在页面中位于按钮后面，就有可能在一段时间内怎么单击都没有反应。</p>
 <p>程序中的 this 引用当前元素。</p>
 <p>将事件处理程序属性的值设为 null 就可以删除事件处理程序。</p>
-<h3 id="DOM2-级事件处理程序"><a href="#DOM2-级事件处理程序" class="headerlink" title="DOM2 级事件处理程序"></a>DOM2 级事件处理程序</h3>
+<h3 id="DOM2-级事件处理程序"><a href="#DOM2-级事件处理程序" class="headerlink" title="DOM2 级事件处理程序"></a>DOM2 级事件处理程序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">btn.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	alert(<span class="string">'1'</span>);</div><div class="line">&#125;, <span class="literal">false</span>)</div></pre></td></tr></table></figure>
+<p>DOM2级方法添加事件处理程序可以添加多个事件处理程序。</p>
+<p>通过 addEventListener() 添加的匿名函数将无法移除。</p>
+<p>事件处理程序按照添加它们的顺序触发。</p>
+<p>大多数情况下，都是将事件处理程序添加到事件流的冒泡阶段。</p>
+<h3 id="IE-事件处理程序"><a href="#IE-事件处理程序" class="headerlink" title="IE 事件处理程序"></a>IE 事件处理程序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">btn.attachEvent(<span class="string">"onclick"</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	alert(<span class="string">'1'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在使用 attachEvent() 方法情况下，事件处理程序会在全局作用域中运行，因此 this 等于 window。</p>
+<p>事件处理程序不是以它们添加的顺序执行，而是相反的顺序被触发。</p>
+
       
     </div>
 
@@ -725,7 +733,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件流"><span class="nav-number">1.</span> <span class="nav-text">事件流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件冒泡"><span class="nav-number">1.1.</span> <span class="nav-text">事件冒泡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件捕获"><span class="nav-number">1.2.</span> <span class="nav-text">事件捕获</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-事件流"><span class="nav-number">1.3.</span> <span class="nav-text">DOM 事件流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件处理程序"><span class="nav-number">2.</span> <span class="nav-text">事件处理程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-事件处理程序"><span class="nav-number">2.1.</span> <span class="nav-text">HTML 事件处理程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM0-级事件处理程序"><span class="nav-number">2.2.</span> <span class="nav-text">DOM0 级事件处理程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM2-级事件处理程序"><span class="nav-number">2.3.</span> <span class="nav-text">DOM2 级事件处理程序</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件流"><span class="nav-number">1.</span> <span class="nav-text">事件流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件冒泡"><span class="nav-number">1.1.</span> <span class="nav-text">事件冒泡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件捕获"><span class="nav-number">1.2.</span> <span class="nav-text">事件捕获</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM-事件流"><span class="nav-number">1.3.</span> <span class="nav-text">DOM 事件流</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件处理程序"><span class="nav-number">2.</span> <span class="nav-text">事件处理程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-事件处理程序"><span class="nav-number">2.1.</span> <span class="nav-text">HTML 事件处理程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM0-级事件处理程序"><span class="nav-number">2.2.</span> <span class="nav-text">DOM0 级事件处理程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM2-级事件处理程序"><span class="nav-number">2.3.</span> <span class="nav-text">DOM2 级事件处理程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IE-事件处理程序"><span class="nav-number">2.4.</span> <span class="nav-text">IE 事件处理程序</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -764,7 +772,7 @@
 </div>
 
 <div class="theme-info">
-  <span class="post-count">博客全站共7.4k字</span>
+  <span class="post-count">博客全站共7.6k字</span>
 </div>
 
 
