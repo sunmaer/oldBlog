@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="DOM," />
+  <meta name="keywords" content="sunmaer, 單棲情緒, 单栖情绪" />
 
 
 
@@ -95,18 +95,17 @@
 
 
 
-<meta name="description" content="我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：">
-<meta name="keywords" content="DOM">
+<meta name="description" content="业精于勤荒于嬉，行成于思毁于随">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript插入元素">
-<meta property="og:url" content="http://sunmaer.github.io/2017/07/29/JavaScript插入元素/index.html">
+<meta property="og:title" content="JavaScript事件处理">
+<meta property="og:url" content="http://sunmaer.github.io/2017/08/29/JavaScript事件处理/index.html">
 <meta property="og:site_name" content="單棲情緒">
-<meta property="og:description" content="我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：">
+<meta property="og:description" content="业精于勤荒于嬉，行成于思毁于随">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-29T03:45:28.000Z">
+<meta property="og:updated_time" content="2017-08-29T11:27:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript插入元素">
-<meta name="twitter:description" content="我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：">
+<meta name="twitter:title" content="JavaScript事件处理">
+<meta name="twitter:description" content="业精于勤荒于嬉，行成于思毁于随">
 
 
 
@@ -134,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://sunmaer.github.io/2017/07/29/JavaScript插入元素/"/>
+  <link rel="canonical" href="http://sunmaer.github.io/2017/08/29/JavaScript事件处理/"/>
 
 
 
 
 
-  <title>JavaScript插入元素 | 單棲情緒</title>
+  <title>JavaScript事件处理 | 單棲情緒</title>
   
 
 
@@ -281,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://sunmaer.github.io/2017/07/29/JavaScript插入元素/">
+    <link itemprop="mainEntityOfPage" href="http://sunmaer.github.io/2017/08/29/JavaScript事件处理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sunmaer">
@@ -298,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript插入元素</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript事件处理</h1>
         
 
         <div class="post-meta">
@@ -310,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T11:21:51+08:00">
-                2017-07-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T19:27:05+08:00">
+                2017-08-29
               </time>
             
 
@@ -320,28 +319,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -364,7 +341,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  620
+                  0
                 </span>
               
 
@@ -380,7 +357,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3
+                  1
                 </span>
               
             </div>
@@ -398,68 +375,13 @@
       
 
       
-        <blockquote>
-<p>我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="insertBefore-在指定的已有的子节点之前插入新节点"><a href="#insertBefore-在指定的已有的子节点之前插入新节点" class="headerlink" title="insertBefore()    在指定的已有的子节点之前插入新节点"></a>insertBefore()    在指定的已有的子节点之前插入新节点</h2><ul>
-<li>调用了10000次ul.insertBefore()，每次都要产生一次页面渲染</li>
-<li>在父元素末尾插入新节点性能和appendChild()差不多，如果在指定子节点前插入新节点，影响文档树中的其他元素，渲染开销较大</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1; i&lt;=10000; i++) &#123;</div><div class="line">	<span class="built_in">let</span> li = document.createElement(<span class="string">'li'</span>)</div><div class="line">	<span class="built_in">let</span> a = document.createElement(<span class="string">'a'</span>)</div><div class="line">	<span class="built_in">let</span> text = document.createTextNode(<span class="string">'insertBefore()-'</span> + i)</div><div class="line">	a.appendChild(text)</div><div class="line">	li.appendChild(a)</div><div class="line">	ul.insertBefore(li, null)  // 第二个参数为 null 则在末尾插入新节点</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="appendChild-向元素添加新的子节点，作为最后一个子节点"><a href="#appendChild-向元素添加新的子节点，作为最后一个子节点" class="headerlink" title="appendChild()    向元素添加新的子节点，作为最后一个子节点"></a>appendChild()    向元素添加新的子节点，作为最后一个子节点</h2><ul>
-<li>调用了10000次ul.appendChild()，每次都要产生一次页面渲染</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1; i&lt;=10000; i++) &#123;</div><div class="line">  <span class="built_in">let</span> li = document.createElement(<span class="string">'li'</span>)</div><div class="line">  <span class="built_in">let</span> a = document.createElement(<span class="string">'a'</span>)</div><div class="line">  <span class="built_in">let</span> text = document.createTextNode(<span class="string">'appendChild()-'</span> + i)</div><div class="line">  a.appendChild(text)</div><div class="line">  li.appendChild(a)</div><div class="line">  ul.appendChild(li)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="innerHTML-设置或返回元素的内容"><a href="#innerHTML-设置或返回元素的内容" class="headerlink" title="innerHTML 设置或返回元素的内容"></a>innerHTML 设置或返回元素的内容</h2><ul>
-<li>只需要一次页面渲染</li>
-<li>innerHTML 插入上万个节点的时候，如果要插入的DIV里是空的，那么用innerHTML 插入是最好的选择，速度也是最快的，但是当第二次插入的时候，你就会发现速度降低。如果div里已经有数据，innerHTML会逐一删除，然后再插入的新的数据，速度大大降低，此时建议使用文档片段方式</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> liString = <span class="string">''</span></div><div class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1; i&lt;=10000; i++) &#123;</div><div class="line">  liString += <span class="string">'&lt;li&gt;&lt;a href=""&gt;innerHTML-'</span> + i +<span class="string">'&lt;/a&gt;&lt;/li&gt;'</span></div><div class="line">&#125;</div><div class="line">ul.innerHTML = liString</div></pre></td></tr></table></figure>
-<h2 id="文档片段-推荐）"><a href="#文档片段-推荐）" class="headerlink" title="文档片段(推荐）"></a>文档片段(推荐）</h2><ul>
-<li>只需要一次页面渲染</li>
-<li>虽然不能把文档片段直接添加到文档中，但可以将它作为一个“仓库”来使用，即可以在里面保存将来可能会添加到文档中的节点。可以通过 appendChild() 或者 insertBefore() 将文档片段中内容添加到文档中。在将文档片段作为参数传递给这两个方法时，实际上只会将文档片段的所有子节点添加到相应位置上；文档片段本身永远不会成为文档树的一部分</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var fragment = document.createDocumentFragment()</div><div class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1; i&lt;=10000; i++) &#123;</div><div class="line">  <span class="built_in">let</span> li = document.createElement(<span class="string">'li'</span>)</div><div class="line">  <span class="built_in">let</span> a = document.createElement(<span class="string">'a'</span>)</div><div class="line">  <span class="built_in">let</span> text = document.createTextNode(<span class="string">'DocumentFragment-'</span> + i)</div><div class="line">  a.appendChild(text)</div><div class="line">  li.appendChild(a)</div><div class="line">  fragment.appendChild(li)</div><div class="line">&#125;</div><div class="line">ul.appendChild(fragment)</div></pre></td></tr></table></figure>
-<h2 id="Jquery-插入-DOM-元素-append-方法源码"><a href="#Jquery-插入-DOM-元素-append-方法源码" class="headerlink" title="Jquery 插入 DOM 元素 append() 方法源码"></a>Jquery 插入 DOM 元素 append() 方法源码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">append: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">  <span class="built_in">return</span> domManip( this, arguments, <span class="keyword">function</span>( elem ) &#123;</div><div class="line">    <span class="keyword">if</span> ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) &#123;</div><div class="line">      var target = manipulationTarget( this, elem );</div><div class="line">      target.appendChild( elem );</div><div class="line">    &#125;</div><div class="line">  &#125; );</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
-
+        
       
     </div>
 
     <div>
       
         
-<div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-  
-  <!-- JS库 sweetalert 可修改路径 -->
-  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
-  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2017/07/29/JavaScript插入元素/">JavaScript插入元素</a></p>
-  <p><span>本文作者:</span><a href="/" title="访问 sunmaer 的个人博客">sunmaer</a></p>
-  <p><span>发布时间:</span>2017年07月29日 - 11:07</p>
-  <!-- <p><span>最后更新:</span>2017年08月29日 - 11:08</p> -->
-  <p><span>本文链接:</span><a href="/2017/07/29/JavaScript插入元素/" title="JavaScript插入元素">http://sunmaer.github.io/2017/07/29/JavaScript插入元素/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/07/29/JavaScript插入元素/"  aria-label="复制成功！"></i></span>
-  </p>
-  <!-- <p><span>版权声明:</span>转载请保留原文链接及作者。</p>  -->
-</div>
-<script> 
-    var clipboard = new Clipboard('.fa-clipboard');
-    clipboard.on('success', $(function(){
-      $(".fa-clipboard").click(function(){
-        swal({   
-          title: "",   
-          text: '复制成功',   
-          html: false,
-          timer: 500,   
-          showConfirmButton: false
-        });
-      });
-    }));  
-</script>
-
       
     </div>
 
@@ -486,12 +408,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/DOM/" rel="tag"><i class="fa fa-tag"></i> DOM</a>
-          
-        </div>
-      
 
       
       
@@ -501,8 +417,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/20/JavaScript对象/" rel="next" title="JavaScript对象">
-                <i class="fa fa-chevron-left"></i> JavaScript对象
+              <a href="/2017/08/18/Vue中使用数据可视化库实现关系图/" rel="next" title="Vue2.0中数据可视化库实现关系图">
+                <i class="fa fa-chevron-left"></i> Vue2.0中数据可视化库实现关系图
               </a>
             
           </div>
@@ -510,10 +426,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/18/Vue中使用数据可视化库实现关系图/" rel="prev" title="Vue2.0中数据可视化库实现关系图">
-                Vue2.0中数据可视化库实现关系图 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -569,17 +481,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/logo.jpeg"
@@ -711,22 +614,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#insertBefore-在指定的已有的子节点之前插入新节点"><span class="nav-number">1.</span> <span class="nav-text">insertBefore()    在指定的已有的子节点之前插入新节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appendChild-向元素添加新的子节点，作为最后一个子节点"><span class="nav-number">2.</span> <span class="nav-text">appendChild()    向元素添加新的子节点，作为最后一个子节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innerHTML-设置或返回元素的内容"><span class="nav-number">3.</span> <span class="nav-text">innerHTML 设置或返回元素的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档片段-推荐）"><span class="nav-number">4.</span> <span class="nav-text">文档片段(推荐）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jquery-插入-DOM-元素-append-方法源码"><span class="nav-number">5.</span> <span class="nav-text">Jquery 插入 DOM 元素 append() 方法源码</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
