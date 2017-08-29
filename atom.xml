@@ -127,7 +127,7 @@
     <link href="http://sunmaer.github.io/2017/07/19/JavaScript%E4%BA%8B%E4%BB%B6/"/>
     <id>http://sunmaer.github.io/2017/07/19/JavaScript事件/</id>
     <published>2017-07-19T11:27:05.000Z</published>
-    <updated>2017-08-29T15:19:08.000Z</updated>
+    <updated>2017-08-29T15:20:03.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>浏览器所支持的事件有很多，事件有三个来源：</p>
@@ -165,7 +165,7 @@
 <h3 id="IE-事件处理程序"><a href="#IE-事件处理程序" class="headerlink" title="IE 事件处理程序"></a>IE 事件处理程序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">btn.attachEvent(<span class="string">"onclick"</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	alert(<span class="string">'1'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>在使用 attachEvent() 方法情况下，事件处理程序会在全局作用域中运行，因此 this 等于 window。</p>
 <p>事件处理程序不是以它们添加的顺序执行，而是相反的顺序被触发。</p>
-]]></content>
+<h3 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h3>]]></content>
     
     <summary type="html">
     
