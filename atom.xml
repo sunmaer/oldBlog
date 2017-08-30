@@ -127,7 +127,7 @@
     <link href="http://sunmaer.github.io/2017/07/19/JavaScript%E4%BA%8B%E4%BB%B6/"/>
     <id>http://sunmaer.github.io/2017/07/19/JavaScript事件/</id>
     <published>2017-07-19T11:27:05.000Z</published>
-    <updated>2017-08-29T15:20:03.000Z</updated>
+    <updated>2017-08-30T03:48:14.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>浏览器所支持的事件有很多，事件有三个来源：</p>
@@ -165,7 +165,23 @@
 <h3 id="IE-事件处理程序"><a href="#IE-事件处理程序" class="headerlink" title="IE 事件处理程序"></a>IE 事件处理程序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">btn.attachEvent(<span class="string">"onclick"</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	alert(<span class="string">'1'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>在使用 attachEvent() 方法情况下，事件处理程序会在全局作用域中运行，因此 this 等于 window。</p>
 <p>事件处理程序不是以它们添加的顺序执行，而是相反的顺序被触发。</p>
-<h3 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h3>]]></content>
+<h3 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h3><p>在触发 DOM 上的某个事件时，会产生一个事件对象 event，这个对象中包含着所有与事件有关的信息。</p>
+<h3 id="DOM-中的事件对象"><a href="#DOM-中的事件对象" class="headerlink" title="DOM 中的事件对象"></a>DOM 中的事件对象</h3><p>event对象属性：</p>
+<ul>
+<li>currentTarget 事件处理程序当前正在处理事件的那个元素</li>
+<li>target 事件的实际目标</li>
+</ul>
+<h3 id="IE-中的事件对象"><a href="#IE-中的事件对象" class="headerlink" title="IE 中的事件对象"></a>IE 中的事件对象</h3><p>event对象属性：</p>
+<ul>
+<li>cancelBubble 取消事件冒泡</li>
+<li>returnValue 取消事件默认行为</li>
+<li>srcElement 事件的目标（与target属性相同）</li>
+</ul>
+<h2 id="内存和性能"><a href="#内存和性能" class="headerlink" title="内存和性能"></a>内存和性能</h2><p>添加到页面上的事件处理程序数量将直接关系到页面的整体运行性能。首先，每个函数都是对象，都会占用内存；内存中的对象越多，性能就越差。其次，必须先指定所有事件处理程序而导致的 DOM 访问次数，会延迟整个页面的交互就绪事件。DOM 访问次数越多，引起浏览器的重绘次数越多。</p>
+<blockquote>
+<p>事件委托：利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。</p>
+</blockquote>
+]]></content>
     
     <summary type="html">
     
