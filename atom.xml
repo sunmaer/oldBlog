@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://sunmaer.github.io/"/>
-  <updated>2017-09-19T08:39:49.000Z</updated>
+  <updated>2017-09-19T13:35:37.000Z</updated>
   <id>http://sunmaer.github.io/</id>
   
   <author>
@@ -16,11 +16,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>迅雷前端笔试题总结</title>
+    <link href="http://sunmaer.github.io/2017/09/19/%E8%BF%85%E9%9B%B7%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/"/>
+    <id>http://sunmaer.github.io/2017/09/19/迅雷前端笔试题总结/</id>
+    <published>2017-09-19T13:08:17.000Z</published>
+    <updated>2017-09-19T13:35:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="XmlHttpRequest对象-status等于0，responseText为空是什么原因？"><a href="#XmlHttpRequest对象-status等于0，responseText为空是什么原因？" class="headerlink" title="XmlHttpRequest对象 status等于0，responseText为空是什么原因？"></a>XmlHttpRequest对象 status等于0，responseText为空是什么原因？</h3><h3 id="级联菜单"><a href="#级联菜单" class="headerlink" title="级联菜单"></a>级联菜单</h3><h3 id="3-2-1-reaudce-Math-pow-reduce-Math-pow"><a href="#3-2-1-reaudce-Math-pow-reduce-Math-pow" class="headerlink" title="[3,2,1].reaudce(Math.pow) [].reduce(Math.pow)"></a>[3,2,1].reaudce(Math.pow) [].reduce(Math.pow)</h3><h3 id="radio-单选按钮属性"><a href="#radio-单选按钮属性" class="headerlink" title="radio 单选按钮属性"></a>radio 单选按钮属性</h3><h3 id="document、window、location、history对象关系"><a href="#document、window、location、history对象关系" class="headerlink" title="document、window、location、history对象关系"></a>document、window、location、history对象关系</h3><h3 id="填空"><a href="#填空" class="headerlink" title="填空"></a>填空</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	var b = a = 1;</div><div class="line">	console.log(a);</div><div class="line">	console.log(b);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var foo = 1;</div><div class="line"><span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	foo = 10;</div><div class="line">	<span class="built_in">return</span>;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;&#125;</div><div class="line">&#125;</div><div class="line">bar()</div><div class="line">console.log(foo)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">bar</span></span>() &#123;</div><div class="line">	<span class="built_in">return</span> foo;</div><div class="line">	foo = 10;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;&#125;</div><div class="line">	var foo = 11；</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(typeof bar);</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> foo(a) &#123;</div><div class="line">	arguments[0] = 2;</div><div class="line">	<span class="built_in">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(foo(1));</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var obj1 = &#123; x: 5 &#125;;</div><div class="line">var obj2 = obj1;</div><div class="line">obj1.a = obj1 = &#123; x: 6 &#125;;</div><div class="line">console.log(obj1.a);</div><div class="line">console.log(obj2.a);</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">fun1</span></span>() &#123;</div><div class="line">	var n = 167;</div><div class="line">	nAdd = <span class="function"><span class="title">function</span></span>() &#123; n++; &#125;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">fun2</span></span>() &#123;</div><div class="line">		<span class="built_in">return</span> n;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">return</span> fun2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var result = fun1();</div><div class="line">var a = result();</div><div class="line">nAdd();</div><div class="line">var b = result();</div></pre></td></tr></table></figure>
+<h3 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h3><h4 id="Js对象根据属性值排序"><a href="#Js对象根据属性值排序" class="headerlink" title="Js对象根据属性值排序"></a>Js对象根据属性值排序</h4><h4 id="重写bind方法"><a href="#重写bind方法" class="headerlink" title="重写bind方法"></a>重写bind方法</h4><p>要求如下：</p>
+<ul>
+<li>新的bind方法返回的函数拷贝需要支持再次改变this的指向</li>
+<li>新的bind方法需要像ES5标准的bind方法一样处理预设参数和函数拷贝的动态参数</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;XmlHttpRequest对象-status等于0，responseText为空是什么原因？&quot;&gt;&lt;a href=&quot;#XmlHttpRequest对象-status等于0，responseText为空是什么原因？&quot; class=&quot;headerlink&quot; title
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://sunmaer.github.io/categories/javascript/"/>
+    
+    
+      <category term="笔试题" scheme="http://sunmaer.github.io/tags/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Tab页通信</title>
     <link href="http://sunmaer.github.io/2017/09/18/Tab%E9%A1%B5%E9%80%9A%E4%BF%A1/"/>
     <id>http://sunmaer.github.io/2017/09/18/Tab页通信/</id>
     <published>2017-09-18T12:15:00.000Z</published>
-    <updated>2017-09-19T08:39:49.000Z</updated>
+    <updated>2017-09-19T09:08:52.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="case1-两个需要交互的-Tab-页面具有依赖关系"><a href="#case1-两个需要交互的-Tab-页面具有依赖关系" class="headerlink" title="case1 两个需要交互的 Tab 页面具有依赖关系"></a>case1 两个需要交互的 Tab 页面具有依赖关系</h3><p>B 页面通过 iframe 嵌入 A 页面，这种情形可以通过 HTML5 的window.postMessage 完成通信，由于 postMessage 函数是绑定在 window 全局对象下，因此通信的页面中必须有一个页面可以获取另一个页面的 window 对象，A页面中通过JavaScript的window.open打开B页面，或者B页面通过iframe嵌入至A页面。</p>
 <a id="more"></a>
@@ -29,9 +62,6 @@
 <h3 id="case2-两个-Tab-页面互不相关"><a href="#case2-两个-Tab-页面互不相关" class="headerlink" title="case2 两个 Tab 页面互不相关"></a>case2 两个 Tab 页面互不相关</h3><p>如果要实现两个互不相关的同源 tab 页面通信，可以使用localStorage。localStorage 的存储遵循同源策略，因此同源的两个 tab 页面通过这种共享 localStorage 的方式实现通信。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// A 页面</div><div class="line">&lt;div id=<span class="string">"msg"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">	<span class="built_in">let</span> msg = document.querySelector(<span class="string">'#msg'</span>);</div><div class="line"></div><div class="line">	// 发送消息</div><div class="line">	window.localStorage.setItem(<span class="string">'msgToB'</span>, <span class="string">'你好，B'</span>);</div><div class="line">	window.localStorage.removeItem(<span class="string">'msgToB'</span>);</div><div class="line"></div><div class="line">	// 接收消息</div><div class="line">	window.addEventListener(<span class="string">'storage'</span>, <span class="keyword">function</span>(e) &#123;</div><div class="line">		<span class="keyword">if</span>(e.newValue) &#123;</div><div class="line">			msg.innerHTML = e.newValue;</div><div class="line">		&#125;</div><div class="line">	&#125;, <span class="literal">false</span>);</div><div class="line">	</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// B 页面</div><div class="line">&lt;div id=<span class="string">"msg"</span>&gt;&lt;/div&gt;</div><div class="line">	</div><div class="line">&lt;script&gt;</div><div class="line">	<span class="built_in">let</span> msg = document.querySelector(<span class="string">'#msg'</span>);</div><div class="line"></div><div class="line">	// 接收消息</div><div class="line">	window.addEventListener(<span class="string">'storage'</span>, <span class="keyword">function</span>(e) &#123;</div><div class="line">		<span class="keyword">if</span>(e.newValue) &#123;</div><div class="line">			msg.innerHTML = e.newValue;</div><div class="line"></div><div class="line">			// 发送消息</div><div class="line">			window.localStorage.setItem(<span class="string">'msgToA'</span>, <span class="string">'你好，A，消息我收到了。'</span>);</div><div class="line">			window.localStorage.removeItem(<span class="string">'msgToA'</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;, <span class="literal">false</span>);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>参考文章：<a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226984&amp;idx=1&amp;sn=4fbe4e3903afbf5f33035870b38d04b5&amp;chksm=bd495aec8a3ed3fa86404f9d24d326a7aeab481f9fd61bbbf818be78099d1559c7025413ed4e&amp;mpshare=1&amp;scene=23&amp;srcid=0918nJgQbjtZAgE5wHXjJmDT#rd" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226984&amp;idx=1&amp;sn=4fbe4e3903afbf5f33035870b38d04b5&amp;chksm=bd495aec8a3ed3fa86404f9d24d326a7aeab481f9fd61bbbf818be78099d1559c7025413ed4e&amp;mpshare=1&amp;scene=23&amp;srcid=0918nJgQbjtZAgE5wHXjJmDT#rd</a></p>
-</blockquote>
 ]]></content>
     
     <summary type="html">

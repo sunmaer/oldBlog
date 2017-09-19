@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="單棲情緒">
 <meta property="og:description" content="case1 两个需要交互的 Tab 页面具有依赖关系B 页面通过 iframe 嵌入 A 页面，这种情形可以通过 HTML5 的window.postMessage 完成通信，由于 postMessage 函数是绑定在 window 全局对象下，因此通信的页面中必须有一个页面可以获取另一个页面的 window 对象，A页面中通过JavaScript的window.open打开B页面，或者B页面通过">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-19T08:39:49.000Z">
+<meta property="og:updated_time" content="2017-09-19T09:08:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tab页通信">
 <meta name="twitter:description" content="case1 两个需要交互的 Tab 页面具有依赖关系B 页面通过 iframe 嵌入 A 页面，这种情形可以通过 HTML5 的window.postMessage 完成通信，由于 postMessage 函数是绑定在 window 全局对象下，因此通信的页面中必须有一个页面可以获取另一个页面的 window 对象，A页面中通过JavaScript的window.open打开B页面，或者B页面通过">
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  449
+                  422
                 </span>
               
 
@@ -405,9 +405,6 @@
 <h3 id="case2-两个-Tab-页面互不相关"><a href="#case2-两个-Tab-页面互不相关" class="headerlink" title="case2 两个 Tab 页面互不相关"></a>case2 两个 Tab 页面互不相关</h3><p>如果要实现两个互不相关的同源 tab 页面通信，可以使用localStorage。localStorage 的存储遵循同源策略，因此同源的两个 tab 页面通过这种共享 localStorage 的方式实现通信。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// A 页面</div><div class="line">&lt;div id=<span class="string">"msg"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">	<span class="built_in">let</span> msg = document.querySelector(<span class="string">'#msg'</span>);</div><div class="line"></div><div class="line">	// 发送消息</div><div class="line">	window.localStorage.setItem(<span class="string">'msgToB'</span>, <span class="string">'你好，B'</span>);</div><div class="line">	window.localStorage.removeItem(<span class="string">'msgToB'</span>);</div><div class="line"></div><div class="line">	// 接收消息</div><div class="line">	window.addEventListener(<span class="string">'storage'</span>, <span class="keyword">function</span>(e) &#123;</div><div class="line">		<span class="keyword">if</span>(e.newValue) &#123;</div><div class="line">			msg.innerHTML = e.newValue;</div><div class="line">		&#125;</div><div class="line">	&#125;, <span class="literal">false</span>);</div><div class="line">	</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// B 页面</div><div class="line">&lt;div id=<span class="string">"msg"</span>&gt;&lt;/div&gt;</div><div class="line">	</div><div class="line">&lt;script&gt;</div><div class="line">	<span class="built_in">let</span> msg = document.querySelector(<span class="string">'#msg'</span>);</div><div class="line"></div><div class="line">	// 接收消息</div><div class="line">	window.addEventListener(<span class="string">'storage'</span>, <span class="keyword">function</span>(e) &#123;</div><div class="line">		<span class="keyword">if</span>(e.newValue) &#123;</div><div class="line">			msg.innerHTML = e.newValue;</div><div class="line"></div><div class="line">			// 发送消息</div><div class="line">			window.localStorage.setItem(<span class="string">'msgToA'</span>, <span class="string">'你好，A，消息我收到了。'</span>);</div><div class="line">			window.localStorage.removeItem(<span class="string">'msgToA'</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;, <span class="literal">false</span>);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>参考文章：<a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226984&amp;idx=1&amp;sn=4fbe4e3903afbf5f33035870b38d04b5&amp;chksm=bd495aec8a3ed3fa86404f9d24d326a7aeab481f9fd61bbbf818be78099d1559c7025413ed4e&amp;mpshare=1&amp;scene=23&amp;srcid=0918nJgQbjtZAgE5wHXjJmDT#rd" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226984&amp;idx=1&amp;sn=4fbe4e3903afbf5f33035870b38d04b5&amp;chksm=bd495aec8a3ed3fa86404f9d24d326a7aeab481f9fd61bbbf818be78099d1559c7025413ed4e&amp;mpshare=1&amp;scene=23&amp;srcid=0918nJgQbjtZAgE5wHXjJmDT#rd</a></p>
-</blockquote>
 
       
     </div>
@@ -425,7 +422,7 @@
   <p><span>本文标题:</span><a href="/2017/09/18/Tab页通信/">Tab页通信</a></p>
   <p><span>本文作者:</span><a href="/" title="访问 sunmaer 的个人博客">sunmaer</a></p>
   <p><span>发布时间:</span>2017年09月18日 - 20:09</p>
-  <!-- <p><span>最后更新:</span>2017年09月19日 - 16:09</p> -->
+  <!-- <p><span>最后更新:</span>2017年09月19日 - 17:09</p> -->
   <p><span>本文链接:</span><a href="/2017/09/18/Tab页通信/" title="Tab页通信">http://sunmaer.github.io/2017/09/18/Tab页通信/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/09/18/Tab页通信/"  aria-label="复制成功！"></i></span>
   </p>
@@ -496,6 +493,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/19/迅雷前端笔试题总结/" rel="prev" title="迅雷前端笔试题总结">
+                迅雷前端笔试题总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -576,7 +577,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -742,7 +743,7 @@
 </div>
 
 <div class="theme-info">
-  <span class="post-count">博客全站共10.6k字</span>
+  <span class="post-count">博客全站共10.8k字</span>
 </div>
 
 
