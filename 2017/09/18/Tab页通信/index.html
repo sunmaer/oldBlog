@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="sunmaer, 單棲情緒, 单栖情绪" />
+  <meta name="keywords" content="tab通信," />
 
 
 
@@ -95,17 +95,18 @@
 
 
 
-<meta name="description" content="业精于勤荒于嬉，行成于思毁于随">
+<meta name="description" content="case1 两个需要交互的 Tab 页面具有依赖关系B 页面通过 iframe 嵌入 A 页面，这种情形可以通过 HTML5 的window.postMessage 完成通信，由于 postMessage 函数是绑定在 window 全局对象下，因此通信的页面中必须有一个页面可以获取另一个页面的 window 对象，A页面中通过JavaScript的window.open打开B页面，或者B页面通过">
+<meta name="keywords" content="tab通信">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tab页通信">
 <meta property="og:url" content="http://sunmaer.github.io/2017/09/18/Tab页通信/index.html">
 <meta property="og:site_name" content="單棲情緒">
-<meta property="og:description" content="业精于勤荒于嬉，行成于思毁于随">
+<meta property="og:description" content="case1 两个需要交互的 Tab 页面具有依赖关系B 页面通过 iframe 嵌入 A 页面，这种情形可以通过 HTML5 的window.postMessage 完成通信，由于 postMessage 函数是绑定在 window 全局对象下，因此通信的页面中必须有一个页面可以获取另一个页面的 window 对象，A页面中通过JavaScript的window.open打开B页面，或者B页面通过">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-18T12:15:00.000Z">
+<meta property="og:updated_time" content="2017-09-19T08:39:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tab页通信">
-<meta name="twitter:description" content="业精于勤荒于嬉，行成于思毁于随">
+<meta name="twitter:description" content="case1 两个需要交互的 Tab 页面具有依赖关系B 页面通过 iframe 嵌入 A 页面，这种情形可以通过 HTML5 的window.postMessage 完成通信，由于 postMessage 函数是绑定在 window 全局对象下，因此通信的页面中必须有一个页面可以获取另一个页面的 window 对象，A页面中通过JavaScript的window.open打开B页面，或者B页面通过">
 
 
 
@@ -320,6 +321,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -341,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  0
+                  449
                 </span>
               
 
@@ -357,7 +380,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -375,13 +398,54 @@
       
 
       
-        
+        <h3 id="case1-两个需要交互的-Tab-页面具有依赖关系"><a href="#case1-两个需要交互的-Tab-页面具有依赖关系" class="headerlink" title="case1 两个需要交互的 Tab 页面具有依赖关系"></a>case1 两个需要交互的 Tab 页面具有依赖关系</h3><p>B 页面通过 iframe 嵌入 A 页面，这种情形可以通过 HTML5 的window.postMessage 完成通信，由于 postMessage 函数是绑定在 window 全局对象下，因此通信的页面中必须有一个页面可以获取另一个页面的 window 对象，A页面中通过JavaScript的window.open打开B页面，或者B页面通过iframe嵌入至A页面。</p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// A 页面</div><div class="line">&lt;div&gt;</div><div class="line">	&lt;p&gt;这是tabA页面&lt;/p&gt;</div><div class="line">	&lt;button id=<span class="string">"btn"</span>&gt;发送消息&lt;/button&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;iframe src=<span class="string">"http://localhost:8080/TabB.html"</span> frameborder=<span class="string">"5"</span>&gt;&lt;/iframe&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">	var btn = document.querySelector(<span class="string">'#btn'</span>);</div><div class="line"></div><div class="line">	// <span class="built_in">let</span> windowB = window.open(<span class="string">'http://localhost:8080/TabB.html'</span>, <span class="string">'tabB'</span>);</div><div class="line">	</div><div class="line">	btn.onclick = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">		document.querySelector(<span class="string">'iframe'</span>).contentWindow.postMessage(<span class="string">'这是来自tabA页面的消息'</span>, <span class="string">'http://localhost:8080/TabB.html'</span>)</div><div class="line"></div><div class="line">		// windowB.postMessage(<span class="string">'这是来自tabA页面的消息'</span>, <span class="string">'http://localhost:8080/TabB.html'</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	window.addEventListener(<span class="string">'message'</span>, <span class="keyword">function</span>(e) &#123;</div><div class="line">		alert(e.data);</div><div class="line">	&#125;, <span class="literal">false</span>);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// B 页面</div><div class="line">&lt;p&gt;这是tabB页面&lt;/p&gt;</div><div class="line">&lt;p id=<span class="string">"msg"</span>&gt;&lt;/p&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">	var msg = document.querySelector(<span class="string">'#msg'</span>);</div><div class="line">	</div><div class="line">	window.addEventListener(<span class="string">'message'</span>, <span class="keyword">function</span>(e) &#123;</div><div class="line">	  msg.innerHTML = e.data;</div><div class="line">	  e.source.postMessage(<span class="string">'消息已收到-tabB'</span>, <span class="string">'http://localhost:8080/TabA.html'</span>);</div><div class="line">	&#125;, <span class="literal">false</span>)</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="case2-两个-Tab-页面互不相关"><a href="#case2-两个-Tab-页面互不相关" class="headerlink" title="case2 两个 Tab 页面互不相关"></a>case2 两个 Tab 页面互不相关</h3><p>如果要实现两个互不相关的同源 tab 页面通信，可以使用localStorage。localStorage 的存储遵循同源策略，因此同源的两个 tab 页面通过这种共享 localStorage 的方式实现通信。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// A 页面</div><div class="line">&lt;div id=<span class="string">"msg"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">	<span class="built_in">let</span> msg = document.querySelector(<span class="string">'#msg'</span>);</div><div class="line"></div><div class="line">	// 发送消息</div><div class="line">	window.localStorage.setItem(<span class="string">'msgToB'</span>, <span class="string">'你好，B'</span>);</div><div class="line">	window.localStorage.removeItem(<span class="string">'msgToB'</span>);</div><div class="line"></div><div class="line">	// 接收消息</div><div class="line">	window.addEventListener(<span class="string">'storage'</span>, <span class="keyword">function</span>(e) &#123;</div><div class="line">		<span class="keyword">if</span>(e.newValue) &#123;</div><div class="line">			msg.innerHTML = e.newValue;</div><div class="line">		&#125;</div><div class="line">	&#125;, <span class="literal">false</span>);</div><div class="line">	</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// B 页面</div><div class="line">&lt;div id=<span class="string">"msg"</span>&gt;&lt;/div&gt;</div><div class="line">	</div><div class="line">&lt;script&gt;</div><div class="line">	<span class="built_in">let</span> msg = document.querySelector(<span class="string">'#msg'</span>);</div><div class="line"></div><div class="line">	// 接收消息</div><div class="line">	window.addEventListener(<span class="string">'storage'</span>, <span class="keyword">function</span>(e) &#123;</div><div class="line">		<span class="keyword">if</span>(e.newValue) &#123;</div><div class="line">			msg.innerHTML = e.newValue;</div><div class="line"></div><div class="line">			// 发送消息</div><div class="line">			window.localStorage.setItem(<span class="string">'msgToA'</span>, <span class="string">'你好，A，消息我收到了。'</span>);</div><div class="line">			window.localStorage.removeItem(<span class="string">'msgToA'</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;, <span class="literal">false</span>);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>参考文章：<a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226984&amp;idx=1&amp;sn=4fbe4e3903afbf5f33035870b38d04b5&amp;chksm=bd495aec8a3ed3fa86404f9d24d326a7aeab481f9fd61bbbf818be78099d1559c7025413ed4e&amp;mpshare=1&amp;scene=23&amp;srcid=0918nJgQbjtZAgE5wHXjJmDT#rd" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226984&amp;idx=1&amp;sn=4fbe4e3903afbf5f33035870b38d04b5&amp;chksm=bd495aec8a3ed3fa86404f9d24d326a7aeab481f9fd61bbbf818be78099d1559c7025413ed4e&amp;mpshare=1&amp;scene=23&amp;srcid=0918nJgQbjtZAgE5wHXjJmDT#rd</a></p>
+</blockquote>
+
       
     </div>
 
     <div>
       
         
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2017/09/18/Tab页通信/">Tab页通信</a></p>
+  <p><span>本文作者:</span><a href="/" title="访问 sunmaer 的个人博客">sunmaer</a></p>
+  <p><span>发布时间:</span>2017年09月18日 - 20:09</p>
+  <!-- <p><span>最后更新:</span>2017年09月19日 - 16:09</p> -->
+  <p><span>本文链接:</span><a href="/2017/09/18/Tab页通信/" title="Tab页通信">http://sunmaer.github.io/2017/09/18/Tab页通信/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/09/18/Tab页通信/"  aria-label="复制成功！"></i></span>
+  </p>
+  <!-- <p><span>版权声明:</span>转载请保留原文链接及作者。</p>  -->
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
       
     </div>
 
@@ -407,6 +471,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tab通信/" rel="tag"><i class="fa fa-tag"></i> tab通信</a>
+          
+        </div>
       
 
       
@@ -481,8 +551,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/logo.jpeg"
@@ -519,7 +598,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -615,6 +694,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#case1-两个需要交互的-Tab-页面具有依赖关系"><span class="nav-number">1.</span> <span class="nav-text">case1 两个需要交互的 Tab 页面具有依赖关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#case2-两个-Tab-页面互不相关"><span class="nav-number">2.</span> <span class="nav-text">case2 两个 Tab 页面互不相关</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -647,7 +742,7 @@
 </div>
 
 <div class="theme-info">
-  <span class="post-count">博客全站共10.2k字</span>
+  <span class="post-count">博客全站共10.6k字</span>
 </div>
 
 

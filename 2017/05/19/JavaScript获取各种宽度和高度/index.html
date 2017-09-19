@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="总结 JavaScript 中各种宽度和高度。">
+<meta name="description" content="总结 JavaScript 中各种宽度和高度。 Window 对象 Window 对象表示浏览器中打开的窗口。如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 中各种宽度和高度">
 <meta property="og:url" content="http://sunmaer.github.io/2017/05/19/JavaScript获取各种宽度和高度/index.html">
 <meta property="og:site_name" content="單棲情緒">
-<meta property="og:description" content="总结 JavaScript 中各种宽度和高度。">
+<meta property="og:description" content="总结 JavaScript 中各种宽度和高度。 Window 对象 Window 对象表示浏览器中打开的窗口。如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-12T13:00:49.000Z">
+<meta property="og:updated_time" content="2017-09-19T08:57:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 中各种宽度和高度">
-<meta name="twitter:description" content="总结 JavaScript 中各种宽度和高度。">
+<meta name="twitter:description" content="总结 JavaScript 中各种宽度和高度。 Window 对象 Window 对象表示浏览器中打开的窗口。如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。">
 
 
 
@@ -398,13 +398,11 @@
       
 
       
-        <blockquote>
-<p>总结 JavaScript 中各种宽度和高度。</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="Window-对象"><a href="#Window-对象" class="headerlink" title="Window 对象"></a>Window 对象</h2><blockquote>
+        <p>总结 JavaScript 中各种宽度和高度。</p>
+<h3 id="Window-对象"><a href="#Window-对象" class="headerlink" title="Window 对象"></a>Window 对象</h3><blockquote>
 <p>Window 对象表示浏览器中打开的窗口。如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。</p>
 </blockquote>
+<a id="more"></a>
 <ul>
 <li>innerHeight 返回窗口的文档显示区的高度（不包括浏览器的状态栏）</li>
 <li>innerWidth 返回窗口的文档显示区的宽度</li>
@@ -412,7 +410,7 @@
 <li>outerWidth 返回窗口的外部宽度 （IE 不支持此属性）</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 浏览器为全屏状态，屏幕分辨率：1440 x 900</div><div class="line">console.log(window.innerHeight) // 803</div><div class="line">console.log(window.innerWidth) // 1440</div><div class="line">console.log(window.outerHeight) // 900</div><div class="line">console.log(window.outerWidth) // 1440</div></pre></td></tr></table></figure>
-<h2 id="Screen-对象"><a href="#Screen-对象" class="headerlink" title="Screen 对象"></a>Screen 对象</h2><blockquote>
+<h3 id="Screen-对象"><a href="#Screen-对象" class="headerlink" title="Screen 对象"></a>Screen 对象</h3><blockquote>
 <p>Screen 对象包含有关客户端显示屏幕的信息。</p>
 </blockquote>
 <ul>
@@ -422,7 +420,7 @@
 <li>width 屏幕的宽度（指的是屏幕的分辨率，单位为像素）</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 屏幕分辨率：1440 x 900</div><div class="line">console.log(screen.availHeight) // 900</div><div class="line">console.log(screen.availWidth) // 1440</div><div class="line">console.log(screen.height) // 900</div><div class="line">console.log(screen.width) // 1440</div></pre></td></tr></table></figure>
-<h2 id="Element-对象"><a href="#Element-对象" class="headerlink" title="Element 对象"></a>Element 对象</h2><blockquote>
+<h3 id="Element-对象"><a href="#Element-对象" class="headerlink" title="Element 对象"></a>Element 对象</h3><blockquote>
 <p>Element 对象表示 XML 文档中的元素。元素可包含属性、其他元素或文本。如果元素含有文本，则在文本节点中表示该文本。</p>
 </blockquote>
 <ul>
@@ -447,7 +445,7 @@
 <li>scrollWidth     返回元素的整个宽度（包括带滚动条的隐蔽的地方）</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">	&lt;title&gt;Js中获取各种宽度和高度&lt;/title&gt;</div><div class="line">	&lt;style&gt;</div><div class="line">		<span class="comment">#block1 &#123;</span></div><div class="line">			width: 500px;</div><div class="line">			height: 500px;</div><div class="line">			overflow: scroll;</div><div class="line">			background-color: red;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">#block2 &#123;</span></div><div class="line">			width: 600px;</div><div class="line">			height: 600px;</div><div class="line">			padding: 20px;</div><div class="line">			border: 10px solid blue;</div><div class="line">			margin: 0 auto;</div><div class="line">		&#125;</div><div class="line">	&lt;/style&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;div id=<span class="string">"block1"</span>&gt;</div><div class="line">		&lt;div id=<span class="string">"block2"</span>&gt;&lt;/div&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line"></div><div class="line">	&lt;script&gt;</div><div class="line">		var block = document.getElementById(<span class="string">'block2'</span>);</div><div class="line">		console.log(block.clientHeight) // 640 = 600 + 20 + 20</div><div class="line">		console.log(block.clientWidth) // 440 = 400 + 20 + 20</div><div class="line">		console.log(block.offsetHeight) // 660 = 600 + 20 + 20 + 10 +10</div><div class="line">		console.log(block.offsetWidth) // 460 = 400 + 20 + 20 +10 + 10</div><div class="line">		console.log(block.offsetLeft) // 28 外边距20加上浏览器默认的8</div><div class="line">		console.log(block.offsetParent) // body 对象，如果 block1 设置定位后则为 block1</div><div class="line">		console.log(block.offsetTop) // 0</div><div class="line">		console.log(block.scrollHeight) // 640</div><div class="line">		console.log(block.scrollLeft) // 0</div><div class="line">		console.log(block.scrollTop) // 0</div><div class="line">		console.log(block.scrollWidth) // 440</div><div class="line">	&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<h2 id="JS-获取样式"><a href="#JS-获取样式" class="headerlink" title="JS 获取样式"></a>JS 获取样式</h2><ul>
+<h3 id="JS-获取样式"><a href="#JS-获取样式" class="headerlink" title="JS 获取样式"></a>JS 获取样式</h3><ul>
 <li>style 属性</li>
 </ul>
 <p>元素的 style 属性代表了元素的内联样式，它覆盖了所有的样式表，它是设置 CSS 属性值来改变元素的视觉表现最好的地方。不能查询外部样式表。</p>
@@ -476,7 +474,7 @@
   <p><span>本文标题:</span><a href="/2017/05/19/JavaScript获取各种宽度和高度/">JavaScript 中各种宽度和高度</a></p>
   <p><span>本文作者:</span><a href="/" title="访问 sunmaer 的个人博客">sunmaer</a></p>
   <p><span>发布时间:</span>2017年05月19日 - 11:05</p>
-  <!-- <p><span>最后更新:</span>2017年09月12日 - 21:09</p> -->
+  <!-- <p><span>最后更新:</span>2017年09月19日 - 16:09</p> -->
   <p><span>本文链接:</span><a href="/2017/05/19/JavaScript获取各种宽度和高度/" title="JavaScript 中各种宽度和高度">http://sunmaer.github.io/2017/05/19/JavaScript获取各种宽度和高度/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/05/19/JavaScript获取各种宽度和高度/"  aria-label="复制成功！"></i></span>
   </p>
@@ -653,7 +651,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -758,7 +756,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Window-对象"><span class="nav-number">1.</span> <span class="nav-text">Window 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Screen-对象"><span class="nav-number">2.</span> <span class="nav-text">Screen 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Element-对象"><span class="nav-number">3.</span> <span class="nav-text">Element 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-获取样式"><span class="nav-number">4.</span> <span class="nav-text">JS 获取样式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Window-对象"><span class="nav-number">1.</span> <span class="nav-text">Window 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Screen-对象"><span class="nav-number">2.</span> <span class="nav-text">Screen 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Element-对象"><span class="nav-number">3.</span> <span class="nav-text">Element 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS-获取样式"><span class="nav-number">4.</span> <span class="nav-text">JS 获取样式</span></a></li></ol></div>
             
 
           </div>
@@ -797,7 +795,7 @@
 </div>
 
 <div class="theme-info">
-  <span class="post-count">博客全站共10.2k字</span>
+  <span class="post-count">博客全站共10.6k字</span>
 </div>
 
 

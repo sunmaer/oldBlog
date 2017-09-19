@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://sunmaer.github.io/"/>
-  <updated>2017-09-18T12:15:00.000Z</updated>
+  <updated>2017-09-19T08:39:49.000Z</updated>
   <id>http://sunmaer.github.io/</id>
   
   <author>
@@ -20,12 +20,30 @@
     <link href="http://sunmaer.github.io/2017/09/18/Tab%E9%A1%B5%E9%80%9A%E4%BF%A1/"/>
     <id>http://sunmaer.github.io/2017/09/18/Tab页通信/</id>
     <published>2017-09-18T12:15:00.000Z</published>
-    <updated>2017-09-18T12:15:00.000Z</updated>
+    <updated>2017-09-19T08:39:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="case1-两个需要交互的-Tab-页面具有依赖关系"><a href="#case1-两个需要交互的-Tab-页面具有依赖关系" class="headerlink" title="case1 两个需要交互的 Tab 页面具有依赖关系"></a>case1 两个需要交互的 Tab 页面具有依赖关系</h3><p>B 页面通过 iframe 嵌入 A 页面，这种情形可以通过 HTML5 的window.postMessage 完成通信，由于 postMessage 函数是绑定在 window 全局对象下，因此通信的页面中必须有一个页面可以获取另一个页面的 window 对象，A页面中通过JavaScript的window.open打开B页面，或者B页面通过iframe嵌入至A页面。</p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// A 页面</div><div class="line">&lt;div&gt;</div><div class="line">	&lt;p&gt;这是tabA页面&lt;/p&gt;</div><div class="line">	&lt;button id=<span class="string">"btn"</span>&gt;发送消息&lt;/button&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;iframe src=<span class="string">"http://localhost:8080/TabB.html"</span> frameborder=<span class="string">"5"</span>&gt;&lt;/iframe&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">	var btn = document.querySelector(<span class="string">'#btn'</span>);</div><div class="line"></div><div class="line">	// <span class="built_in">let</span> windowB = window.open(<span class="string">'http://localhost:8080/TabB.html'</span>, <span class="string">'tabB'</span>);</div><div class="line">	</div><div class="line">	btn.onclick = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">		document.querySelector(<span class="string">'iframe'</span>).contentWindow.postMessage(<span class="string">'这是来自tabA页面的消息'</span>, <span class="string">'http://localhost:8080/TabB.html'</span>)</div><div class="line"></div><div class="line">		// windowB.postMessage(<span class="string">'这是来自tabA页面的消息'</span>, <span class="string">'http://localhost:8080/TabB.html'</span>);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	window.addEventListener(<span class="string">'message'</span>, <span class="keyword">function</span>(e) &#123;</div><div class="line">		alert(e.data);</div><div class="line">	&#125;, <span class="literal">false</span>);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// B 页面</div><div class="line">&lt;p&gt;这是tabB页面&lt;/p&gt;</div><div class="line">&lt;p id=<span class="string">"msg"</span>&gt;&lt;/p&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">	var msg = document.querySelector(<span class="string">'#msg'</span>);</div><div class="line">	</div><div class="line">	window.addEventListener(<span class="string">'message'</span>, <span class="keyword">function</span>(e) &#123;</div><div class="line">	  msg.innerHTML = e.data;</div><div class="line">	  e.source.postMessage(<span class="string">'消息已收到-tabB'</span>, <span class="string">'http://localhost:8080/TabA.html'</span>);</div><div class="line">	&#125;, <span class="literal">false</span>)</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="case2-两个-Tab-页面互不相关"><a href="#case2-两个-Tab-页面互不相关" class="headerlink" title="case2 两个 Tab 页面互不相关"></a>case2 两个 Tab 页面互不相关</h3><p>如果要实现两个互不相关的同源 tab 页面通信，可以使用localStorage。localStorage 的存储遵循同源策略，因此同源的两个 tab 页面通过这种共享 localStorage 的方式实现通信。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">// A 页面</div><div class="line">&lt;div id=<span class="string">"msg"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;script&gt;</div><div class="line">	<span class="built_in">let</span> msg = document.querySelector(<span class="string">'#msg'</span>);</div><div class="line"></div><div class="line">	// 发送消息</div><div class="line">	window.localStorage.setItem(<span class="string">'msgToB'</span>, <span class="string">'你好，B'</span>);</div><div class="line">	window.localStorage.removeItem(<span class="string">'msgToB'</span>);</div><div class="line"></div><div class="line">	// 接收消息</div><div class="line">	window.addEventListener(<span class="string">'storage'</span>, <span class="keyword">function</span>(e) &#123;</div><div class="line">		<span class="keyword">if</span>(e.newValue) &#123;</div><div class="line">			msg.innerHTML = e.newValue;</div><div class="line">		&#125;</div><div class="line">	&#125;, <span class="literal">false</span>);</div><div class="line">	</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// B 页面</div><div class="line">&lt;div id=<span class="string">"msg"</span>&gt;&lt;/div&gt;</div><div class="line">	</div><div class="line">&lt;script&gt;</div><div class="line">	<span class="built_in">let</span> msg = document.querySelector(<span class="string">'#msg'</span>);</div><div class="line"></div><div class="line">	// 接收消息</div><div class="line">	window.addEventListener(<span class="string">'storage'</span>, <span class="keyword">function</span>(e) &#123;</div><div class="line">		<span class="keyword">if</span>(e.newValue) &#123;</div><div class="line">			msg.innerHTML = e.newValue;</div><div class="line"></div><div class="line">			// 发送消息</div><div class="line">			window.localStorage.setItem(<span class="string">'msgToA'</span>, <span class="string">'你好，A，消息我收到了。'</span>);</div><div class="line">			window.localStorage.removeItem(<span class="string">'msgToA'</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;, <span class="literal">false</span>);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>参考文章：<a href="https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226984&amp;idx=1&amp;sn=4fbe4e3903afbf5f33035870b38d04b5&amp;chksm=bd495aec8a3ed3fa86404f9d24d326a7aeab481f9fd61bbbf818be78099d1559c7025413ed4e&amp;mpshare=1&amp;scene=23&amp;srcid=0918nJgQbjtZAgE5wHXjJmDT#rd" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MjM5MTA1MjAxMQ==&amp;mid=2651226984&amp;idx=1&amp;sn=4fbe4e3903afbf5f33035870b38d04b5&amp;chksm=bd495aec8a3ed3fa86404f9d24d326a7aeab481f9fd61bbbf818be78099d1559c7025413ed4e&amp;mpshare=1&amp;scene=23&amp;srcid=0918nJgQbjtZAgE5wHXjJmDT#rd</a></p>
+</blockquote>
+]]></content>
     
     <summary type="html">
     
+      &lt;h3 id=&quot;case1-两个需要交互的-Tab-页面具有依赖关系&quot;&gt;&lt;a href=&quot;#case1-两个需要交互的-Tab-页面具有依赖关系&quot; class=&quot;headerlink&quot; title=&quot;case1 两个需要交互的 Tab 页面具有依赖关系&quot;&gt;&lt;/a&gt;case1 两个需要交互的 Tab 页面具有依赖关系&lt;/h3&gt;&lt;p&gt;B 页面通过 iframe 嵌入 A 页面，这种情形可以通过 HTML5 的window.postMessage 完成通信，由于 postMessage 函数是绑定在 window 全局对象下，因此通信的页面中必须有一个页面可以获取另一个页面的 window 对象，A页面中通过JavaScript的window.open打开B页面，或者B页面通过iframe嵌入至A页面。&lt;/p&gt;
+    
     </summary>
     
+      <category term="javascript" scheme="http://sunmaer.github.io/categories/javascript/"/>
+    
+    
+      <category term="tab通信" scheme="http://sunmaer.github.io/tags/tab%E9%80%9A%E4%BF%A1/"/>
     
   </entry>
   
@@ -34,15 +52,15 @@
     <link href="http://sunmaer.github.io/2017/09/16/%E9%87%91%E5%B1%B1WPS%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98/"/>
     <id>http://sunmaer.github.io/2017/09/16/金山WPS前端笔试题/</id>
     <published>2017-09-16T03:22:11.000Z</published>
-    <updated>2017-09-18T12:16:35.000Z</updated>
+    <updated>2017-09-19T08:53:58.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="金山办公软件web前端开发工程师笔试题"><a href="#金山办公软件web前端开发工程师笔试题" class="headerlink" title="金山办公软件web前端开发工程师笔试题"></a>金山办公软件web前端开发工程师笔试题</h2><a id="more"></a>
-<h3 id="1、列出http协议头部信息并简单描述其作用。"><a href="#1、列出http协议头部信息并简单描述其作用。" class="headerlink" title="1、列出http协议头部信息并简单描述其作用。"></a>1、列出http协议头部信息并简单描述其作用。</h3><ul>
+    <content type="html"><![CDATA[<h3 id="1、列出http协议头部信息并简单描述其作用。"><a href="#1、列出http协议头部信息并简单描述其作用。" class="headerlink" title="1、列出http协议头部信息并简单描述其作用。"></a>1、列出http协议头部信息并简单描述其作用。</h3><ul>
 <li>通用首部</li>
 </ul>
 <blockquote>
-<p>客户端和服务端都可以使用的通用首部。可以在客户端、服务器和其他应用程序之间提供一些非常有用的通用功能。  </p>
+<p>客户端和服务端都可以使用的通用首部。可以在客户端、服务器和其他应用程序之间提供一些非常有用的通用功能。 </p>
 </blockquote>
+<a id="more"></a> 
 <table>
 <thead>
 <tr>
@@ -402,7 +420,12 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;金山办公软件web前端开发工程师笔试题&quot;&gt;&lt;a href=&quot;#金山办公软件web前端开发工程师笔试题&quot; class=&quot;headerlink&quot; title=&quot;金山办公软件web前端开发工程师笔试题&quot;&gt;&lt;/a&gt;金山办公软件web前端开发工程师笔试题&lt;/h2&gt;
+      &lt;h3 id=&quot;1、列出http协议头部信息并简单描述其作用。&quot;&gt;&lt;a href=&quot;#1、列出http协议头部信息并简单描述其作用。&quot; class=&quot;headerlink&quot; title=&quot;1、列出http协议头部信息并简单描述其作用。&quot;&gt;&lt;/a&gt;1、列出http协议头部信息并简单描述其作用。&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;通用首部&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;客户端和服务端都可以使用的通用首部。可以在客户端、服务器和其他应用程序之间提供一些非常有用的通用功能。 &lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
@@ -418,13 +441,11 @@
     <link href="http://sunmaer.github.io/2017/08/18/Vue%E4%B8%AD%E4%BD%BF%E7%94%A8%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%BA%93%E5%AE%9E%E7%8E%B0%E5%85%B3%E7%B3%BB%E5%9B%BE/"/>
     <id>http://sunmaer.github.io/2017/08/18/Vue中使用数据可视化库实现关系图/</id>
     <published>2017-08-18T14:49:15.000Z</published>
-    <updated>2017-08-18T14:53:20.000Z</updated>
+    <updated>2017-09-19T09:00:01.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>项目地址：<a href="https://github.com/sunmaer/vue-charts" target="_blank" rel="external">https://github.com/sunmaer/vue-charts</a></p>
-</blockquote>
+    <content type="html"><![CDATA[<p>项目地址：<a href="https://github.com/sunmaer/vue-charts" target="_blank" rel="external">https://github.com/sunmaer/vue-charts</a></p>
 <a id="more"></a>
-<h2 id="Echarts"><a href="#Echarts" class="headerlink" title="Echarts"></a><a href="http://echarts.baidu.com/index.html" target="_blank" rel="external">Echarts</a></h2><blockquote>
+<h3 id="Echarts"><a href="#Echarts" class="headerlink" title="Echarts"></a><a href="http://echarts.baidu.com/index.html" target="_blank" rel="external">Echarts</a></h3><blockquote>
 <p>版本：3.6.2</p>
 </blockquote>
 <ul>
@@ -435,11 +456,11 @@
 <li>人物关系图</li>
 </ul>
 <p><img src="http://otxtxlg3e.bkt.clouddn.com/net.png" alt="人物关系图"></p>
-<h2 id="D3-js-组织结构图示例"><a href="#D3-js-组织结构图示例" class="headerlink" title="D3.js 组织结构图示例"></a><a href="https://d3js.org/" target="_blank" rel="external">D3.js</a> 组织结构图示例</h2><blockquote>
+<h3 id="D3-js-组织结构图示例"><a href="#D3-js-组织结构图示例" class="headerlink" title="D3.js 组织结构图示例"></a><a href="https://d3js.org/" target="_blank" rel="external">D3.js</a> 组织结构图示例</h3><blockquote>
 <p>版本：4.10.0</p>
 </blockquote>
 <p><img src="http://otxtxlg3e.bkt.clouddn.com/organise.png" alt="组织结构图"></p>
-<h2 id="jsPlumb-流程图示例"><a href="#jsPlumb-流程图示例" class="headerlink" title="jsPlumb 流程图示例"></a><a href="https://www.jsplumbtoolkit.com/community/doc/home.html" target="_blank" rel="external">jsPlumb</a> 流程图示例</h2><blockquote>
+<h3 id="jsPlumb-流程图示例"><a href="#jsPlumb-流程图示例" class="headerlink" title="jsPlumb 流程图示例"></a><a href="https://www.jsplumbtoolkit.com/community/doc/home.html" target="_blank" rel="external">jsPlumb</a> 流程图示例</h3><blockquote>
 <p>版本：2.4.3</p>
 </blockquote>
 <p><img src="http://otxtxlg3e.bkt.clouddn.com/flow.png" alt="流程图"></p>
@@ -447,9 +468,7 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;项目地址：&lt;a href=&quot;https://github.com/sunmaer/vue-charts&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/sunmaer/vue-charts&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+      &lt;p&gt;项目地址：&lt;a href=&quot;https://github.com/sunmaer/vue-charts&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/sunmaer/vue-charts&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
@@ -477,15 +496,15 @@
     <link href="http://sunmaer.github.io/2017/08/10/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%AE%9E%E7%8E%B0%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81/"/>
     <id>http://sunmaer.github.io/2017/08/10/策略模式实现表单验证/</id>
     <published>2017-08-10T01:57:33.000Z</published>
-    <updated>2017-09-02T11:59:10.000Z</updated>
+    <updated>2017-09-19T08:47:50.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="传统表单验证方式存在的问题："><a href="#传统表单验证方式存在的问题：" class="headerlink" title="传统表单验证方式存在的问题："></a>传统表单验证方式存在的问题：</h2><ul>
+    <content type="html"><![CDATA[<h3 id="传统表单验证方式存在的问题："><a href="#传统表单验证方式存在的问题：" class="headerlink" title="传统表单验证方式存在的问题："></a>传统表单验证方式存在的问题：</h3><ul>
 <li>验证函数里包含很多的 if-else 语句</li>
 <li>验证函数缺乏弹性，如果增加一种新的校验规则，必须深入验证函数的内部实现，违反了开放-封闭原则</li>
 <li>算法的复用性差，如果程序中增加了另一个表单，这个表单也需要进行一些类似的校验，那我们只能复制粘贴</li>
 </ul>
 <a id="more"></a>
-<h2 id="策略模式重构表单验证"><a href="#策略模式重构表单验证" class="headerlink" title="策略模式重构表单验证"></a>策略模式重构表单验证</h2><blockquote>
+<h3 id="策略模式重构表单验证"><a href="#策略模式重构表单验证" class="headerlink" title="策略模式重构表单验证"></a>策略模式重构表单验证</h3><blockquote>
 <p>策略模式是指一系列的算法定义，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。策略模式优点：策略模式提供了管理相关的算法族的办法、策略模式提供了可以替换继承关系的办法、使用策略模式可以避免使用多重条件转移语句。</p>
 </blockquote>
 <h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><p>Context 环境角色：持有一个策略类的引用，最终给客户端调用</p>
@@ -513,7 +532,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;传统表单验证方式存在的问题：&quot;&gt;&lt;a href=&quot;#传统表单验证方式存在的问题：&quot; class=&quot;headerlink&quot; title=&quot;传统表单验证方式存在的问题：&quot;&gt;&lt;/a&gt;传统表单验证方式存在的问题：&lt;/h2&gt;&lt;ul&gt;
+      &lt;h3 id=&quot;传统表单验证方式存在的问题：&quot;&gt;&lt;a href=&quot;#传统表单验证方式存在的问题：&quot; class=&quot;headerlink&quot; title=&quot;传统表单验证方式存在的问题：&quot;&gt;&lt;/a&gt;传统表单验证方式存在的问题：&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;验证函数里包含很多的 if-else 语句&lt;/li&gt;
 &lt;li&gt;验证函数缺乏弹性，如果增加一种新的校验规则，必须深入验证函数的内部实现，违反了开放-封闭原则&lt;/li&gt;
 &lt;li&gt;算法的复用性差，如果程序中增加了另一个表单，这个表单也需要进行一些类似的校验，那我们只能复制粘贴&lt;/li&gt;
@@ -533,11 +552,9 @@
     <link href="http://sunmaer.github.io/2017/07/29/JavaScript%E6%8F%92%E5%85%A5%E5%85%83%E7%B4%A0/"/>
     <id>http://sunmaer.github.io/2017/07/29/JavaScript插入元素/</id>
     <published>2017-07-29T03:21:51.000Z</published>
-    <updated>2017-08-29T03:45:28.000Z</updated>
+    <updated>2017-09-19T08:55:20.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：</p>
-</blockquote>
+    <content type="html"><![CDATA[<p>我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：</p>
 <a id="more"></a>
 <h2 id="insertBefore-在指定的已有的子节点之前插入新节点"><a href="#insertBefore-在指定的已有的子节点之前插入新节点" class="headerlink" title="insertBefore()    在指定的已有的子节点之前插入新节点"></a>insertBefore()    在指定的已有的子节点之前插入新节点</h2><ul>
 <li>调用了10000次ul.insertBefore()，每次都要产生一次页面渲染</li>
@@ -563,9 +580,7 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：&lt;/p&gt;
-&lt;/blockquote&gt;
+      &lt;p&gt;我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：&lt;/p&gt;
     
     </summary>
     
@@ -581,20 +596,18 @@
     <link href="http://sunmaer.github.io/2017/07/19/JavaScript%E4%BA%8B%E4%BB%B6/"/>
     <id>http://sunmaer.github.io/2017/07/19/JavaScript事件/</id>
     <published>2017-07-19T11:27:05.000Z</published>
-    <updated>2017-08-30T03:48:14.000Z</updated>
+    <updated>2017-09-19T08:59:05.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>浏览器所支持的事件有很多，事件有三个来源：</p>
+    <content type="html"><![CDATA[<p>浏览器所支持的事件有很多，事件有三个来源：</p>
 <p>3级 DOM 事件规范，经过长期的停滞之后，在 W3C 的主持下开始焕发生机。</p>
 <p>HTML5 规范以及相关衍生规范的大量新 API 定义了新事件。</p>
 <p>基于触摸和支持 JavaScript 的移动设备的出现，比如 iphone，它们需要定义新的触摸和手势事件类型。</p>
-</blockquote>
 <a id="more"></a> 
-<h2 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h2><p>事件流描述的是从页面中接收事件的顺序。</p>
-<h3 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h3><p>IE 的事件流叫做事件冒泡，即事件开始时由最具体的元素接收，然后逐级向上传播到较为不具体的节点。</p>
-<h3 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h3><p>不太具体的节点更早接收到事件，而最具体的节点最后接收到事件。事件捕获的用意在于在事件到达预定目标之前捕获它。</p>
-<h3 id="DOM-事件流"><a href="#DOM-事件流" class="headerlink" title="DOM 事件流"></a>DOM 事件流</h3><p>事件流包括三个阶段：事件捕获阶段、处于目标阶段、事件冒泡阶段</p>
-<h2 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h2><h3 id="HTML-事件处理程序"><a href="#HTML-事件处理程序" class="headerlink" title="HTML 事件处理程序"></a>HTML 事件处理程序</h3><blockquote>
+<h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3><p>事件流描述的是从页面中接收事件的顺序。</p>
+<h4 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h4><p>IE 的事件流叫做事件冒泡，即事件开始时由最具体的元素接收，然后逐级向上传播到较为不具体的节点。</p>
+<h4 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h4><p>不太具体的节点更早接收到事件，而最具体的节点最后接收到事件。事件捕获的用意在于在事件到达预定目标之前捕获它。</p>
+<h4 id="DOM-事件流"><a href="#DOM-事件流" class="headerlink" title="DOM 事件流"></a>DOM 事件流</h4><p>事件流包括三个阶段：事件捕获阶段、处于目标阶段、事件冒泡阶段</p>
+<h3 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h3><h4 id="HTML-事件处理程序"><a href="#HTML-事件处理程序" class="headerlink" title="HTML 事件处理程序"></a>HTML 事件处理程序</h4><blockquote>
 <p>某个元素支持的每种事件，都可以使用一个与相应事件处理程序同名的 HTML 特性来指定。这个特性的值应该是能够执行的 JavaScript 代码。</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"button"</span> value=<span class="string">"点击"</span> onclick=<span class="string">"alert('Hello!')"</span> /&gt;</div><div class="line">&lt;input <span class="built_in">type</span>=<span class="string">"button"</span> value=<span class="string">"点击"</span> onclick=<span class="string">"hello()"</span> /&gt;</div></pre></td></tr></table></figure>
@@ -604,34 +617,34 @@
 <li>时差问题。如果 hello() 函数定义在页面的最底部，如果用户在页面解析 hello() 函数之前单击了按钮，就会引发错误。</li>
 <li>HTMl 与 JavaScript 代码紧密耦合。</li>
 </ul>
-<h3 id="DOM0-级事件处理程序"><a href="#DOM0-级事件处理程序" class="headerlink" title="DOM0 级事件处理程序"></a>DOM0 级事件处理程序</h3><blockquote>
+<h4 id="DOM0-级事件处理程序"><a href="#DOM0-级事件处理程序" class="headerlink" title="DOM0 级事件处理程序"></a>DOM0 级事件处理程序</h4><blockquote>
 <p>通过 JavaScript 指定事件处理程序的传统方式，就是将一个函数赋值给一个事件处理程序属性。</p>
 </blockquote>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">btn.onclick = <span class="function"><span class="title">function</span></span>() &#123; ... &#125;</div></pre></td></tr></table></figure>
 <p>如果这些代码在页面中位于按钮后面，就有可能在一段时间内怎么单击都没有反应。</p>
 <p>程序中的 this 引用当前元素。</p>
 <p>将事件处理程序属性的值设为 null 就可以删除事件处理程序。</p>
-<h3 id="DOM2-级事件处理程序"><a href="#DOM2-级事件处理程序" class="headerlink" title="DOM2 级事件处理程序"></a>DOM2 级事件处理程序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">btn.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	alert(<span class="string">'1'</span>);</div><div class="line">&#125;, <span class="literal">false</span>)</div></pre></td></tr></table></figure>
+<h4 id="DOM2-级事件处理程序"><a href="#DOM2-级事件处理程序" class="headerlink" title="DOM2 级事件处理程序"></a>DOM2 级事件处理程序</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">btn.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	alert(<span class="string">'1'</span>);</div><div class="line">&#125;, <span class="literal">false</span>)</div></pre></td></tr></table></figure>
 <p>DOM2级方法添加事件处理程序可以添加多个事件处理程序。</p>
 <p>通过 addEventListener() 添加的匿名函数将无法移除。</p>
 <p>事件处理程序按照添加它们的顺序触发。</p>
 <p>大多数情况下，都是将事件处理程序添加到事件流的冒泡阶段。</p>
-<h3 id="IE-事件处理程序"><a href="#IE-事件处理程序" class="headerlink" title="IE 事件处理程序"></a>IE 事件处理程序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">btn.attachEvent(<span class="string">"onclick"</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	alert(<span class="string">'1'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h4 id="IE-事件处理程序"><a href="#IE-事件处理程序" class="headerlink" title="IE 事件处理程序"></a>IE 事件处理程序</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">btn.attachEvent(<span class="string">"onclick"</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	alert(<span class="string">'1'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>在使用 attachEvent() 方法情况下，事件处理程序会在全局作用域中运行，因此 this 等于 window。</p>
 <p>事件处理程序不是以它们添加的顺序执行，而是相反的顺序被触发。</p>
 <h3 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h3><p>在触发 DOM 上的某个事件时，会产生一个事件对象 event，这个对象中包含着所有与事件有关的信息。</p>
-<h3 id="DOM-中的事件对象"><a href="#DOM-中的事件对象" class="headerlink" title="DOM 中的事件对象"></a>DOM 中的事件对象</h3><p>event对象属性：</p>
+<h4 id="DOM-中的事件对象"><a href="#DOM-中的事件对象" class="headerlink" title="DOM 中的事件对象"></a>DOM 中的事件对象</h4><p>event对象属性：</p>
 <ul>
 <li>currentTarget 事件处理程序当前正在处理事件的那个元素</li>
 <li>target 事件的实际目标</li>
 </ul>
-<h3 id="IE-中的事件对象"><a href="#IE-中的事件对象" class="headerlink" title="IE 中的事件对象"></a>IE 中的事件对象</h3><p>event对象属性：</p>
+<h4 id="IE-中的事件对象"><a href="#IE-中的事件对象" class="headerlink" title="IE 中的事件对象"></a>IE 中的事件对象</h4><p>event对象属性：</p>
 <ul>
 <li>cancelBubble 取消事件冒泡</li>
 <li>returnValue 取消事件默认行为</li>
 <li>srcElement 事件的目标（与target属性相同）</li>
 </ul>
-<h2 id="内存和性能"><a href="#内存和性能" class="headerlink" title="内存和性能"></a>内存和性能</h2><p>添加到页面上的事件处理程序数量将直接关系到页面的整体运行性能。首先，每个函数都是对象，都会占用内存；内存中的对象越多，性能就越差。其次，必须先指定所有事件处理程序而导致的 DOM 访问次数，会延迟整个页面的交互就绪事件。DOM 访问次数越多，引起浏览器的重绘次数越多。</p>
+<h3 id="内存和性能"><a href="#内存和性能" class="headerlink" title="内存和性能"></a>内存和性能</h3><p>添加到页面上的事件处理程序数量将直接关系到页面的整体运行性能。首先，每个函数都是对象，都会占用内存；内存中的对象越多，性能就越差。其次，必须先指定所有事件处理程序而导致的 DOM 访问次数，会延迟整个页面的交互就绪事件。DOM 访问次数越多，引起浏览器的重绘次数越多。</p>
 <blockquote>
 <p>事件委托：利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。</p>
 </blockquote>
@@ -639,12 +652,10 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;浏览器所支持的事件有很多，事件有三个来源：&lt;/p&gt;
+      &lt;p&gt;浏览器所支持的事件有很多，事件有三个来源：&lt;/p&gt;
 &lt;p&gt;3级 DOM 事件规范，经过长期的停滞之后，在 W3C 的主持下开始焕发生机。&lt;/p&gt;
 &lt;p&gt;HTML5 规范以及相关衍生规范的大量新 API 定义了新事件。&lt;/p&gt;
 &lt;p&gt;基于触摸和支持 JavaScript 的移动设备的出现，比如 iphone，它们需要定义新的触摸和手势事件类型。&lt;/p&gt;
-&lt;/blockquote&gt;
     
     </summary>
     
@@ -660,18 +671,16 @@
     <link href="http://sunmaer.github.io/2017/05/20/JavaScript%E5%AF%B9%E8%B1%A1/"/>
     <id>http://sunmaer.github.io/2017/05/20/JavaScript对象/</id>
     <published>2017-05-20T06:42:06.000Z</published>
-    <updated>2017-08-22T14:09:46.000Z</updated>
+    <updated>2017-09-19T08:56:51.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。</p>
-</blockquote>
+    <content type="html"><![CDATA[<p>对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。</p>
 <a id="more"></a>
-<h1 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h1><h2 id="对象直接量"><a href="#对象直接量" class="headerlink" title="对象直接量"></a>对象直接量</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 对象直接量</div><div class="line">var person = &#123;</div><div class="line">  name: <span class="string">'sunmaer'</span>,</div><div class="line">  age: 21 // ECMAScript5中，最后一个属性后的逗号将忽略</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="通过-new-创建对象"><a href="#通过-new-创建对象" class="headerlink" title="通过 new 创建对象"></a>通过 new 创建对象</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var person2 = new Object();</div><div class="line">person2.name = <span class="string">'sunmaer'</span>;</div><div class="line">person2.age = 21;</div></pre></td></tr></table></figure>
+<h3 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h3><h4 id="对象直接量"><a href="#对象直接量" class="headerlink" title="对象直接量"></a>对象直接量</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 对象直接量</div><div class="line">var person = &#123;</div><div class="line">  name: <span class="string">'sunmaer'</span>,</div><div class="line">  age: 21 // ECMAScript5中，最后一个属性后的逗号将忽略</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="通过-new-创建对象"><a href="#通过-new-创建对象" class="headerlink" title="通过 new 创建对象"></a>通过 new 创建对象</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var person2 = new Object();</div><div class="line">person2.name = <span class="string">'sunmaer'</span>;</div><div class="line">person2.age = 21;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>原型：所有通过对象直接量创建的对象都具有同一个原型对象，并可以通过 JavaScript 代码 Object.prototype 获得对原型对象的引用。通过关键字 new 和构造函数调用创建的对象的原型就是构造函数的 prototype 属性的值。</p>
 </blockquote>
-<h2 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create()"></a>Object.create()</h2><blockquote>
+<h4 id="Object-create"><a href="#Object-create" class="headerlink" title="Object.create()"></a>Object.create()</h4><blockquote>
 <p>第一个参数指定对象的原型，第二个参数用以对对象的属性进行进一步描述</p>
 </blockquote>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var person3 = Object.create(&#123;</div><div class="line">  name: <span class="string">'sunmaer'</span>,</div><div class="line">  age: 21</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
@@ -679,31 +688,31 @@
 <li>传入参数 null 将创建一个没有原型的新对象</li>
 <li>传入 Object.prototype 创建一个普通的空对象（类似通过 {} 或 new Object() 创建的对象)</li>
 </ul>
-<h1 id="属性的查询和设置"><a href="#属性的查询和设置" class="headerlink" title="属性的查询和设置"></a>属性的查询和设置</h1><h2 id="属性访问错误"><a href="#属性访问错误" class="headerlink" title="属性访问错误"></a>属性访问错误</h2><ul>
+<h3 id="属性的查询和设置"><a href="#属性的查询和设置" class="headerlink" title="属性的查询和设置"></a>属性的查询和设置</h3><h4 id="属性访问错误"><a href="#属性访问错误" class="headerlink" title="属性访问错误"></a>属性访问错误</h4><ul>
 <li>o 中的属性 p 是只读的：不能给只读属性重新弄赋值</li>
 <li>o 中的属性 p 是继承属性，且它是只读的： 不能通过同名自有属性覆盖只读的继承属性</li>
 <li>o 中不存在自有属性 p: o 没有使用 setter 方法机场属性 p，并且 o 的可扩展性是 false。</li>
 </ul>
-<h2 id="删除属性"><a href="#删除属性" class="headerlink" title="删除属性"></a>删除属性</h2><ul>
+<h4 id="删除属性"><a href="#删除属性" class="headerlink" title="删除属性"></a>删除属性</h4><ul>
 <li>delete 只是断开属性和宿主对象的联系，而不会去操作属性中的属性</li>
 <li>delete 只能删除自有属性，不能删除继承属性</li>
 <li>严格模式中，delete 必须显示指定对象及其属性</li>
 </ul>
-<h2 id="检测属性"><a href="#检测属性" class="headerlink" title="检测属性"></a>检测属性</h2><h3 id="in-运算符"><a href="#in-运算符" class="headerlink" title="in 运算符"></a>in 运算符</h3><p>如果对象的自有属性或继承属性中包含这个属性则返回 true</p>
+<h3 id="检测属性"><a href="#检测属性" class="headerlink" title="检测属性"></a>检测属性</h3><h4 id="in-运算符"><a href="#in-运算符" class="headerlink" title="in 运算符"></a>in 运算符</h4><p>如果对象的自有属性或继承属性中包含这个属性则返回 true</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(<span class="string">'x'</span> <span class="keyword">in</span> o) // <span class="literal">true</span></div><div class="line">console.log(<span class="string">'y'</span> <span class="keyword">in</span> o) // <span class="literal">false</span></div><div class="line">console.log(<span class="string">'toString'</span> <span class="keyword">in</span> o) // <span class="literal">true</span> o 继承toString属性</div></pre></td></tr></table></figure>
-<h3 id="hasOwnProperty-和propertyIsEnumerable"><a href="#hasOwnProperty-和propertyIsEnumerable" class="headerlink" title="hasOwnProperty()和propertyIsEnumerable()"></a>hasOwnProperty()和propertyIsEnumerable()</h3><p>对象的 hasOwnProperty() 方法用来检测给定的名字是否是对象的自有属性，对于继承属性返回false</p>
+<h4 id="hasOwnProperty-和propertyIsEnumerable"><a href="#hasOwnProperty-和propertyIsEnumerable" class="headerlink" title="hasOwnProperty()和propertyIsEnumerable()"></a>hasOwnProperty()和propertyIsEnumerable()</h4><p>对象的 hasOwnProperty() 方法用来检测给定的名字是否是对象的自有属性，对于继承属性返回false</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(o.hasOwnProperty(<span class="string">'x'</span>)) // <span class="literal">true</span></div><div class="line">console.log(o.hasOwnProperty(<span class="string">'y'</span>)) // <span class="literal">false</span></div><div class="line">console.log(o.hasOwnProperty(<span class="string">'toString'</span>)) // <span class="literal">false</span></div></pre></td></tr></table></figure>
 <p>propertyIsEnumerable() 只有检测到时自身属性且这个属性的可枚举性为 true 时才返回true</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(o.propertyIsEnumerable(<span class="string">'x'</span>)) // <span class="literal">true</span></div><div class="line">console.log(o.propertyIsEnumerable(<span class="string">'y'</span>)) // <span class="literal">false</span></div><div class="line">console.log(Object.prototype.propertyIsEnumerable(<span class="string">'toString'</span>)) // <span class="literal">false</span> 不可枚举</div></pre></td></tr></table></figure>
-<h3 id="‘-‘判断一个属性是否是-undefinded"><a href="#‘-‘判断一个属性是否是-undefinded" class="headerlink" title="‘ !== ‘判断一个属性是否是 undefinded"></a>‘ !== ‘判断一个属性是否是 undefinded</h3><p>in 可以区分不存在的属性和存在但值为 undefined 的属性</p>
+<h4 id="‘-‘判断一个属性是否是-undefinded"><a href="#‘-‘判断一个属性是否是-undefinded" class="headerlink" title="‘ !== ‘判断一个属性是否是 undefinded"></a>‘ !== ‘判断一个属性是否是 undefinded</h4><p>in 可以区分不存在的属性和存在但值为 undefined 的属性</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123; x: 1 &#125;</div><div class="line">console.log(o.x !== undefined) // <span class="literal">true</span></div><div class="line">console.log(o.y !== undefined) // <span class="literal">false</span></div><div class="line">console.log(o.toString !== undefined) // <span class="literal">true</span></div></pre></td></tr></table></figure>
-<h2 id="枚举属性"><a href="#枚举属性" class="headerlink" title="枚举属性"></a>枚举属性</h2><h3 id="for-in-循环"><a href="#for-in-循环" class="headerlink" title="for/in 循环"></a>for/in 循环</h3><p>for/in 循环可以在循环体中遍历对象中所有可枚举的属性（包括自有属性和继承属性），对象继承的内置方法不可枚举</p>
+<h3 id="枚举属性"><a href="#枚举属性" class="headerlink" title="枚举属性"></a>枚举属性</h3><h4 id="for-in-循环"><a href="#for-in-循环" class="headerlink" title="for/in 循环"></a>for/in 循环</h4><p>for/in 循环可以在循环体中遍历对象中所有可枚举的属性（包括自有属性和继承属性），对象继承的内置方法不可枚举</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  z: 3</div><div class="line">&#125;</div><div class="line"><span class="keyword">for</span>(var p <span class="keyword">in</span> o) &#123;</div><div class="line">  console.log(p) // x y z</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a>Object.keys()</h3><p>Object.keys() 返回一个数组，这个数组由对象中可枚举的自有属性的名称组成</p>
+<h4 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys()"></a>Object.keys()</h4><p>Object.keys() 返回一个数组，这个数组由对象中可枚举的自有属性的名称组成</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  z: 3</div><div class="line">&#125;</div><div class="line">console.log(Object.keys(o)) // [<span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>]</div></pre></td></tr></table></figure>
-<h3 id="Object-getOwnPropertyNames"><a href="#Object-getOwnPropertyNames" class="headerlink" title="Object.getOwnPropertyNames()"></a>Object.getOwnPropertyNames()</h3><p>Object.getOwnPropertyNames() 返回对象的所有自有属性的名称，而不仅仅是可枚举的属性</p>
+<h4 id="Object-getOwnPropertyNames"><a href="#Object-getOwnPropertyNames" class="headerlink" title="Object.getOwnPropertyNames()"></a>Object.getOwnPropertyNames()</h4><p>Object.getOwnPropertyNames() 返回对象的所有自有属性的名称，而不仅仅是可枚举的属性</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2,</div><div class="line">  z: 3</div><div class="line">&#125;</div><div class="line">console.log(Object.getOwnPropertyNames(o)) // [<span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>]</div></pre></td></tr></table></figure>
-<h2 id="属性-getter-和-setter"><a href="#属性-getter-和-setter" class="headerlink" title="属性 getter 和 setter"></a>属性 getter 和 setter</h2><blockquote>
+<h3 id="属性-getter-和-setter"><a href="#属性-getter-和-setter" class="headerlink" title="属性 getter 和 setter"></a>属性 getter 和 setter</h3><blockquote>
 <p>一个 getter 是一个获取某个特定属性的值的方法；一个 setter 是一个设置某个属性的值得方法。由 getter 和 setter 定义的属性称做”存取器属性“，它不同于”数据属性“，数据属性只有一个简单的值。当程序查询存取器属性的值时，JavaScript 调用 getter 方法（无参数)。当程序设置一个存取器属性的值时，JavaScript 调用 setter 方法，将赋值表达式右侧的值当做参数传入 setter。</p>
 </blockquote>
 <ul>
@@ -714,7 +723,7 @@
 <li>在对象定义后的时候定义<br>定义一个已经声明的函数作为的getter和setter方法，使用Object.defineProperty(或者 Object.prototype.<strong>defineGetter</strong> 旧语法回退)</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var o = &#123;</div><div class="line">  x: 1,</div><div class="line">  y: 2</div><div class="line">&#125;</div><div class="line">Object.defineProperty(o, <span class="string">'p'</span>, &#123;</div><div class="line">  get: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">    <span class="built_in">return</span> this.x + this.y</div><div class="line">  &#125;,</div><div class="line">  <span class="built_in">set</span>: <span class="keyword">function</span>(newValue) &#123;</div><div class="line">    this.x += newValue</div><div class="line">    this.y += newValue</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line">console.log(o.p) // 3</div><div class="line">o.p = 1</div><div class="line">console.log(o.x + <span class="string">'-'</span> + o.y) // 2-3</div></pre></td></tr></table></figure>
-<h2 id="属性的特性"><a href="#属性的特性" class="headerlink" title="属性的特性"></a>属性的特性</h2><p>所有通过 ES3 的程序创建的属性都是可写的，可枚举的，可配置的，且无法对这些特性做修改。ES5 中可以查询和设置这些属性特性。</p>
+<h3 id="属性的特性"><a href="#属性的特性" class="headerlink" title="属性的特性"></a>属性的特性</h3><p>所有通过 ES3 的程序创建的属性都是可写的，可枚举的，可配置的，且无法对这些特性做修改。ES5 中可以查询和设置这些属性特性。</p>
 <p>一个属性包含一个名字和4个特性。数据属性的4个特性分别是值（value）、可写性（writable）、可枚举性（enumerable)、可配置性（configurable)。存取器属性不具有值特性和可写性，它们的可写性是有setter 方法 存在与否决定的。因此存取器属性的4个特性是读取（get)、写入（set)、可枚举和可配置性。为了实现属性特性的查询和设置操作，ES5 定义了一个名为”属性描述符“的对象。</p>
 <ul>
 <li>Object.getOwnPropertyDescriptor() 可以获得某个对象特定属性的属性描述符，只能得到自有属性</li>
@@ -737,9 +746,7 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。&lt;/p&gt;
-&lt;/blockquote&gt;
+      &lt;p&gt;对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。&lt;/p&gt;
     
     </summary>
     
@@ -755,15 +762,13 @@
     <link href="http://sunmaer.github.io/2017/05/19/JavaScript%E8%8E%B7%E5%8F%96%E5%90%84%E7%A7%8D%E5%AE%BD%E5%BA%A6%E5%92%8C%E9%AB%98%E5%BA%A6/"/>
     <id>http://sunmaer.github.io/2017/05/19/JavaScript获取各种宽度和高度/</id>
     <published>2017-05-19T03:53:39.000Z</published>
-    <updated>2017-09-12T13:00:49.000Z</updated>
+    <updated>2017-09-19T08:57:36.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>总结 JavaScript 中各种宽度和高度。</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="Window-对象"><a href="#Window-对象" class="headerlink" title="Window 对象"></a>Window 对象</h2><blockquote>
+    <content type="html"><![CDATA[<p>总结 JavaScript 中各种宽度和高度。</p>
+<h3 id="Window-对象"><a href="#Window-对象" class="headerlink" title="Window 对象"></a>Window 对象</h3><blockquote>
 <p>Window 对象表示浏览器中打开的窗口。如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。</p>
 </blockquote>
+<a id="more"></a>
 <ul>
 <li>innerHeight 返回窗口的文档显示区的高度（不包括浏览器的状态栏）</li>
 <li>innerWidth 返回窗口的文档显示区的宽度</li>
@@ -771,7 +776,7 @@
 <li>outerWidth 返回窗口的外部宽度 （IE 不支持此属性）</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 浏览器为全屏状态，屏幕分辨率：1440 x 900</div><div class="line">console.log(window.innerHeight) // 803</div><div class="line">console.log(window.innerWidth) // 1440</div><div class="line">console.log(window.outerHeight) // 900</div><div class="line">console.log(window.outerWidth) // 1440</div></pre></td></tr></table></figure>
-<h2 id="Screen-对象"><a href="#Screen-对象" class="headerlink" title="Screen 对象"></a>Screen 对象</h2><blockquote>
+<h3 id="Screen-对象"><a href="#Screen-对象" class="headerlink" title="Screen 对象"></a>Screen 对象</h3><blockquote>
 <p>Screen 对象包含有关客户端显示屏幕的信息。</p>
 </blockquote>
 <ul>
@@ -781,7 +786,7 @@
 <li>width 屏幕的宽度（指的是屏幕的分辨率，单位为像素）</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 屏幕分辨率：1440 x 900</div><div class="line">console.log(screen.availHeight) // 900</div><div class="line">console.log(screen.availWidth) // 1440</div><div class="line">console.log(screen.height) // 900</div><div class="line">console.log(screen.width) // 1440</div></pre></td></tr></table></figure>
-<h2 id="Element-对象"><a href="#Element-对象" class="headerlink" title="Element 对象"></a>Element 对象</h2><blockquote>
+<h3 id="Element-对象"><a href="#Element-对象" class="headerlink" title="Element 对象"></a>Element 对象</h3><blockquote>
 <p>Element 对象表示 XML 文档中的元素。元素可包含属性、其他元素或文本。如果元素含有文本，则在文本节点中表示该文本。</p>
 </blockquote>
 <ul>
@@ -806,7 +811,7 @@
 <li>scrollWidth     返回元素的整个宽度（包括带滚动条的隐蔽的地方）</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html lang=<span class="string">"en"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=<span class="string">"UTF-8"</span>&gt;</div><div class="line">	&lt;title&gt;Js中获取各种宽度和高度&lt;/title&gt;</div><div class="line">	&lt;style&gt;</div><div class="line">		<span class="comment">#block1 &#123;</span></div><div class="line">			width: 500px;</div><div class="line">			height: 500px;</div><div class="line">			overflow: scroll;</div><div class="line">			background-color: red;</div><div class="line">		&#125;</div><div class="line">		<span class="comment">#block2 &#123;</span></div><div class="line">			width: 600px;</div><div class="line">			height: 600px;</div><div class="line">			padding: 20px;</div><div class="line">			border: 10px solid blue;</div><div class="line">			margin: 0 auto;</div><div class="line">		&#125;</div><div class="line">	&lt;/style&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">	&lt;div id=<span class="string">"block1"</span>&gt;</div><div class="line">		&lt;div id=<span class="string">"block2"</span>&gt;&lt;/div&gt;</div><div class="line">	&lt;/div&gt;</div><div class="line"></div><div class="line">	&lt;script&gt;</div><div class="line">		var block = document.getElementById(<span class="string">'block2'</span>);</div><div class="line">		console.log(block.clientHeight) // 640 = 600 + 20 + 20</div><div class="line">		console.log(block.clientWidth) // 440 = 400 + 20 + 20</div><div class="line">		console.log(block.offsetHeight) // 660 = 600 + 20 + 20 + 10 +10</div><div class="line">		console.log(block.offsetWidth) // 460 = 400 + 20 + 20 +10 + 10</div><div class="line">		console.log(block.offsetLeft) // 28 外边距20加上浏览器默认的8</div><div class="line">		console.log(block.offsetParent) // body 对象，如果 block1 设置定位后则为 block1</div><div class="line">		console.log(block.offsetTop) // 0</div><div class="line">		console.log(block.scrollHeight) // 640</div><div class="line">		console.log(block.scrollLeft) // 0</div><div class="line">		console.log(block.scrollTop) // 0</div><div class="line">		console.log(block.scrollWidth) // 440</div><div class="line">	&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-<h2 id="JS-获取样式"><a href="#JS-获取样式" class="headerlink" title="JS 获取样式"></a>JS 获取样式</h2><ul>
+<h3 id="JS-获取样式"><a href="#JS-获取样式" class="headerlink" title="JS 获取样式"></a>JS 获取样式</h3><ul>
 <li>style 属性</li>
 </ul>
 <p>元素的 style 属性代表了元素的内联样式，它覆盖了所有的样式表，它是设置 CSS 属性值来改变元素的视觉表现最好的地方。不能查询外部样式表。</p>
@@ -822,8 +827,9 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;总结 JavaScript 中各种宽度和高度。&lt;/p&gt;
+      &lt;p&gt;总结 JavaScript 中各种宽度和高度。&lt;/p&gt;
+&lt;h3 id=&quot;Window-对象&quot;&gt;&lt;a href=&quot;#Window-对象&quot; class=&quot;headerlink&quot; title=&quot;Window 对象&quot;&gt;&lt;/a&gt;Window 对象&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Window 对象表示浏览器中打开的窗口。如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。&lt;/p&gt;
 &lt;/blockquote&gt;
     
     </summary>
@@ -840,27 +846,18 @@
     <link href="http://sunmaer.github.io/2017/05/07/%E7%BC%96%E5%86%99%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9A%84JavaScript%E4%BB%A3%E7%A0%81/"/>
     <id>http://sunmaer.github.io/2017/05/07/编写高质量的JavaScript代码/</id>
     <published>2017-05-07T14:09:47.000Z</published>
-    <updated>2017-08-12T13:31:45.000Z</updated>
+    <updated>2017-09-19T08:50:22.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>全局变量的问题</p>
-</blockquote>
-<p>全局变量的问题在于，你的JavaScript应用程序和web页面上的所有代码都共享了这些全局变量，他们住在同一个全局命名空间，所以当程序的两个不同部分定义同名但不同作用的全局变量的时候，命名冲突在所难免。</p>
+    <content type="html"><![CDATA[<h3 id="全局变量的问题"><a href="#全局变量的问题" class="headerlink" title="全局变量的问题"></a>全局变量的问题</h3><p>全局变量的问题在于，你的JavaScript应用程序和web页面上的所有代码都共享了这些全局变量，他们住在同一个全局命名空间，所以当程序的两个不同部分定义同名但不同作用的全局变量的时候，命名冲突在所难免。</p>
 <a id="more"></a>
-<blockquote>
-<p>隐式全局变量和明确定义的全局变量差异</p>
-</blockquote>
-<ul>
+<h3 id="隐式全局变量和明确定义的全局变量差异"><a href="#隐式全局变量和明确定义的全局变量差异" class="headerlink" title="隐式全局变量和明确定义的全局变量差异"></a>隐式全局变量和明确定义的全局变量差异</h3><ul>
 <li>通过var创建的全局变量是不能被删除的</li>
 <li>无var创建的隐式全局变量是能被删除的</li>
 </ul>
 <p>隐式全局变量并不是真正的全局变量，但它们是全局对象的属性。属性是可以通过delete操作符删除的，而变量是不能的。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 定义三个全局变量</div><div class="line">var global1 = <span class="string">"Hello World"</span>;</div><div class="line">global2 = <span class="string">"Hello World"</span>;</div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">f</span></span>() &#123;</div><div class="line">  global3 = <span class="string">"Hello World"</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 删除全局变量</div><div class="line">console.log(delete global1); // <span class="literal">false</span></div><div class="line">console.log(delete global2); // <span class="literal">true</span></div><div class="line">console.log(delete global3); // <span class="literal">true</span></div></pre></td></tr></table></figure>
 <p>ES5严格模式下，未声明的变量工作时会抛出一个错误</p>
-<blockquote>
-<p>单var形式</p>
-</blockquote>
-<p>在函数顶部使用单var语句是比较有用的一种形式，其好处在于：</p>
+<h3 id="单var形式"><a href="#单var形式" class="headerlink" title="单var形式"></a>单var形式</h3><p>在函数顶部使用单var语句是比较有用的一种形式，其好处在于：</p>
 <ul>
 <li>提供了一个单一的地方去寻找功能所需要的所有局部变量</li>
 <li>防止变量在定义之前使用的逻辑错误</li>
@@ -868,30 +865,16 @@
 <li>少代码</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">func</span></span>() &#123;</div><div class="line">  var a = 1,</div><div class="line">      b = 2,</div><div class="line">      sum = a + b,</div><div class="line">      myObject = &#123;&#125;,</div><div class="line">      i,</div><div class="line">      j;      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>for循环缓存数组的长度</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var i = 0,</div><div class="line">    length,</div><div class="line">    myArr = [];</div><div class="line"><span class="keyword">for</span>(i = 0, length = myArr.length; i &lt; length; i++) &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="for循环缓存数组的长度"><a href="#for循环缓存数组的长度" class="headerlink" title="for循环缓存数组的长度"></a>for循环缓存数组的长度</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var i = 0,</div><div class="line">    length,</div><div class="line">    myArr = [];</div><div class="line"><span class="keyword">for</span>(i = 0, length = myArr.length; i &lt; length; i++) &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>提升性能的形式：</p>
 <ul>
 <li>少了一个变量（无max）</li>
 <li>向下数到0,通常更快，因为和0作比较要比和数组长度或是其他不适0的东西作比较更有效率</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var i, myArr = [];</div><div class="line"><span class="keyword">for</span>(i = myArr.length; i--) &#123;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>for-in循环</p>
-</blockquote>
-<p>for-in循环应该用在非数组对象的遍历上，使用for-in循环也被称为“枚举”。另外，在for-in中，属性列表的顺序是不能保证的。所以最好数组使用正常的for循环，对象使用for-in循环。</p>
-<blockquote>
-<p>避免隐式类型转换</p>
-<p>避免eval()</p>
-<p>parseInt()下的数值转换</p>
-</blockquote>
-<p>不应该省略基数参数</p>
-<blockquote>
-<p>按强类型风格编写代码</p>
-</blockquote>
-<ul>
+<h3 id="for-in循环"><a href="#for-in循环" class="headerlink" title="for-in循环"></a>for-in循环</h3><p>for-in循环应该用在非数组对象的遍历上，使用for-in循环也被称为“枚举”。另外，在for-in中，属性列表的顺序是不能保证的。所以最好数组使用正常的for循环，对象使用for-in循环。</p>
+<h3 id="避免隐式类型转换"><a href="#避免隐式类型转换" class="headerlink" title="避免隐式类型转换"></a>避免隐式类型转换</h3><h3 id="避免eval"><a href="#避免eval" class="headerlink" title="避免eval()"></a>避免eval()</h3><h3 id="parseInt-下的数值转换"><a href="#parseInt-下的数值转换" class="headerlink" title="parseInt()下的数值转换"></a>parseInt()下的数值转换</h3><p>不应该省略基数参数</p>
+<h3 id="按强类型风格编写代码"><a href="#按强类型风格编写代码" class="headerlink" title="按强类型风格编写代码"></a>按强类型风格编写代码</h3><ul>
 <li>定义变量的时候要指明类型</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var num = 0,</div><div class="line">    str = <span class="string">''</span>,</div><div class="line">    obj = null;</div></pre></td></tr></table></figure>
@@ -899,34 +882,22 @@
 <li>不要随意的改变变量类型</li>
 <li>函数的返回类型应该是要确定的</li>
 </ul>
-<blockquote>
-<p>减少作用域查找</p>
-</blockquote>
-<ul>
+<h3 id="减少作用域查找"><a href="#减少作用域查找" class="headerlink" title="减少作用域查找"></a>减少作用域查找</h3><ul>
 <li>不要让代码暴露在全局作用域下，使用立即执行匿名函数</li>
 <li>不要滥用闭包</li>
 </ul>
-<blockquote>
-<p>避免 == 的使用</p>
-</blockquote>
-<ul>
+<h3 id="避免-的使用"><a href="#避免-的使用" class="headerlink" title="避免 == 的使用"></a>避免 == 的使用</h3><ul>
 <li>如果变量类型确定，就没必要使用 == </li>
 <li>如果变量类型不确定，手动类型转换</li>
 <li>使用 == 在JSLint检查的时候是不通过的</li>
 <li>== 可能会出现一些奇怪的现象</li>
 </ul>
-<blockquote>
-<p>合并表达式</p>
-</blockquote>
-<ul>
+<h3 id="合并表达式"><a href="#合并表达式" class="headerlink" title="合并表达式"></a>合并表达式</h3><ul>
 <li>用三目运算符取代简单的if-else</li>
 <li>连等</li>
 <li>自增</li>
 </ul>
-<blockquote>
-<p>使用ES6语法简化代码</p>
-</blockquote>
-<ul>
+<h3 id="使用ES6语法简化代码"><a href="#使用ES6语法简化代码" class="headerlink" title="使用ES6语法简化代码"></a>使用ES6语法简化代码</h3><ul>
 <li>使用箭头函数取代小函数</li>
 <li>使用ES6的class</li>
 <li>字符串拼接</li>
@@ -936,10 +907,7 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;全局变量的问题&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;全局变量的问题在于，你的JavaScript应用程序和web页面上的所有代码都共享了这些全局变量，他们住在同一个全局命名空间，所以当程序的两个不同部分定义同名但不同作用的全局变量的时候，命名冲突在所难免。&lt;/p&gt;
+      &lt;h3 id=&quot;全局变量的问题&quot;&gt;&lt;a href=&quot;#全局变量的问题&quot; class=&quot;headerlink&quot; title=&quot;全局变量的问题&quot;&gt;&lt;/a&gt;全局变量的问题&lt;/h3&gt;&lt;p&gt;全局变量的问题在于，你的JavaScript应用程序和web页面上的所有代码都共享了这些全局变量，他们住在同一个全局命名空间，所以当程序的两个不同部分定义同名但不同作用的全局变量的时候，命名冲突在所难免。&lt;/p&gt;
     
     </summary>
     
@@ -955,22 +923,17 @@
     <link href="http://sunmaer.github.io/2017/05/03/%E5%88%9D%E8%AF%86node.js/"/>
     <id>http://sunmaer.github.io/2017/05/03/初识node.js/</id>
     <published>2017-05-03T13:01:04.000Z</published>
-    <updated>2017-08-03T13:24:23.000Z</updated>
+    <updated>2017-09-19T08:52:06.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>分久必合，合久必分</p>
-</blockquote>
+    <content type="html"><![CDATA[<h3 id="分久必合，合久必分"><a href="#分久必合，合久必分" class="headerlink" title="分久必合，合久必分"></a>分久必合，合久必分</h3><p>用了半天时间看完 Node.js 的基本API,感觉很轻便，没有Java那么笨重。很多语法在学习 Vue 的时候也见过，所以并没有什么陌生感，很快便熟悉了基本的用法。于是便参考别人的博客写了个学院官网的爬虫，程序能够获取文章内容和图片，然后存储在本地。不过当前版本过于简单，思路就是向服务器发送请求，获取文章的 html，使用 cheerio（类似Jquery)模块解析出 html 中的文字和图片。幸运的是，通过编写爬虫，折腾了一下 vim，熟悉了 vim 的配置和终端中一些常用的命令。代码如下：</p>
 <a id="more"></a>
-<p>用了半天时间看完 Node.js 的基本API,感觉很轻便，没有Java那么笨重。很多语法在学习 Vue 的时候也见过，所以并没有什么陌生感，很快便熟悉了基本的用法。于是便参考别人的博客写了个学院官网的爬虫，程序能够获取文章内容和图片，然后存储在本地。不过当前版本过于简单，唯一的思想就是向服务器发送请求，获取文章的 html，使用 cheerio（类似Jquery)模块解析出 html 中的文字和图片。幸运的是，通过编写爬虫，折腾了一下 vim，熟悉了 vim 的配置和终端中一些常用的命令。代码如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div></pre></td><td class="code"><pre><div class="line">var http = require(<span class="string">'http'</span>)</div><div class="line">var fs = require(<span class="string">'fs'</span>)</div><div class="line">var cheerio = require(<span class="string">'cheerio'</span>)</div><div class="line">var request = require(<span class="string">'request'</span>)</div><div class="line"></div><div class="line">var i = 0</div><div class="line">// 初始化 URL</div><div class="line">var url = <span class="string">"http://coi.hzau.edu.cn/index.php/index-view-aid-1815.html"</span></div><div class="line"></div><div class="line"><span class="keyword">function</span> fetchPage(x) &#123; //封装函数</div><div class="line">	startRequest(x)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> startRequest(x) &#123;</div><div class="line">	// 采用 http 模块向服务器发起一次 get 请求</div><div class="line">	http.get(x, <span class="keyword">function</span>(res) &#123;</div><div class="line">		<span class="built_in">let</span> html = <span class="string">''</span> // 用来存储请求网页的整个 html 内容</div><div class="line">		<span class="built_in">let</span> titles = []</div><div class="line">		res.setEncoding(<span class="string">'utf-8'</span>) // 防止中文乱码</div><div class="line">		// 监听 data 事件，每次取一块数据</div><div class="line">		res.on(<span class="string">'data'</span>, <span class="keyword">function</span>(chunk) &#123;</div><div class="line">			html += chunk</div><div class="line">		&#125;)</div><div class="line">		// 监听 end 事件，如果整个网页内容的 html 都获取完毕，就执行回调函数</div><div class="line">		res.on(<span class="string">'end'</span>, <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">			<span class="built_in">let</span> $ = cheerio.load(html) // 采用 cheerio 模块解析 html</div><div class="line">			<span class="built_in">let</span> time = $(<span class="string">'.info .fl'</span>).eq(0).text().trim().split(<span class="string">'：'</span>)[1]</div><div class="line">			<span class="built_in">let</span> news_item = &#123;</div><div class="line">				// 获取文章标题</div><div class="line">				title: $(<span class="string">'.art_title h4'</span>).text().trim(),</div><div class="line">				// 获取文章发布时间</div><div class="line">				time: time,</div><div class="line">				// 获取作者</div><div class="line">				author: $(<span class="string">'.info .fl'</span>).eq(1).text().trim().split(<span class="string">'：'</span>)[1],</div><div class="line">				// 获取文章的浏览次数</div><div class="line">				views: $(<span class="string">'.info .fl'</span>).eq(2).text().trim().split(<span class="string">'：'</span>)[1],</div><div class="line">				// 文章 URL</div><div class="line">				url: x,</div><div class="line">				// i 是用来判断获取了多少篇文章</div><div class="line">				i: i+1</div><div class="line">			&#125;</div><div class="line">			console.log(news_item) // 打印新闻信息</div><div class="line"></div><div class="line">			<span class="built_in">let</span> news_title = $(<span class="string">'.art_title h4'</span>).text().trim() </div><div class="line">			savedContent($, news_title) // 存储每篇新闻的标题和内容</div><div class="line">			savedImg($, news_title) // 存储每篇新闻的图片</div><div class="line"></div><div class="line">			// 下一篇文章的 URL</div><div class="line">			<span class="built_in">let</span> href = $(<span class="string">'.art_page p'</span>).eq(1).children(<span class="string">'a'</span>).attr(<span class="string">'href'</span>)</div><div class="line">			// 如果下一篇没有了，则结束</div><div class="line">			<span class="keyword">if</span>(href === <span class="string">'javascript:void(0)'</span>) &#123;</div><div class="line">				console.log(<span class="string">'文章抓取完毕，没有下一篇了'</span>)</div><div class="line">			&#125; <span class="keyword">else</span> &#123;</div><div class="line">				<span class="built_in">let</span> nextLink = <span class="string">"http://coi.hzau.edu.cn"</span> + href</div><div class="line">				<span class="keyword">if</span>(i &lt;= 100) &#123;</div><div class="line">					fetchPage(nextLink)</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;)</div><div class="line">	&#125;).on(<span class="string">'error'</span>, <span class="keyword">function</span>(err) &#123;</div><div class="line">		console.log(err)</div><div class="line">	&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 爬取新闻内容资源</div><div class="line"><span class="keyword">function</span> savedContent($, news_title) &#123;</div><div class="line">	$(<span class="string">'.art_content p'</span>).each(<span class="keyword">function</span>(index, item) &#123;</div><div class="line">		<span class="built_in">let</span> span = $(this).children(<span class="string">'span'</span>)</div><div class="line">		<span class="keyword">if</span>(span.length) &#123;</div><div class="line">			<span class="built_in">let</span> content = <span class="string">''</span></div><div class="line">			span.each(<span class="keyword">function</span>(index, item) &#123;</div><div class="line">				content += $(this).text()</div><div class="line">			&#125;)</div><div class="line">			content += <span class="string">'\n'</span></div><div class="line">			<span class="keyword">if</span>(content) &#123;</div><div class="line">				fs.appendFile(<span class="string">'./data/'</span> + news_title + <span class="string">'.txt'</span>, content, <span class="string">'utf-8'</span>, <span class="keyword">function</span>(err) &#123;</div><div class="line">					<span class="keyword">if</span>(err) &#123;</div><div class="line">						console.log(err)</div><div class="line">					&#125;</div><div class="line">				&#125;)</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 获取图片资源</div><div class="line"><span class="keyword">function</span> savedImg($, news_title) &#123;</div><div class="line">	$(<span class="string">'.art_content p img'</span>).each(<span class="keyword">function</span>(index, item) &#123;</div><div class="line">		<span class="built_in">let</span> src = $(this).attr(<span class="string">'src'</span>)</div><div class="line">		<span class="built_in">let</span> arr = src.split(<span class="string">'/'</span>)</div><div class="line">		<span class="built_in">let</span> img_title = arr[arr.length - 1]</div><div class="line">		<span class="built_in">let</span> img_src = <span class="string">''</span></div><div class="line">		<span class="keyword">if</span>(src.indexOf(<span class="string">'http'</span>) === -1) &#123;</div><div class="line">			img_src = <span class="string">'http://coi.hzau.edu.cn'</span> + src</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			img_src = src</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		// 采用 request 模块，向服务器发起一次请求，获取图片资源</div><div class="line">		request.head(img_src, <span class="keyword">function</span>(err, res, body) &#123;</div><div class="line">			<span class="keyword">if</span>(err) &#123;</div><div class="line">				console.log(err)</div><div class="line">			&#125;</div><div class="line">		&#125;)</div><div class="line">		request(img_src).pipe(fs.createWriteStream(<span class="string">'./image/'</span> + news_title + <span class="string">'-'</span> + img_title))</div><div class="line">	&#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">fetchPage(url) // 主程序开始运行</div></pre></td></tr></table></figure>
 <p>当然，这个项目我会继续下去，目标是完成一个小的应用，前端用 Vue,后端 Node.js，希望通过这个项目入门 Node.js,还有就是为音乐App做一些准备。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;分久必合，合久必分&lt;/p&gt;
-&lt;/blockquote&gt;
+      &lt;h3 id=&quot;分久必合，合久必分&quot;&gt;&lt;a href=&quot;#分久必合，合久必分&quot; class=&quot;headerlink&quot; title=&quot;分久必合，合久必分&quot;&gt;&lt;/a&gt;分久必合，合久必分&lt;/h3&gt;&lt;p&gt;用了半天时间看完 Node.js 的基本API,感觉很轻便，没有Java那么笨重。很多语法在学习 Vue 的时候也见过，所以并没有什么陌生感，很快便熟悉了基本的用法。于是便参考别人的博客写了个学院官网的爬虫，程序能够获取文章内容和图片，然后存储在本地。不过当前版本过于简单，思路就是向服务器发送请求，获取文章的 html，使用 cheerio（类似Jquery)模块解析出 html 中的文字和图片。幸运的是，通过编写爬虫，折腾了一下 vim，熟悉了 vim 的配置和终端中一些常用的命令。代码如下：&lt;/p&gt;
     
     </summary>
     
@@ -990,11 +953,9 @@
     <link href="http://sunmaer.github.io/2017/04/21/IE-hack/"/>
     <id>http://sunmaer.github.io/2017/04/21/IE-hack/</id>
     <published>2017-04-21T14:22:23.000Z</published>
-    <updated>2017-07-31T14:25:53.000Z</updated>
+    <updated>2017-09-19T08:55:01.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>StatCounter是美国一家网站通讯流量监测机构，提供各种类型的统计报告以及网站流量统计服务。下面是StateCounter网站统计的国内这一年不同浏览器以及不同版本浏览器的使用情况：</p>
-</blockquote>
+    <content type="html"><![CDATA[<p>StatCounter是美国一家网站通讯流量监测机构，提供各种类型的统计报告以及网站流量统计服务。下面是StateCounter网站统计的国内这一年不同浏览器以及不同版本浏览器的使用情况：</p>
 <a id="more"></a>
 <p><img src="http://otxtxlg3e.bkt.clouddn.com/blog/2.png" alt="IE hack"></p>
 <p><img src="http://otxtxlg3e.bkt.clouddn.com/blog/1.png" alt="IE hack"></p>
@@ -1024,9 +985,7 @@
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;StatCounter是美国一家网站通讯流量监测机构，提供各种类型的统计报告以及网站流量统计服务。下面是StateCounter网站统计的国内这一年不同浏览器以及不同版本浏览器的使用情况：&lt;/p&gt;
-&lt;/blockquote&gt;
+      &lt;p&gt;StatCounter是美国一家网站通讯流量监测机构，提供各种类型的统计报告以及网站流量统计服务。下面是StateCounter网站统计的国内这一年不同浏览器以及不同版本浏览器的使用情况：&lt;/p&gt;
     
     </summary>
     
@@ -1044,9 +1003,10 @@
     <link href="http://sunmaer.github.io/2017/04/06/toString%E5%92%8CvalueOf/"/>
     <id>http://sunmaer.github.io/2017/04/06/toString和valueOf/</id>
     <published>2017-04-06T08:52:24.000Z</published>
-    <updated>2017-08-06T11:39:21.000Z</updated>
+    <updated>2017-09-19T08:59:37.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h1><p>JavaScript中所有的对象继承了两个转换方法。第一个是toString()，它的作用是返回一个反映这个对象的字符串。<br><a id="more"></a><br>很多类定义了更多特定版本的toString()方法。</p>
+    <content type="html"><![CDATA[<h3 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString()"></a>toString()</h3><p>JavaScript中所有的对象继承了两个转换方法。第一个是toString()，它的作用是返回一个反映这个对象的字符串。很多类定义了更多特定版本的toString()方法。</p>
+<a id="more"></a>
 <table>
 <thead>
 <tr>
@@ -1089,7 +1049,7 @@
 </tr>
 </tbody>
 </table>
-<h1 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h1><p>另一个转换方法是valueOf()。如果存在任意原始值，它就默认将对象转换为表示它的原始值。对象是复合值，而且大多数对象无法真正表示为一个原始值，因此默认的valueOf()方法简单地返回对象本身，而不是返回一个原始值。</p>
+<h3 id="valueOf-NaN"><a href="#valueOf-NaN" class="headerlink" title="valueOf()"></a>valueOf()</h3><p>另一个转换方法是valueOf()。如果存在任意原始值，它就默认将对象转换为表示它的原始值。对象是复合值，而且大多数对象无法真正表示为一个原始值，因此默认的valueOf()方法简单地返回对象本身，而不是返回一个原始值。</p>
 <blockquote>
 <p>对于所有非日期对象来说，对象到原始值的转换基本上是对象到数字的转换（首先调用valueOf(),但日期对象则使用对象到字符串的转换模式，但这种转换只执行一次就立即使用，不会像上面所说的那般先转字符串再转成相应的数字类型。</p>
 </blockquote>
@@ -1103,7 +1063,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;toString-NaN&quot;&gt;&lt;a href=&quot;#toString-NaN&quot; class=&quot;headerlink&quot; title=&quot;toString()&quot;&gt;&lt;/a&gt;toString()&lt;/h1&gt;&lt;p&gt;JavaScript中所有的对象继承了两个转换方法。第一个是toString()，它的作用是返回一个反映这个对象的字符串。&lt;br&gt;
+      &lt;h3 id=&quot;toString-NaN&quot;&gt;&lt;a href=&quot;#toString-NaN&quot; class=&quot;headerlink&quot; title=&quot;toString()&quot;&gt;&lt;/a&gt;toString()&lt;/h3&gt;&lt;p&gt;JavaScript中所有的对象继承了两个转换方法。第一个是toString()，它的作用是返回一个反映这个对象的字符串。很多类定义了更多特定版本的toString()方法。&lt;/p&gt;
     
     </summary>
     
@@ -1119,7 +1079,7 @@
     <link href="http://sunmaer.github.io/2017/04/01/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84line-height/"/>
     <id>http://sunmaer.github.io/2017/04/01/你不知道的line-height/</id>
     <published>2017-04-01T12:14:23.000Z</published>
-    <updated>2017-08-01T12:20:56.000Z</updated>
+    <updated>2017-09-19T08:54:10.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="什么是行间距？"><a href="#什么是行间距？" class="headerlink" title="什么是行间距？"></a>什么是行间距？</h3><p>行间距，即传说中控制两行文字之间垂直距离的东西。在CSS中，line-height被用来控制行与行之间的垂直间距。</p>
 <a id="more"></a>
@@ -1194,20 +1154,14 @@
     <link href="http://sunmaer.github.io/2017/03/30/%E8%B5%B7%E8%88%AA/"/>
     <id>http://sunmaer.github.io/2017/03/30/起航/</id>
     <published>2017-03-30T06:22:17.000Z</published>
-    <updated>2017-07-31T14:22:53.000Z</updated>
+    <updated>2017-09-19T08:54:32.000Z</updated>
     
-    <content type="html"><![CDATA[<blockquote>
-<p>当你的才华还撑不起你的野心时，那么你就应该静下心来学习。</p>
-</blockquote>
-<a id="more"></a>
-<p>从今天起，定期更新博客，学习前端知识，记录人生感悟，分享所思所想。</p>
-]]></content>
+    <content type="html"><![CDATA[<h3 id="当你的才华还撑不起你的野心时，那么你就应该静下心来学习。"><a href="#当你的才华还撑不起你的野心时，那么你就应该静下心来学习。" class="headerlink" title="当你的才华还撑不起你的野心时，那么你就应该静下心来学习。"></a>当你的才华还撑不起你的野心时，那么你就应该静下心来学习。</h3><p>从今天起，定期更新博客，学习前端知识，记录人生感悟，分享所思所想。</p>
+<a id="more"></a>]]></content>
     
     <summary type="html">
     
-      &lt;blockquote&gt;
-&lt;p&gt;当你的才华还撑不起你的野心时，那么你就应该静下心来学习。&lt;/p&gt;
-&lt;/blockquote&gt;
+      &lt;h3 id=&quot;当你的才华还撑不起你的野心时，那么你就应该静下心来学习。&quot;&gt;&lt;a href=&quot;#当你的才华还撑不起你的野心时，那么你就应该静下心来学习。&quot; class=&quot;headerlink&quot; title=&quot;当你的才华还撑不起你的野心时，那么你就应该静下心来学习。&quot;&gt;&lt;/a&gt;当你的才华还撑不起你的野心时，那么你就应该静下心来学习。&lt;/h3&gt;&lt;p&gt;从今天起，定期更新博客，学习前端知识，记录人生感悟，分享所思所想。&lt;/p&gt;
     
     </summary>
     

@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="單棲情緒">
 <meta property="og:description" content="传统表单验证方式存在的问题： 验证函数里包含很多的 if-else 语句 验证函数缺乏弹性，如果增加一种新的校验规则，必须深入验证函数的内部实现，违反了开放-封闭原则 算法的复用性差，如果程序中增加了另一个表单，这个表单也需要进行一些类似的校验，那我们只能复制粘贴">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-02T11:59:10.000Z">
+<meta property="og:updated_time" content="2017-09-19T08:47:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="策略模式实现表单验证">
 <meta name="twitter:description" content="传统表单验证方式存在的问题： 验证函数里包含很多的 if-else 语句 验证函数缺乏弹性，如果增加一种新的校验规则，必须深入验证函数的内部实现，违反了开放-封闭原则 算法的复用性差，如果程序中增加了另一个表单，这个表单也需要进行一些类似的校验，那我们只能复制粘贴">
@@ -398,13 +398,13 @@
       
 
       
-        <h2 id="传统表单验证方式存在的问题："><a href="#传统表单验证方式存在的问题：" class="headerlink" title="传统表单验证方式存在的问题："></a>传统表单验证方式存在的问题：</h2><ul>
+        <h3 id="传统表单验证方式存在的问题："><a href="#传统表单验证方式存在的问题：" class="headerlink" title="传统表单验证方式存在的问题："></a>传统表单验证方式存在的问题：</h3><ul>
 <li>验证函数里包含很多的 if-else 语句</li>
 <li>验证函数缺乏弹性，如果增加一种新的校验规则，必须深入验证函数的内部实现，违反了开放-封闭原则</li>
 <li>算法的复用性差，如果程序中增加了另一个表单，这个表单也需要进行一些类似的校验，那我们只能复制粘贴</li>
 </ul>
 <a id="more"></a>
-<h2 id="策略模式重构表单验证"><a href="#策略模式重构表单验证" class="headerlink" title="策略模式重构表单验证"></a>策略模式重构表单验证</h2><blockquote>
+<h3 id="策略模式重构表单验证"><a href="#策略模式重构表单验证" class="headerlink" title="策略模式重构表单验证"></a>策略模式重构表单验证</h3><blockquote>
 <p>策略模式是指一系列的算法定义，并将每一个算法封装起来，而且使它们还可以相互替换。策略模式让算法独立于使用它的客户而独立变化。策略模式优点：策略模式提供了管理相关的算法族的办法、策略模式提供了可以替换继承关系的办法、使用策略模式可以避免使用多重条件转移语句。</p>
 </blockquote>
 <h3 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h3><p>Context 环境角色：持有一个策略类的引用，最终给客户端调用</p>
@@ -445,7 +445,7 @@
   <p><span>本文标题:</span><a href="/2017/08/10/策略模式实现表单验证/">策略模式实现表单验证</a></p>
   <p><span>本文作者:</span><a href="/" title="访问 sunmaer 的个人博客">sunmaer</a></p>
   <p><span>发布时间:</span>2017年08月10日 - 09:08</p>
-  <!-- <p><span>最后更新:</span>2017年09月02日 - 19:09</p> -->
+  <!-- <p><span>最后更新:</span>2017年09月19日 - 16:09</p> -->
   <p><span>本文链接:</span><a href="/2017/08/10/策略模式实现表单验证/" title="策略模式实现表单验证">http://sunmaer.github.io/2017/08/10/策略模式实现表单验证/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/08/10/策略模式实现表单验证/"  aria-label="复制成功！"></i></span>
   </p>
@@ -622,7 +622,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -727,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#传统表单验证方式存在的问题："><span class="nav-number">1.</span> <span class="nav-text">传统表单验证方式存在的问题：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式重构表单验证"><span class="nav-number">2.</span> <span class="nav-text">策略模式重构表单验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#组成"><span class="nav-number">2.1.</span> <span class="nav-text">组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体策略角色"><span class="nav-number">2.2.</span> <span class="nav-text">具体策略角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象策略角色"><span class="nav-number">2.3.</span> <span class="nav-text">抽象策略角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境角色"><span class="nav-number">2.4.</span> <span class="nav-text">环境角色</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#传统表单验证方式存在的问题："><span class="nav-number">1.</span> <span class="nav-text">传统表单验证方式存在的问题：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式重构表单验证"><span class="nav-number">2.</span> <span class="nav-text">策略模式重构表单验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组成"><span class="nav-number">3.</span> <span class="nav-text">组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体策略角色"><span class="nav-number">4.</span> <span class="nav-text">具体策略角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象策略角色"><span class="nav-number">5.</span> <span class="nav-text">抽象策略角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境角色"><span class="nav-number">6.</span> <span class="nav-text">环境角色</span></a></li></ol></div>
             
 
           </div>
@@ -766,7 +766,7 @@
 </div>
 
 <div class="theme-info">
-  <span class="post-count">博客全站共10.2k字</span>
+  <span class="post-count">博客全站共10.6k字</span>
 </div>
 
 

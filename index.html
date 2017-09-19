@@ -323,6 +323,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -344,7 +366,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  0
+                  449
                 </span>
               
 
@@ -360,7 +382,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -379,9 +401,14 @@
 
       
         
-          
-            
-          
+          <h3 id="case1-两个需要交互的-Tab-页面具有依赖关系"><a href="#case1-两个需要交互的-Tab-页面具有依赖关系" class="headerlink" title="case1 两个需要交互的 Tab 页面具有依赖关系"></a>case1 两个需要交互的 Tab 页面具有依赖关系</h3><p>B 页面通过 iframe 嵌入 A 页面，这种情形可以通过 HTML5 的window.postMessage 完成通信，由于 postMessage 函数是绑定在 window 全局对象下，因此通信的页面中必须有一个页面可以获取另一个页面的 window 对象，A页面中通过JavaScript的window.open打开B页面，或者B页面通过iframe嵌入至A页面。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/09/18/Tab页通信/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -512,7 +539,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,592
+                  1,575
                 </span>
               
 
@@ -547,7 +574,12 @@
 
       
         
-          <h2 id="金山办公软件web前端开发工程师笔试题"><a href="#金山办公软件web前端开发工程师笔试题" class="headerlink" title="金山办公软件web前端开发工程师笔试题"></a>金山办公软件web前端开发工程师笔试题</h2>
+          <h3 id="1、列出http协议头部信息并简单描述其作用。"><a href="#1、列出http协议头部信息并简单描述其作用。" class="headerlink" title="1、列出http协议头部信息并简单描述其作用。"></a>1、列出http协议头部信息并简单描述其作用。</h3><ul>
+<li>通用首部</li>
+</ul>
+<blockquote>
+<p>客户端和服务端都可以使用的通用首部。可以在客户端、服务器和其他应用程序之间提供一些非常有用的通用功能。 </p>
+</blockquote>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/16/金山WPS前端笔试题/#more" rel="contents">
@@ -720,9 +752,7 @@
 
       
         
-          <blockquote>
-<p>项目地址：<a href="https://github.com/sunmaer/vue-charts" target="_blank" rel="external">https://github.com/sunmaer/vue-charts</a></p>
-</blockquote>
+          <p>项目地址：<a href="https://github.com/sunmaer/vue-charts" target="_blank" rel="external">https://github.com/sunmaer/vue-charts</a></p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/18/Vue中使用数据可视化库实现关系图/#more" rel="contents">
@@ -895,7 +925,7 @@
 
       
         
-          <h2 id="传统表单验证方式存在的问题："><a href="#传统表单验证方式存在的问题：" class="headerlink" title="传统表单验证方式存在的问题："></a>传统表单验证方式存在的问题：</h2><ul>
+          <h3 id="传统表单验证方式存在的问题："><a href="#传统表单验证方式存在的问题：" class="headerlink" title="传统表单验证方式存在的问题："></a>传统表单验证方式存在的问题：</h3><ul>
 <li>验证函数里包含很多的 if-else 语句</li>
 <li>验证函数缺乏弹性，如果增加一种新的校验规则，必须深入验证函数的内部实现，违反了开放-封闭原则</li>
 <li>算法的复用性差，如果程序中增加了另一个表单，这个表单也需要进行一些类似的校验，那我们只能复制粘贴</li>
@@ -1072,9 +1102,7 @@
 
       
         
-          <blockquote>
-<p>我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：</p>
-</blockquote>
+          <p>我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/07/29/JavaScript插入元素/#more" rel="contents">
@@ -1247,12 +1275,10 @@
 
       
         
-          <blockquote>
-<p>浏览器所支持的事件有很多，事件有三个来源：</p>
+          <p>浏览器所支持的事件有很多，事件有三个来源：</p>
 <p>3级 DOM 事件规范，经过长期的停滞之后，在 W3C 的主持下开始焕发生机。</p>
 <p>HTML5 规范以及相关衍生规范的大量新 API 定义了新事件。</p>
 <p>基于触摸和支持 JavaScript 的移动设备的出现，比如 iphone，它们需要定义新的触摸和手势事件类型。</p>
-</blockquote>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/07/19/JavaScript事件/#more" rel="contents">
@@ -1425,9 +1451,7 @@
 
       
         
-          <blockquote>
-<p>对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。</p>
-</blockquote>
+          <p>对象是JavaScript的基本数据类型。对象是一种复合值；它将很多值（原始值或者其他对象）聚合在一起，可通过名字访问这些值。对象也可以看作是属性的无序集合，每个属性都是一个名值对。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/20/JavaScript对象/#more" rel="contents">
@@ -1600,8 +1624,9 @@
 
       
         
-          <blockquote>
-<p>总结 JavaScript 中各种宽度和高度。</p>
+          <p>总结 JavaScript 中各种宽度和高度。</p>
+<h3 id="Window-对象"><a href="#Window-对象" class="headerlink" title="Window 对象"></a>Window 对象</h3><blockquote>
+<p>Window 对象表示浏览器中打开的窗口。如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。</p>
 </blockquote>
           <!--noindex-->
           <div class="post-button text-center">
@@ -1775,10 +1800,7 @@
 
       
         
-          <blockquote>
-<p>全局变量的问题</p>
-</blockquote>
-<p>全局变量的问题在于，你的JavaScript应用程序和web页面上的所有代码都共享了这些全局变量，他们住在同一个全局命名空间，所以当程序的两个不同部分定义同名但不同作用的全局变量的时候，命名冲突在所难免。</p>
+          <h3 id="全局变量的问题"><a href="#全局变量的问题" class="headerlink" title="全局变量的问题"></a>全局变量的问题</h3><p>全局变量的问题在于，你的JavaScript应用程序和web页面上的所有代码都共享了这些全局变量，他们住在同一个全局命名空间，所以当程序的两个不同部分定义同名但不同作用的全局变量的时候，命名冲突在所难免。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/07/编写高质量的JavaScript代码/#more" rel="contents">
@@ -1916,7 +1938,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  759
+                  756
                 </span>
               
 
@@ -1951,9 +1973,7 @@
 
       
         
-          <blockquote>
-<p>分久必合，合久必分</p>
-</blockquote>
+          <h3 id="分久必合，合久必分"><a href="#分久必合，合久必分" class="headerlink" title="分久必合，合久必分"></a>分久必合，合久必分</h3><p>用了半天时间看完 Node.js 的基本API,感觉很轻便，没有Java那么笨重。很多语法在学习 Vue 的时候也见过，所以并没有什么陌生感，很快便熟悉了基本的用法。于是便参考别人的博客写了个学院官网的爬虫，程序能够获取文章内容和图片，然后存储在本地。不过当前版本过于简单，思路就是向服务器发送请求，获取文章的 html，使用 cheerio（类似Jquery)模块解析出 html 中的文字和图片。幸运的是，通过编写爬虫，折腾了一下 vim，熟悉了 vim 的配置和终端中一些常用的命令。代码如下：</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/05/03/初识node.js/#more" rel="contents">
@@ -2069,7 +2089,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2197,7 +2217,7 @@
 </div>
 
 <div class="theme-info">
-  <span class="post-count">博客全站共10.2k字</span>
+  <span class="post-count">博客全站共10.6k字</span>
 </div>
 
 
