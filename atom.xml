@@ -150,9 +150,21 @@
     <link href="http://sunmaer.github.io/2017/09/20/%E5%90%88%E5%90%88%E4%BF%A1%E6%81%AF%E7%BD%91%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/"/>
     <id>http://sunmaer.github.io/2017/09/20/合合信息网面试总结/</id>
     <published>2017-09-20T06:54:36.000Z</published>
-    <updated>2017-09-20T07:10:41.000Z</updated>
+    <updated>2017-09-20T11:45:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Js正则表达式验证手机号码和邮箱地址"><a href="#Js正则表达式验证手机号码和邮箱地址" class="headerlink" title="Js正则表达式验证手机号码和邮箱地址"></a>Js正则表达式验证手机号码和邮箱地址</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/^1[3|5|8][0-9]&#123;9&#125;$/ // 手机号码</div><div class="line">/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9])+/ // 邮箱</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="Sass-导入css-文件和css-import-区别"><a href="#Sass-导入css-文件和css-import-区别" class="headerlink" title="Sass 导入css 文件和css @import 区别"></a>Sass 导入css 文件和css @import 区别</h3><ul>
+<li><p>css 有一个特别不常用的特性，即@import规则，它允许在一个css文件中导入其他css文件。然而，后果是只有执行到@import时，浏览器才会去下载其他css文件，这导致页面加载起来特别慢。</p>
+</li>
+<li><p>sass 也有一个@import规则，但不同的是，sass的@import规则在生成css文件时就把相关文件导入进来。这意味着所有相关的样式被归纳到了同一个css文件，而无需发起额外的下载请求。另外，所有在被导入文件中定义的变量和混合器均可在导入文件中使用。</p>
+</li>
+</ul>
+]]></content>
     
     <summary type="html">
+    
+      &lt;h3 id=&quot;Js正则表达式验证手机号码和邮箱地址&quot;&gt;&lt;a href=&quot;#Js正则表达式验证手机号码和邮箱地址&quot; class=&quot;headerlink&quot; title=&quot;Js正则表达式验证手机号码和邮箱地址&quot;&gt;&lt;/a&gt;Js正则表达式验证手机号码和邮箱地址&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;/^1[3|5|8][0-9]&amp;#123;9&amp;#125;$/ // 手机号码&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9])+/ // 邮箱&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
