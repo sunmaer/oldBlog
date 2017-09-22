@@ -269,7 +269,7 @@
     <link href="http://sunmaer.github.io/2017/09/16/%E9%87%91%E5%B1%B1WPS%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98/"/>
     <id>http://sunmaer.github.io/2017/09/16/金山WPS前端笔试题/</id>
     <published>2017-09-16T03:22:11.000Z</published>
-    <updated>2017-09-22T08:30:52.000Z</updated>
+    <updated>2017-09-22T08:34:49.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1、列出http协议头部信息并简单描述其作用。"><a href="#1、列出http协议头部信息并简单描述其作用。" class="headerlink" title="1、列出http协议头部信息并简单描述其作用。"></a>1、列出http协议头部信息并简单描述其作用。</h3><ul>
 <li>通用首部</li>
@@ -617,7 +617,12 @@
 <li><p>四次挥手断开连接。</p>
 </li>
 </ul>
-<h3 id="3、"><a href="#3、" class="headerlink" title="3、"></a>3、<figure class="highlight plain"><figcaption><span>id="div1"><div id="div2"></div>```在不确定div2大小的情况下实现div2上下左右居中。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 伪元素占位方案</div><div class="line"></div><div class="line">```bash</div><div class="line">#div1 &#123;</div><div class="line">	text-align: center; /* 水平居中 */</div><div class="line">	font-size: 0; /* 消除空隙 */</div><div class="line">&#125;</div><div class="line">#div1::before &#123;</div><div class="line">	content: &apos;&apos;;</div><div class="line">	height: 100%;</div><div class="line">&#125;</div><div class="line">#div1::before, #div2 &#123;</div><div class="line">	display: inline-block;</div><div class="line">	vertical-align: middle; /* 调整line-box的基线位置 */</div><div class="line">	font-size: 14px;</div><div class="line">&#125;</div></pre></td></tr></table></figure></h3><ul>
+<h3 id="3、"><a href="#3、" class="headerlink" title="3、"></a>3、</h3><pre><code>&lt;div id=&quot;div1&quot;&gt;&lt;div id=&quot;div2&quot;&gt;&lt;/div&gt;&lt;/div&gt; 在不确定div2大小的情况下实现div2上下左右居中。
+</code></pre><ul>
+<li>伪元素占位方案</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#div1 &#123;</span></div><div class="line">	text-align: center; /* 水平居中 */</div><div class="line">	font-size: 0; /* 消除空隙 */</div><div class="line">&#125;</div><div class="line"><span class="comment">#div1::before &#123;</span></div><div class="line">	content: <span class="string">''</span>;</div><div class="line">	height: 100%;</div><div class="line">&#125;</div><div class="line"><span class="comment">#div1::before, #div2 &#123;</span></div><div class="line">	display: inline-block;</div><div class="line">	vertical-align: middle; /* 调整line-box的基线位置 */</div><div class="line">	font-size: 14px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
 <li>利用 transform 属性</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#div2 &#123;</span></div><div class="line">	position: absolute;</div><div class="line">	top: 50%;</div><div class="line">	left: 50%;</div><div class="line">	transform: translate(-50%, -50%);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
