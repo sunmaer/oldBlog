@@ -269,7 +269,7 @@
     <link href="http://sunmaer.github.io/2017/09/16/%E9%87%91%E5%B1%B1WPS%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98/"/>
     <id>http://sunmaer.github.io/2017/09/16/金山WPS前端笔试题/</id>
     <published>2017-09-16T03:22:11.000Z</published>
-    <updated>2017-09-22T07:14:17.000Z</updated>
+    <updated>2017-09-22T08:30:52.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1、列出http协议头部信息并简单描述其作用。"><a href="#1、列出http协议头部信息并简单描述其作用。" class="headerlink" title="1、列出http协议头部信息并简单描述其作用。"></a>1、列出http协议头部信息并简单描述其作用。</h3><ul>
 <li>通用首部</li>
@@ -636,7 +636,8 @@
 <h3 id="4、js实现一个单例模式。"><a href="#4、js实现一个单例模式。" class="headerlink" title="4、js实现一个单例模式。"></a>4、js实现一个单例模式。</h3><blockquote>
 <p><a href="http://sunmaer.github.io/2017/09/22/单例模式/">http://sunmaer.github.io/2017/09/22/单例模式/</a></p>
 </blockquote>
-<h3 id="5、js实现将location-search转换成map的方法。"><a href="#5、js实现将location-search转换成map的方法。" class="headerlink" title="5、js实现将location.search转换成map的方法。"></a>5、js实现将location.search转换成map的方法。</h3><h3 id="6、100万个不相等的乱序的整数，用最快的方法将其分成相等的两部分，要求前一部分每个数都比后一部分每个数小？"><a href="#6、100万个不相等的乱序的整数，用最快的方法将其分成相等的两部分，要求前一部分每个数都比后一部分每个数小？" class="headerlink" title="6、100万个不相等的乱序的整数，用最快的方法将其分成相等的两部分，要求前一部分每个数都比后一部分每个数小？"></a>6、100万个不相等的乱序的整数，用最快的方法将其分成相等的两部分，要求前一部分每个数都比后一部分每个数小？</h3>]]></content>
+<h3 id="5、js实现将location-search转换成map的方法。"><a href="#5、js实现将location-search转换成map的方法。" class="headerlink" title="5、js实现将location.search转换成map的方法。"></a>5、js实现将location.search转换成map的方法。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">const param = location.search;</div><div class="line"></div><div class="line"><span class="keyword">function</span> convertToMap(param) &#123;</div><div class="line">	<span class="built_in">let</span> map = &#123;&#125;, paramArr = [];</div><div class="line">	param = param.substring(1); // 去除第一个问号</div><div class="line">	paramArr = param.split(<span class="string">'&amp;'</span>);</div><div class="line">	paramArr.forEach(<span class="keyword">function</span>(item) &#123;</div><div class="line">		<span class="built_in">let</span> key = item.substring(0, item.indexOf(<span class="string">'='</span>));</div><div class="line">		<span class="built_in">let</span> value = item.substring(item.indexOf(<span class="string">'='</span>)+1);</div><div class="line">		map[key] = value;</div><div class="line">	&#125;)</div><div class="line">	<span class="built_in">return</span> map;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(convertToMap(param));</div></pre></td></tr></table></figure>
+<h3 id="6、100万个不相等的乱序的整数，用最快的方法将其分成相等的两部分，要求前一部分每个数都比后一部分每个数小？"><a href="#6、100万个不相等的乱序的整数，用最快的方法将其分成相等的两部分，要求前一部分每个数都比后一部分每个数小？" class="headerlink" title="6、100万个不相等的乱序的整数，用最快的方法将其分成相等的两部分，要求前一部分每个数都比后一部分每个数小？"></a>6、100万个不相等的乱序的整数，用最快的方法将其分成相等的两部分，要求前一部分每个数都比后一部分每个数小？</h3>]]></content>
     
     <summary type="html">
     
