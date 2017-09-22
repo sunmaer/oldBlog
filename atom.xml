@@ -269,7 +269,7 @@
     <link href="http://sunmaer.github.io/2017/09/16/%E9%87%91%E5%B1%B1WPS%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98/"/>
     <id>http://sunmaer.github.io/2017/09/16/金山WPS前端笔试题/</id>
     <published>2017-09-16T03:22:11.000Z</published>
-    <updated>2017-09-22T08:34:49.000Z</updated>
+    <updated>2017-09-22T08:36:57.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1、列出http协议头部信息并简单描述其作用。"><a href="#1、列出http协议头部信息并简单描述其作用。" class="headerlink" title="1、列出http协议头部信息并简单描述其作用。"></a>1、列出http协议头部信息并简单描述其作用。</h3><ul>
 <li>通用首部</li>
@@ -617,7 +617,7 @@
 <li><p>四次挥手断开连接。</p>
 </li>
 </ul>
-<h3 id="3、"><a href="#3、" class="headerlink" title="3、"></a>3、</h3><pre><code>&lt;div id=&quot;div1&quot;&gt;&lt;div id=&quot;div2&quot;&gt;&lt;/div&gt;&lt;/div&gt; 在不确定div2大小的情况下实现div2上下左右居中。
+<h3 id="3、在不确定div2大小的情况下实现div2上下左右居中。"><a href="#3、在不确定div2大小的情况下实现div2上下左右居中。" class="headerlink" title="3、在不确定div2大小的情况下实现div2上下左右居中。"></a>3、在不确定div2大小的情况下实现div2上下左右居中。</h3><pre><code>&lt;div id=&quot;div1&quot;&gt;&lt;div id=&quot;div2&quot;&gt;&lt;/div&gt;&lt;/div&gt;  
 </code></pre><ul>
 <li>伪元素占位方案</li>
 </ul>
