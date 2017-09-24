@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="單棲情緒">
 <meta property="og:description" content="XmlHttpRequest对象 status等于0，responseText为空是什么原因？由于用户在http返回前关闭/取消，或者防火墙等原因，会造成http请求没有status信息。w3c有相应的说明：http://www.w3.org/TR/XMLHttpRequest/#the-status-attribute 4.7.1 The status attribute client . st">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-24T10:42:18.000Z">
+<meta property="og:updated_time" content="2017-09-24T11:09:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="迅雷前端笔试题总结">
 <meta name="twitter:description" content="XmlHttpRequest对象 status等于0，responseText为空是什么原因？由于用户在http返回前关闭/取消，或者防火墙等原因，会造成http请求没有status信息。w3c有相应的说明：http://www.w3.org/TR/XMLHttpRequest/#the-status-attribute 4.7.1 The status attribute client . st">
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  537
+                  768
                 </span>
               
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -415,7 +415,17 @@
 <h3 id="radio-单选按钮属性"><a href="#radio-单选按钮属性" class="headerlink" title="radio 单选按钮属性"></a>radio 单选按钮属性</h3><blockquote>
 <p><a href="http://www.w3school.com.cn/jsref/dom_obj_radio.asp" target="_blank" rel="external">http://www.w3school.com.cn/jsref/dom_obj_radio.asp</a></p>
 </blockquote>
-<h3 id="document、window、location、history对象关系"><a href="#document、window、location、history对象关系" class="headerlink" title="document、window、location、history对象关系"></a>document、window、location、history对象关系</h3><h3 id="填空"><a href="#填空" class="headerlink" title="填空"></a>填空</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	var b = a = 1;</div><div class="line">	console.log(a);</div><div class="line">	console.log(b);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="document、window、location、history对象关系"><a href="#document、window、location、history对象关系" class="headerlink" title="document、window、location、history对象关系"></a>document、window、location、history对象关系</h3><ul>
+<li><p>Window 对象<br>Window 对象表示浏览器中打开的窗口。<br>如果文档包含框架（frame 或 iframe 标签），浏览器会为 HTML 文档创建一个 window 对象，并为每个框架创建一个额外的 window 对象。history 对象和 location 对象都是 window 对象的属性。</p>
+</li>
+<li><p>Document 对象<br>每个载入浏览器的 HTML 文档都会成为 Document 对象。Document 对象使我们可以从脚本中对 HTML 页面中的所有元素进行访问。Document 对象是 window 对象的一部分，可通过 window.document 属性对其进行访问。</p>
+</li>
+<li><p>History 对象<br>History 对象包含用户（在浏览器窗口中）访问过的 URL。<br>History 对象是 window 对象的一部分，可通过 window.history 属性对其进行访问。</p>
+</li>
+<li><p>Location 对象<br>Location 对象包含有关当前 URL 的信息。<br>Location 对象是 Window 对象的一个部分，可通过 window.location 属性来访问。</p>
+</li>
+</ul>
+<h3 id="填空"><a href="#填空" class="headerlink" title="填空"></a>填空</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	var b = a = 1;</div><div class="line">	console.log(a);</div><div class="line">	console.log(b);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var foo = 1;</div><div class="line"><span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	foo = 10;</div><div class="line">	<span class="built_in">return</span>;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;&#125;</div><div class="line">&#125;</div><div class="line">bar()</div><div class="line">console.log(foo)</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">bar</span></span>() &#123;</div><div class="line">	<span class="built_in">return</span> foo;</div><div class="line">	foo = 10;</div><div class="line">	<span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;&#125;</div><div class="line">	var foo = 11；</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(typeof bar);</div></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">function</span> foo(a) &#123;</div><div class="line">	arguments[0] = 2;</div><div class="line">	<span class="built_in">return</span> a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(foo(1));</div></pre></td></tr></table></figure>
@@ -443,7 +453,7 @@
   <p><span>本文标题:</span><a href="/2017/09/19/迅雷前端笔试题总结/">迅雷前端笔试题总结</a></p>
   <p><span>本文作者:</span><a href="/" title="访问 sunmaer 的个人博客">sunmaer</a></p>
   <p><span>发布时间:</span>2017年09月19日 - 21:09</p>
-  <!-- <p><span>最后更新:</span>2017年09月24日 - 18:09</p> -->
+  <!-- <p><span>最后更新:</span>2017年09月24日 - 19:09</p> -->
   <p><span>本文链接:</span><a href="/2017/09/19/迅雷前端笔试题总结/" title="迅雷前端笔试题总结">http://sunmaer.github.io/2017/09/19/迅雷前端笔试题总结/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/09/19/迅雷前端笔试题总结/"  aria-label="复制成功！"></i></span>
   </p>
@@ -764,7 +774,7 @@
 </div>
 
 <div class="theme-info">
-  <span class="post-count">博客全站共12.7k字</span>
+  <span class="post-count">博客全站共12.9k字</span>
 </div>
 
 
