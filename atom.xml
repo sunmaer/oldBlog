@@ -206,16 +206,16 @@
     <link href="http://sunmaer.github.io/2017/09/19/%E8%BF%85%E9%9B%B7%E5%89%8D%E7%AB%AF%E7%AC%94%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/"/>
     <id>http://sunmaer.github.io/2017/09/19/迅雷前端笔试题总结/</id>
     <published>2017-09-19T13:08:17.000Z</published>
-    <updated>2017-09-24T11:09:17.000Z</updated>
+    <updated>2017-09-24T12:20:56.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="XmlHttpRequest对象-status等于0，responseText为空是什么原因？"><a href="#XmlHttpRequest对象-status等于0，responseText为空是什么原因？" class="headerlink" title="XmlHttpRequest对象 status等于0，responseText为空是什么原因？"></a>XmlHttpRequest对象 status等于0，responseText为空是什么原因？</h3><p>由于用户在http返回前关闭/取消，或者防火墙等原因，会造成http请求没有status信息。w3c有相应的说明：<a href="http://www.w3.org/TR/XMLHttpRequest/#the-status-attribute" target="_blank" rel="external">http://www.w3.org/TR/XMLHttpRequest/#the-status-attribute</a></p>
+<a id="more"></a>
 <p>4.7.1 The status attribute</p>
 <p>client . status<br>Returns the HTTP status code.</p>
 <p>The status attribute must return the result of running these steps:</p>
 <p>If the state is UNSENT or OPENED, return 0.</p>
 <p>If the error flag is set, return 0.</p>
 <p>Return the HTTP status code.</p>
-<a id="more"></a>
 <h3 id="级联菜单"><a href="#级联菜单" class="headerlink" title="级联菜单"></a>级联菜单</h3><p>利用 select 的 onchange 事件。</p>
 <h3 id="3-2-1-reaudce-Math-pow-reduce-Math-pow"><a href="#3-2-1-reaudce-Math-pow-reduce-Math-pow" class="headerlink" title="[3,2,1].reaudce(Math.pow) [].reduce(Math.pow)"></a>[3,2,1].reaudce(Math.pow) [].reduce(Math.pow)</h3><blockquote>
 <p>归并方法：reduce 接收两个参数，一个在每一项上调用的函数和可选的归并基础的初始值。传入函数接收四个参数：前一个值，当前值，项的索引和数组对象。这个函数返回的任何值都会作为第一个参数自动传给下一项。没有指定初始值就使用第一个元素作为初始值。<br>在空数组上，不带初始值参数调用 reduce() 将导致类型错误异常。如果调用它的时候只有一个值–数组只有一个元素并且没有指定初识值，或者一个空数组并且指定一个初识值，reduce() 只是简单地返回那个值而不会调用化简函数。</p>
@@ -251,12 +251,6 @@
     <summary type="html">
     
       &lt;h3 id=&quot;XmlHttpRequest对象-status等于0，responseText为空是什么原因？&quot;&gt;&lt;a href=&quot;#XmlHttpRequest对象-status等于0，responseText为空是什么原因？&quot; class=&quot;headerlink&quot; title=&quot;XmlHttpRequest对象 status等于0，responseText为空是什么原因？&quot;&gt;&lt;/a&gt;XmlHttpRequest对象 status等于0，responseText为空是什么原因？&lt;/h3&gt;&lt;p&gt;由于用户在http返回前关闭/取消，或者防火墙等原因，会造成http请求没有status信息。w3c有相应的说明：&lt;a href=&quot;http://www.w3.org/TR/XMLHttpRequest/#the-status-attribute&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.w3.org/TR/XMLHttpRequest/#the-status-attribute&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;4.7.1 The status attribute&lt;/p&gt;
-&lt;p&gt;client . status&lt;br&gt;Returns the HTTP status code.&lt;/p&gt;
-&lt;p&gt;The status attribute must return the result of running these steps:&lt;/p&gt;
-&lt;p&gt;If the state is UNSENT or OPENED, return 0.&lt;/p&gt;
-&lt;p&gt;If the error flag is set, return 0.&lt;/p&gt;
-&lt;p&gt;Return the HTTP status code.&lt;/p&gt;
     
     </summary>
     

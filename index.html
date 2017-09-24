@@ -921,12 +921,6 @@
       
         
           <h3 id="XmlHttpRequest对象-status等于0，responseText为空是什么原因？"><a href="#XmlHttpRequest对象-status等于0，responseText为空是什么原因？" class="headerlink" title="XmlHttpRequest对象 status等于0，responseText为空是什么原因？"></a>XmlHttpRequest对象 status等于0，responseText为空是什么原因？</h3><p>由于用户在http返回前关闭/取消，或者防火墙等原因，会造成http请求没有status信息。w3c有相应的说明：<a href="http://www.w3.org/TR/XMLHttpRequest/#the-status-attribute" target="_blank" rel="external">http://www.w3.org/TR/XMLHttpRequest/#the-status-attribute</a></p>
-<p>4.7.1 The status attribute</p>
-<p>client . status<br>Returns the HTTP status code.</p>
-<p>The status attribute must return the result of running these steps:</p>
-<p>If the state is UNSENT or OPENED, return 0.</p>
-<p>If the error flag is set, return 0.</p>
-<p>Return the HTTP status code.</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/19/迅雷前端笔试题总结/#more" rel="contents">
