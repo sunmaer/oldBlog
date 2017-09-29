@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /archives/
+
+Disallow: /fonts/
+Disallow: /vendors/
+
+
+Sitemap: https://sunmaer.github.io/sitemap.xml
+Sitemap: https://sunmaer.github.io/baidusitemap.xml
