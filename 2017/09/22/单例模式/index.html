@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="單棲情緒">
 <meta property="og:description" content="单例模式定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点。试想一下，当我们单击登录按钮的时候，页面中会出现一个登录浮窗，而这个登录浮窗是唯一的，无论单击多少次登录按钮，这个浮窗都只会被创建一次，那么这个登录浮窗就适合用单例模式来创建。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-13T12:55:57.000Z">
+<meta property="og:updated_time" content="2017-10-13T14:23:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例模式">
 <meta name="twitter:description" content="单例模式定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点。试想一下，当我们单击登录按钮的时候，页面中会出现一个登录浮窗，而这个登录浮窗是唯一的，无论单击多少次登录按钮，这个浮窗都只会被创建一次，那么这个登录浮窗就适合用单例模式来创建。">
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  754
+                  860
                 </span>
               
 
@@ -405,6 +405,8 @@
 <h3 id="透明单例模式"><a href="#透明单例模式" class="headerlink" title="透明单例模式"></a>透明单例模式</h3><p>透明单例模式使用 new XXX 的方式来创建对象</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var Singleton = (<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	var instance; // 保存实例</div><div class="line">	var Singleton = <span class="keyword">function</span>(name) &#123;</div><div class="line">		<span class="keyword">if</span>(instance) &#123;</div><div class="line">			<span class="built_in">return</span> instance;</div><div class="line">		&#125;</div><div class="line">		this.name = name;</div><div class="line">		<span class="built_in">return</span> instance = this;</div><div class="line">	&#125;</div><div class="line">	Singleton.prototype.getName = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">		console.log(this.name);</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">return</span> Singleton;</div><div class="line">&#125;)()</div></pre></td></tr></table></figure>
 <p>通过使用立即执行匿名函数和闭包把 instance 封装起来，并且让匿名函数返回真正的 Singleton 构造方法。<br>缺点：Singleton 的构造函数既要创建对象和执行初始化方法，又要保证只有一个对象，违反“单一职责原则”。</p>
+<h3 id="用代理实现单例模式"><a href="#用代理实现单例模式" class="headerlink" title="用代理实现单例模式"></a>用代理实现单例模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// 普通类 Singleton</div><div class="line">var Singleton = <span class="keyword">function</span>(name) &#123;</div><div class="line">	this.name = name</div><div class="line">&#125;</div><div class="line">Singleton.prototype.getName = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	console.log(this.name)</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 代理类 proxySingleton</div><div class="line">var proxySingleton = (<span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">	var instance;</div><div class="line">	var proxySingleton = <span class="keyword">function</span>(name) &#123;</div><div class="line">		<span class="keyword">if</span>(!instance) &#123;</div><div class="line">			instance = new Singleton(name)</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">return</span> instance</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">return</span> proxySingleton</div><div class="line">&#125;)()</div></pre></td></tr></table></figure>
+<p>通过引入代理类的方式，把负责管理单例的逻辑移到了代理类 proxySingleton 中，这样 Singleton 就是一个普通的类，它们组合起来可以达到单例模式的效果。</p>
 
       
     </div>
@@ -422,7 +424,7 @@
   <p><span>本文标题:</span><a href="/2017/09/22/单例模式/">单例模式</a></p>
   <p><span>本文作者:</span><a href="/" title="访问 sunmaer 的个人博客">sunmaer</a></p>
   <p><span>发布时间:</span>2017年09月22日 - 10:09</p>
-  <!-- <p><span>最后更新:</span>2017年10月13日 - 20:10</p> -->
+  <!-- <p><span>最后更新:</span>2017年10月13日 - 22:10</p> -->
   <p><span>本文链接:</span><a href="/2017/09/22/单例模式/" title="单例模式">http://sunmaer.github.io/2017/09/22/单例模式/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/09/22/单例模式/"  aria-label="复制成功！"></i></span>
   </p>
@@ -700,7 +702,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现单例模式"><span class="nav-number">1.</span> <span class="nav-text">实现单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#透明单例模式"><span class="nav-number">2.</span> <span class="nav-text">透明单例模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现单例模式"><span class="nav-number">1.</span> <span class="nav-text">实现单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#透明单例模式"><span class="nav-number">2.</span> <span class="nav-text">透明单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用代理实现单例模式"><span class="nav-number">3.</span> <span class="nav-text">用代理实现单例模式</span></a></li></ol></div>
             
 
           </div>
@@ -739,7 +741,7 @@
 </div>
 
 <div class="theme-info">
-  <span class="post-count">博客全站共13.3k字</span>
+  <span class="post-count">博客全站共13.4k字</span>
 </div>
 
 
