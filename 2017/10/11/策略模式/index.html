@@ -77,7 +77,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="DOM," />
+  <meta name="keywords" content="策略模式," />
 
 
 
@@ -95,18 +95,18 @@
 
 
 
-<meta name="description" content="我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：">
-<meta name="keywords" content="DOM">
+<meta name="description" content="策略模式定义：定义一系列的算法，把它们一个个封装起来，并且使它们可以相互替换。">
+<meta name="keywords" content="策略模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript插入元素">
-<meta property="og:url" content="http://sunmaer.github.io/2017/07/29/JavaScript插入元素/index.html">
+<meta property="og:title" content="策略模式">
+<meta property="og:url" content="http://sunmaer.github.io/2017/10/11/策略模式/index.html">
 <meta property="og:site_name" content="單棲情緒">
-<meta property="og:description" content="我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：">
+<meta property="og:description" content="策略模式定义：定义一系列的算法，把它们一个个封装起来，并且使它们可以相互替换。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-19T08:55:20.000Z">
+<meta property="og:updated_time" content="2017-10-21T05:50:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript插入元素">
-<meta name="twitter:description" content="我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：">
+<meta name="twitter:title" content="策略模式">
+<meta name="twitter:description" content="策略模式定义：定义一系列的算法，把它们一个个封装起来，并且使它们可以相互替换。">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://sunmaer.github.io/2017/07/29/JavaScript插入元素/"/>
+  <link rel="canonical" href="http://sunmaer.github.io/2017/10/11/策略模式/"/>
 
 
 
 
 
-  <title>JavaScript插入元素 | 單棲情緒</title>
+  <title>策略模式 | 單棲情緒</title>
   
 
 
@@ -281,7 +281,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://sunmaer.github.io/2017/07/29/JavaScript插入元素/">
+    <link itemprop="mainEntityOfPage" href="http://sunmaer.github.io/2017/10/11/策略模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sunmaer">
@@ -298,7 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript插入元素</h1>
+          <h1 class="post-title" itemprop="name headline">策略模式</h1>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-29T11:21:51+08:00">
-                2017-07-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T13:10:28+08:00">
+                2017-10-11
               </time>
             
 
@@ -333,8 +333,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/单例模式/" itemprop="url" rel="index">
+                    <span itemprop="name">单例模式</span>
                   </a>
                 </span>
 
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  620
+                  277
                 </span>
               
 
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3
+                  1
                 </span>
               
             </div>
@@ -398,28 +398,9 @@
       
 
       
-        <p>我们平时经常会遇到动态插入 DOM 元素的场合，而在 JavaScript 中有多种方式可以实现插入 DOM，总结如下：</p>
+        <p>策略模式定义：定义一系列的算法，把它们一个个封装起来，并且使它们可以相互替换。</p>
 <a id="more"></a>
-<h2 id="insertBefore-在指定的已有的子节点之前插入新节点"><a href="#insertBefore-在指定的已有的子节点之前插入新节点" class="headerlink" title="insertBefore()    在指定的已有的子节点之前插入新节点"></a>insertBefore()    在指定的已有的子节点之前插入新节点</h2><ul>
-<li>调用了10000次ul.insertBefore()，每次都要产生一次页面渲染</li>
-<li>在父元素末尾插入新节点性能和appendChild()差不多，如果在指定子节点前插入新节点，影响文档树中的其他元素，渲染开销较大</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1; i&lt;=10000; i++) &#123;</div><div class="line">	<span class="built_in">let</span> li = document.createElement(<span class="string">'li'</span>)</div><div class="line">	<span class="built_in">let</span> a = document.createElement(<span class="string">'a'</span>)</div><div class="line">	<span class="built_in">let</span> text = document.createTextNode(<span class="string">'insertBefore()-'</span> + i)</div><div class="line">	a.appendChild(text)</div><div class="line">	li.appendChild(a)</div><div class="line">	ul.insertBefore(li, null)  // 第二个参数为 null 则在末尾插入新节点</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="appendChild-向元素添加新的子节点，作为最后一个子节点"><a href="#appendChild-向元素添加新的子节点，作为最后一个子节点" class="headerlink" title="appendChild()    向元素添加新的子节点，作为最后一个子节点"></a>appendChild()    向元素添加新的子节点，作为最后一个子节点</h2><ul>
-<li>调用了10000次ul.appendChild()，每次都要产生一次页面渲染</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1; i&lt;=10000; i++) &#123;</div><div class="line">  <span class="built_in">let</span> li = document.createElement(<span class="string">'li'</span>)</div><div class="line">  <span class="built_in">let</span> a = document.createElement(<span class="string">'a'</span>)</div><div class="line">  <span class="built_in">let</span> text = document.createTextNode(<span class="string">'appendChild()-'</span> + i)</div><div class="line">  a.appendChild(text)</div><div class="line">  li.appendChild(a)</div><div class="line">  ul.appendChild(li)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="innerHTML-设置或返回元素的内容"><a href="#innerHTML-设置或返回元素的内容" class="headerlink" title="innerHTML 设置或返回元素的内容"></a>innerHTML 设置或返回元素的内容</h2><ul>
-<li>只需要一次页面渲染</li>
-<li>innerHTML 插入上万个节点的时候，如果要插入的DIV里是空的，那么用innerHTML 插入是最好的选择，速度也是最快的，但是当第二次插入的时候，你就会发现速度降低。如果div里已经有数据，innerHTML会逐一删除，然后再插入的新的数据，速度大大降低，此时建议使用文档片段方式</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">let</span> liString = <span class="string">''</span></div><div class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1; i&lt;=10000; i++) &#123;</div><div class="line">  liString += <span class="string">'&lt;li&gt;&lt;a href=""&gt;innerHTML-'</span> + i +<span class="string">'&lt;/a&gt;&lt;/li&gt;'</span></div><div class="line">&#125;</div><div class="line">ul.innerHTML = liString</div></pre></td></tr></table></figure>
-<h2 id="文档片段-推荐）"><a href="#文档片段-推荐）" class="headerlink" title="文档片段(推荐）"></a>文档片段(推荐）</h2><ul>
-<li>只需要一次页面渲染</li>
-<li>虽然不能把文档片段直接添加到文档中，但可以将它作为一个“仓库”来使用，即可以在里面保存将来可能会添加到文档中的节点。可以通过 appendChild() 或者 insertBefore() 将文档片段中内容添加到文档中。在将文档片段作为参数传递给这两个方法时，实际上只会将文档片段的所有子节点添加到相应位置上；文档片段本身永远不会成为文档树的一部分</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var fragment = document.createDocumentFragment()</div><div class="line"><span class="keyword">for</span>(<span class="built_in">let</span> i=1; i&lt;=10000; i++) &#123;</div><div class="line">  <span class="built_in">let</span> li = document.createElement(<span class="string">'li'</span>)</div><div class="line">  <span class="built_in">let</span> a = document.createElement(<span class="string">'a'</span>)</div><div class="line">  <span class="built_in">let</span> text = document.createTextNode(<span class="string">'DocumentFragment-'</span> + i)</div><div class="line">  a.appendChild(text)</div><div class="line">  li.appendChild(a)</div><div class="line">  fragment.appendChild(li)</div><div class="line">&#125;</div><div class="line">ul.appendChild(fragment)</div></pre></td></tr></table></figure>
-<h2 id="Jquery-插入-DOM-元素-append-方法源码"><a href="#Jquery-插入-DOM-元素-append-方法源码" class="headerlink" title="Jquery 插入 DOM 元素 append() 方法源码"></a>Jquery 插入 DOM 元素 append() 方法源码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">append: <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">  <span class="built_in">return</span> domManip( this, arguments, <span class="keyword">function</span>( elem ) &#123;</div><div class="line">    <span class="keyword">if</span> ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) &#123;</div><div class="line">      var target = manipulationTarget( this, elem );</div><div class="line">      target.appendChild( elem );</div><div class="line">    &#125;</div><div class="line">  &#125; );</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<h3 id="使用策略模式计算奖金"><a href="#使用策略模式计算奖金" class="headerlink" title="使用策略模式计算奖金"></a>使用策略模式计算奖金</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 策略类</div><div class="line"> * 封装具体的算法，并负责具体的计算过程</div><div class="line"> */</div><div class="line"> var performanceS = <span class="function"><span class="title">function</span></span>() &#123;&#125;</div><div class="line"> performanceS.prototype.calculate = <span class="keyword">function</span>(salary) &#123;</div><div class="line">   <span class="built_in">return</span> salary*4</div><div class="line"> &#125; </div><div class="line"></div><div class="line"> var performanceA = <span class="function"><span class="title">function</span></span>() &#123;&#125;</div><div class="line"> performanceA.prototype.calculate = <span class="keyword">function</span>(salary) &#123;</div><div class="line">   <span class="built_in">return</span> salary*3</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> var performanceB = <span class="function"><span class="title">function</span></span>() &#123;&#125;</div><div class="line"> performanceB.prototype.calculate = <span class="keyword">function</span>(salary) &#123;</div><div class="line">   <span class="built_in">return</span> salary*2</div><div class="line"> &#125;</div><div class="line"></div><div class="line"> /**</div><div class="line">  * 环境类</div><div class="line">  * 接受客户的请求，把请求委托给某一个策略类</div><div class="line">  */</div><div class="line">var Bonus = <span class="function"><span class="title">function</span></span>() &#123;</div><div class="line">  this.salary = null // 原始工资</div><div class="line">  this.strategy = null // 绩效等级对应的策略对象</div><div class="line">&#125;</div><div class="line"></div><div class="line">Bonus.prototype.setSalary = <span class="keyword">function</span>(salary) &#123; // 设置员工的原始工资</div><div class="line">  this.salary = salary</div><div class="line">&#125;</div><div class="line"></div><div class="line">Bonus.prototype.setStrategy = <span class="keyword">function</span>(strategy) &#123; // 设置员工绩效等级对应的策略对象</div><div class="line">  this.strategy = strategy</div><div class="line">&#125;</div><div class="line"></div><div class="line">Bonus.prototype.getBonus = <span class="function"><span class="title">function</span></span>() &#123; // 取得奖金数额</div><div class="line">  <span class="built_in">return</span> this.strategy.calculate(this.salary) // 把计算奖金的操作委托给对应的策略对象</div><div class="line">&#125;</div><div class="line"></div><div class="line">var bonus = new Bonus()</div><div class="line">bonus.setSalary(1000)</div><div class="line">bonus.setStrategy(new performanceS())</div><div class="line">console.log(bonus.getBonus()) // 4000</div><div class="line"></div><div class="line">// JavaScript 版本的策略模式</div><div class="line">var strategies = &#123;</div><div class="line">  <span class="string">'S'</span>: <span class="keyword">function</span>(salary) &#123;</div><div class="line">    <span class="built_in">return</span> salary*4</div><div class="line">  &#125;,</div><div class="line">  <span class="string">'A'</span>: <span class="keyword">function</span>(salary) &#123;</div><div class="line">    <span class="built_in">return</span> salary*3</div><div class="line">  &#125;,</div><div class="line">  <span class="string">'B'</span>: <span class="keyword">function</span>(salary) &#123;</div><div class="line">    <span class="built_in">return</span> salary*2</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> calculateBonus(salary, level) &#123;</div><div class="line">  <span class="built_in">return</span> strategies[level](salary)</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(calculateBonus(1000, <span class="string">'S'</span>)) // 4000</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -434,12 +415,12 @@
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2017/07/29/JavaScript插入元素/">JavaScript插入元素</a></p>
+  <p><span>本文标题:</span><a href="/2017/10/11/策略模式/">策略模式</a></p>
   <p><span>本文作者:</span><a href="/" title="访问 sunmaer 的个人博客">sunmaer</a></p>
-  <p><span>发布时间:</span>2017年07月29日 - 11:07</p>
-  <!-- <p><span>最后更新:</span>2017年09月19日 - 16:09</p> -->
-  <p><span>本文链接:</span><a href="/2017/07/29/JavaScript插入元素/" title="JavaScript插入元素">http://sunmaer.github.io/2017/07/29/JavaScript插入元素/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/07/29/JavaScript插入元素/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2017年10月11日 - 13:10</p>
+  <!-- <p><span>最后更新:</span>2017年10月21日 - 13:10</p> -->
+  <p><span>本文链接:</span><a href="/2017/10/11/策略模式/" title="策略模式">http://sunmaer.github.io/2017/10/11/策略模式/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://sunmaer.github.io/2017/10/11/策略模式/"  aria-label="复制成功！"></i></span>
   </p>
   <!-- <p><span>版权声明:</span>转载请保留原文链接及作者。</p>  -->
 </div>
@@ -486,7 +467,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/DOM/" rel="tag"><i class="fa fa-tag"></i> DOM</a>
+            <a href="/tags/策略模式/" rel="tag"><i class="fa fa-tag"></i> 策略模式</a>
           
         </div>
       
@@ -499,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/19/JavaScript事件/" rel="next" title="JavaScript事件">
-                <i class="fa fa-chevron-left"></i> JavaScript事件
+              <a href="/2017/09/22/单例模式/" rel="next" title="单例模式">
+                <i class="fa fa-chevron-left"></i> 单例模式
               </a>
             
           </div>
@@ -508,10 +489,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/10/策略模式实现表单验证/" rel="prev" title="策略模式实现表单验证">
-                策略模式实现表单验证 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -719,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#insertBefore-在指定的已有的子节点之前插入新节点"><span class="nav-number">1.</span> <span class="nav-text">insertBefore()    在指定的已有的子节点之前插入新节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#appendChild-向元素添加新的子节点，作为最后一个子节点"><span class="nav-number">2.</span> <span class="nav-text">appendChild()    向元素添加新的子节点，作为最后一个子节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#innerHTML-设置或返回元素的内容"><span class="nav-number">3.</span> <span class="nav-text">innerHTML 设置或返回元素的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文档片段-推荐）"><span class="nav-number">4.</span> <span class="nav-text">文档片段(推荐）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Jquery-插入-DOM-元素-append-方法源码"><span class="nav-number">5.</span> <span class="nav-text">Jquery 插入 DOM 元素 append() 方法源码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用策略模式计算奖金"><span class="nav-number">1.</span> <span class="nav-text">使用策略模式计算奖金</span></a></li></ol></div>
             
 
           </div>
