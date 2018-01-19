@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://sunmaer.github.io/"/>
-  <updated>2017-10-21T05:50:32.000Z</updated>
+  <updated>2018-01-19T07:05:18.924Z</updated>
   <id>http://sunmaer.github.io/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Express学习</title>
+    <link href="http://sunmaer.github.io/2018/01/19/Express%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://sunmaer.github.io/2018/01/19/Express学习/</id>
+    <published>2018-01-19T06:47:00.000Z</published>
+    <updated>2018-01-19T07:05:18.924Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h2><blockquote>
+<p>基于 Node.js 平台，快速、开放、极简的 web 开发框架</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mkdir myapp  </div><div class="line">cd myapp</div><div class="line">npm init</div><div class="line">npm install express --save</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Express&quot;&gt;&lt;a href=&quot;#Express&quot; class=&quot;headerlink&quot; title=&quot;Express&quot;&gt;&lt;/a&gt;Express&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;基于 Node.js 平台，快速、开放、极简的 web 开发框架&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="node.js" scheme="http://sunmaer.github.io/categories/node-js/"/>
+    
+    
+      <category term="node.js" scheme="http://sunmaer.github.io/tags/node-js/"/>
+    
+      <category term="express" scheme="http://sunmaer.github.io/tags/express/"/>
+    
+  </entry>
   
   <entry>
     <title>策略模式</title>
@@ -1221,9 +1252,9 @@
       <category term="node.js" scheme="http://sunmaer.github.io/categories/node-js/"/>
     
     
-      <category term="javascript" scheme="http://sunmaer.github.io/tags/javascript/"/>
-    
       <category term="node.js" scheme="http://sunmaer.github.io/tags/node-js/"/>
+    
+      <category term="javascript" scheme="http://sunmaer.github.io/tags/javascript/"/>
     
       <category term="爬虫" scheme="http://sunmaer.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
