@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://sunmaer.github.io/"/>
-  <updated>2018-01-19T07:05:18.924Z</updated>
+  <updated>2018-01-19T13:29:52.944Z</updated>
   <id>http://sunmaer.github.io/</id>
   
   <author>
@@ -20,13 +20,14 @@
     <link href="http://sunmaer.github.io/2018/01/19/Express%E5%AD%A6%E4%B9%A0/"/>
     <id>http://sunmaer.github.io/2018/01/19/Express学习/</id>
     <published>2018-01-19T06:47:00.000Z</published>
-    <updated>2018-01-19T07:05:18.924Z</updated>
+    <updated>2018-01-19T13:29:52.944Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h2><blockquote>
 <p>基于 Node.js 平台，快速、开放、极简的 web 开发框架</p>
 </blockquote>
 <a id="more"></a>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mkdir myapp  </div><div class="line">cd myapp</div><div class="line">npm init</div><div class="line">npm install express --save</div></pre></td></tr></table></figure>
+<h3 id="一个简单的-Express-路由"><a href="#一个简单的-Express-路由" class="headerlink" title="一个简单的 Express 路由"></a>一个简单的 Express 路由</h3><p>路由是由一个 URI 和一个特定的 HTTP 方法（GET、POST）组成的，涉及到应用如何响应客户端对某个网站节点的访问。<br>每一个路由的定义由如下结构组成：app.METHOD(PATH, HANDLER)。其中，app 是一个 express 实例；METHOD 是 </p>
 ]]></content>
     
     <summary type="html">
